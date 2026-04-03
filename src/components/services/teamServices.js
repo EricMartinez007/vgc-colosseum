@@ -17,3 +17,19 @@ export const getTeamById = (teamId) => {
 export const getPokemonByTeamId = (teamId) => {
     return fetch(`http://localhost:8088/pokemonTeams?teamId=${teamId}&_expand=pokemon`).then((res) => res.json())
 }
+
+export const updateTeam = (team) => {
+    return fetch(`http://localhost:8088/teams/${team.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(team),
+  }).then((res) => res.json())
+}
+
+export const deleteTeam = (team) => {
+    return fetch(`http://localhost:8088/teams/${team.id}`, {
+    method: "DELETE"
+    })
+}
