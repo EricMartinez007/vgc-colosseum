@@ -1,5 +1,33 @@
-export const NavBar = () => {
+import { Link, useNavigate } from "react-router-dom"
+
+export const NavBar = ({ currentUser }) => {
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        localStorage.removeItem("vgc_user")
+        navigate("/login")
+    }
+
+
     return (
-        <>This is the NavBar</>
+        <nav className="navbar">
+            <div className="navbar-brand">
+                <Link to="/">
+                    <img src="/vgc-logo.png" alt="VGC Colosseum" className="navbar-logo" />
+                </Link>
+            </div>
+            <div className="navbar-links">
+                <Link to="/communityteams">Community Teams</Link>
+                <Link to="/myteams">My Teams</Link>
+                <Link to="/newteam">New Team</Link>
+                <Link to="/profile">Profile</Link>
+                <button 
+                    className="logout-btn"
+                    onClick={handleLogout}
+                >
+                    Logout
+                </button>
+            </div>
+        </nav>
     )
 }
