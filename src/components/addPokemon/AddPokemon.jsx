@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { createPokemonTeam, getPokemon } from "../services/pokemonServices"
+import { createPokemonTeam, getPokemon } from "../../services/pokemonServices"
 
 export const AddPokemon = ({ currentUser }) => {
     const [allPokemon, setAllPokemon] = useState([])
