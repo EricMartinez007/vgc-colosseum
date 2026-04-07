@@ -30,14 +30,14 @@ export const EditTeam = ({ currentUser }) => {
         setTeam(copy)
     }
 
-    const handleDeleteTeam = (e) => {
+    const handleDeleteTeam = () => {
         deleteTeam(team).then(() => {
             navigate(`/myteams`)
         })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = (evt) => {
+        evt.preventDefault()
         updateTeam(team).then(() => {
             navigate(`/myteams`)
         })
