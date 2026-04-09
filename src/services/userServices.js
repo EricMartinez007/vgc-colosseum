@@ -15,3 +15,19 @@ export const createUser = (newUser) => {
 export const getUserById = (userId) => {
     return fetch(`http://localhost:8088/users/${userId}`).then((res) => res.json())
 }
+
+export const updateUser = (editUser) => {
+  return fetch(`http://localhost:8088/users/${editUser.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(editUser),
+  }).then((res) => res.json())
+}
+
+export const deleteUser = (userId) => {
+    return fetch(`http://localhost:8088/users/${userId}`, {
+    method: "DELETE"
+    })
+}
