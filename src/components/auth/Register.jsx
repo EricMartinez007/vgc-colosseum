@@ -80,6 +80,12 @@ export const Register = (props) => {
               Register
             </button>
           </div>
+          <button
+              className="btn-go-back"
+              onClick={() => navigate(-1)}
+            >
+              Go Back
+            </button>
         </fieldset>
       </form>
     </main>

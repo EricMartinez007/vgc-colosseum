@@ -6,6 +6,7 @@
   --accent-orange: #ff6b00;
   --accent-red: #e63946;
   --text-primary: #ffffff;
+  --accent-gray: #4a4a6a;
   --text-secondary: #a0a0b0;
   --border-color: #2a2a4a;
   --font-heading: 'Bebas Neue', cursive;
@@ -24,6 +25,10 @@ body {
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 16px;
+}
+
+fieldset {
+    border: none;
 }
 
 .page-container {
@@ -57,4 +62,21 @@ body {
 
 .pokemon-stat {
     font-family: var(--font-data);
+}
+
+.btn-go-back {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent-gray);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-go-back:hover {
+  background-color: #3a3a5a;
 }
