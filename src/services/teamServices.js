@@ -37,3 +37,7 @@ export const deleteTeam = (team) => {
 export const getTeamsByUserId = (currentUserId) => {
     return fetch(`http://localhost:8088/teams?userId=${currentUserId}&_embed=pokemonTeams`).then((res) => res.json())
 }
+
+export const getAllTeams = () => {
+    return fetch(`http://localhost:8088/teams?_embed=pokemonTeams&_expand=user`).then((res) => res.json())
+}

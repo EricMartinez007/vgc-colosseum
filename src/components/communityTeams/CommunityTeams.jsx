@@ -1,5 +1,69 @@
-export const CommunityTeams = () => {
+import { useEffect, useState } from "react"
+import { getAllTeams, getPokemonByTeamId } from "../../services/teamServices"
+import { getPokemon } from "../../services/pokemonServices"
+import { Link } from "react-router-dom"
+
+export const CommunityTeams = ({ currentUser }) => {
+    const [allTeams, setAllTeams] = useState([])
+    const [allPokemon, setAllPokemon] = useState([])
+    const [selectedPokemon, setSelectedPokemon] = useState({})
+
+    //we are first grabbing all the team in the database, then we are using Promise.all to send back all the pokemon fetches all at once before we try to match them with their teams. the double .map here allows for our team[0] to always match with pokemonArray[0]
+    useEffect(() => {
+        getAllTeams().then((teams) => {
+            Promise.all(
+                teams.map((team) => getPokemonByTeamId(team.id))
+            ).then((pokemonArrays) => {
+                const teamsWithPokemon = teams.map((team, index) => ({
+                    ...team,
+                    pokemon: pokemonArrays[index]
+                }))
+                setAllTeams(teamsWithPokemon)
+            })
+        })
+        getPokemon().then((pokemonArray) => {
+            setAllPokemon(pokemonArray)
+        })
+    }, [])
+    
+    const handlePokemonSelect = (evt) => {
+        const matchPokemon = allPokemon.find(pokemon => pokemon.id === parseInt(evt.target.value))
+        setSelectedPokemon(matchPokemon)
+    }
+
     return (
-        <>Welcome to the Community Teams Page</>
+        <main className="page-container">
+            <section>
+                <h1 className="page-title">Community Teams</h1>
+                <span className="page-subtitle">Browse and view teams created by community members!</span>
+                <select className="filter-bar" onChange={handlePokemonSelect}>
+                    <option value="0">Select a Pokémon</option>
+                    {allPokemon.map((pokemon) => (
+                        <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
+                    ))}
+                </select>
+                    <section className="teams-list">
+                        {!allTeams.length ? (
+                            <p className="empty-msg">No teams created yet.</p>
+                        ) : (
+                            allTeams.filter(team => {
+                                if (!selectedPokemon.id) return true
+                                return team.pokemon.some(pokemonTeam => pokemonTeam.pokemonId === selectedPokemon.id)
+                            })
+                            .map((team) => (
+                                <div key={team.id} className="team-card">
+                                    <h3>{team.name}</h3>
+                                    <h4>{team.user.name}</h4>
+                                    <Link to={`/viewteam/${team.id}`}>
+                                        {team.pokemon.map((pokemonTeam) => (
+                                            <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                        ))}
+                                    </Link>
+                                </div>  
+                            ))
+                        )}
+                </section>
+            </section>
+        </main>
     )
 }
