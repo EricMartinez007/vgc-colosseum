@@ -2,6 +2,10 @@ import "./Welcome.css"
 
 export const Welcome = () => {
     return (
-        <>Welcome to the Welcome Page!</>
+        <div className="welcome-container">
+            <header className="page-title">Welcome To VGC Colosseum</header>
+            <span className="page-subtitle">May The Odds Be Ever In Your Favor Gladiator</span>
+            <img src="/vgc-logo.png" alt="VGC Colosseum" />
+        </div>
     )
 }

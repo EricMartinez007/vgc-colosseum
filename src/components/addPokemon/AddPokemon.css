@@ -16,6 +16,13 @@
   border-color: var(--accent-purple);
 }
 
+.add-pokemon-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+}
+
 .pokemon-display {
   display: flex;
   gap: 2rem;
@@ -48,37 +55,24 @@
   font-weight: 600;
 }
 
-.btn-save-edits {
+.btn-go-back {
   padding: 0.75rem 1.5rem;
-  background-color: var(--accent-purple);
+  background-color: transparent;
   color: var(--text-primary);
-  border: none;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-family: var(--font-heading);
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin-right: 1rem;
+  transition: border-color 0.2s ease;
 }
 
-.btn-save-edits:hover {
-  background-color: #6a1fff;
+.btn-go-back:hover {
+  border-color: var(--accent-purple);
 }
-
-.btn-delete-pokemon {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--accent-red);
-  color: var(--text-primary);
-  border: none;
-  border-radius: 8px;
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.btn-delete-pokemon:hover {
-  background-color: #c0392b;
+select {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
 }

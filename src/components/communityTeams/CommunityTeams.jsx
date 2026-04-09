@@ -28,6 +28,10 @@ export const CommunityTeams = ({ currentUser }) => {
     }, [])
     
     const handlePokemonSelect = (evt) => {
+        if (evt.target.value === "0") {
+            setSelectedPokemon({})
+            return
+        }
         const matchPokemon = allPokemon.find(pokemon => pokemon.id === parseInt(evt.target.value))
         setSelectedPokemon(matchPokemon)
     }

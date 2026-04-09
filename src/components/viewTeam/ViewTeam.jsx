@@ -55,14 +55,14 @@ export const ViewTeam = ({ currentUser }) => {
             </div>
             {currentUser.id === team.userId && (
                 <button
-                    className="btn-add-pokemon"
+                    className="btn-edit-team"
                     onClick={() => navigate(`/editteam/${teamId}`)}
                 >
                     Edit Team
                 </button>
             )}
             <button
-                className="btn-add-pokemon"
+                className="btn-go-back"
                 onClick={() => navigate(-1)}
             >
                 Go Back
