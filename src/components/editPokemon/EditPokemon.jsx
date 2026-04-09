@@ -86,18 +86,26 @@ export const EditPokemon = ({ currentUser }) => {
                     </ul>
                 </div>
             )}
-            <button
-                className="btn-save-edits"
-                onClick={handleSaveEdits}
-            >
-                Save Edits
-            </button>
-            <button
-                className="btn-delete-pokemon"
-                onClick={handleDeletePokemon}
-            >
-                Remove From Team
-            </button>
+            <div className="btn-container">
+                <button
+                    className="btn-save-edits"
+                    onClick={handleSaveEdits}
+                >
+                    Save Edits
+                </button>
+                <button
+                    className="btn-delete-pokemon"
+                    onClick={handleDeletePokemon}
+                >
+                    Remove From Team
+                </button>
+                <button
+                    className="btn-go-back"
+                    onClick={() => navigate(-1)}
+                >
+                    Go Back
+                </button>
+            </div>
         </div>
     )
 }

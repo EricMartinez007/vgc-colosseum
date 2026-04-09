@@ -48,7 +48,7 @@ export const EditTeam = ({ currentUser }) => {
     //pt in the map method stand for pokemonTeam the objs im fetching belong to this array in which im expanding pokemon to access the image and name
     return (
         <div className="page-container">
-            <h1 className="page-title">Edit ({team.name})</h1>
+            <h1 className="page-title">Edit {team.name}</h1>
             <span className="page-subtitle">Make edits to your competitive team!</span>
             <form className="form-newteam" onSubmit={handleSubmit}>
                 <h2>Team Name</h2>

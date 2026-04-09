@@ -96,6 +96,12 @@ export const EditProfile = ({ currentUser }) => {
                         >
                             Delete Profile
                         </button>
+                        <button
+                            className="btn-go-back"
+                            onClick={() => navigate(-1)}
+                        >
+                            Go Back
+                        </button>
                     </div>
                 </fieldset>
                 </form>
