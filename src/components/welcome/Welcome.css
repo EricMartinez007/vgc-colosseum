@@ -1,0 +1,31 @@
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--bg-primary);
+}
+
+.welcome-container h1 {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.welcome-container h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-orange);
+  margin-bottom: 2rem;
+}
+
+.welcome-container img {
+  width: 350px;
+  max-width: 90%;
+}

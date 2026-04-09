@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getPokemonByTeamId, getTeamById } from "../../services/teamServices"
+import "./ViewTeam.css"
 
 export const ViewTeam = ({ currentUser }) => {
     const [team, setTeam] = useState({})
@@ -37,12 +38,16 @@ export const ViewTeam = ({ currentUser }) => {
             <span className="page-subtitle">Team made by: {team.user.name}</span>
             <div className="team-layout">
                 <section className="team-section">
-                    <h2>Pokemon</h2>
+                    <h2>Pokémon</h2>
                     <div className="pokemon-list">
-                        {pokemon.map((pt) => (
-                            <div key={pt.id} className="pokemon-card">
-                                <img src={pt.pokemon.imageUrl} alt={pt.pokemon.name} />
-                                <span>{pt.pokemon.name}</span>
+                        {pokemon.map((pokemonTeam) => (
+                            <div 
+                                key={pokemonTeam.id} 
+                                className="pokemon-card" 
+                                onClick={() => navigate(`/viewpokemon/${teamId}/${pokemonTeam.id}`)}
+                            >
+                                <img src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                <span>{pokemonTeam.pokemon.name}</span>
                             </div>
                         ))}
                     </div>

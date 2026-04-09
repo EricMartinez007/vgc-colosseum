@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getAllTeams, getPokemonByTeamId } from "../../services/teamServices"
 import { getPokemon } from "../../services/pokemonServices"
 import { Link } from "react-router-dom"
+import "./CommunityTeams.css"
 
 export const CommunityTeams = ({ currentUser }) => {
     const [allTeams, setAllTeams] = useState([])
@@ -51,15 +52,13 @@ export const CommunityTeams = ({ currentUser }) => {
                                 return team.pokemon.some(pokemonTeam => pokemonTeam.pokemonId === selectedPokemon.id)
                             })
                             .map((team) => (
-                                <div key={team.id} className="team-card">
-                                    <h3>{team.name}</h3>
-                                    <h4>{team.user.name}</h4>
-                                    <Link to={`/viewteam/${team.id}`}>
-                                        {team.pokemon.map((pokemonTeam) => (
-                                            <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
-                                        ))}
-                                    </Link>
-                                </div>  
+                                <Link key={team.id} to={`/viewteam/${team.id}`} className="team-card">
+                                <h3>{team.name}</h3>
+                                <h4>{team.user.name}</h4>
+                                    {team.pokemon.map((pokemonTeam) => (
+                                        <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                    ))}
+                                </Link>  
                             ))
                         )}
                 </section>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getUserById } from "../../services/userServices"
 import { getTeamsByUserId } from "../../services/teamServices"
+import "./Profile.css"
 
 export const Profile = ({ currentUser }) => {
     const [user, setUser] = useState({})

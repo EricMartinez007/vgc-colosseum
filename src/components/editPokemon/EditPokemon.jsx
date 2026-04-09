@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { deletePokemonTeam, editPokemonTeam, getPokemon, getPokemonTeamById } from "../../services/pokemonServices"
+import "./EditPokemon.css"
 
 
 export const EditPokemon = ({ currentUser }) => {

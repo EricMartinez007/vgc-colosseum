@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { deleteUser, getUserById, updateUser } from "../../services/userServices"
+import "./EditProfile.css"
 
 export const EditProfile = ({ currentUser }) => {
     const [user, setUser] = useState({})

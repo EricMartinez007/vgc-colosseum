@@ -1,0 +1,97 @@
+.container-login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  padding: 2rem;
+}
+
+.container-login h1 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.container-login img {
+  width: 200px;
+  margin-bottom: 1rem;
+}
+
+.form-login {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-login h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-purple);
+  text-align: center;
+}
+
+.form-login label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-purple);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.85rem;
+  background-color: var(--accent-purple);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login-btn:hover {
+  background-color: #6a1fff;
+}
+
+.register-link {
+  color: var(--accent-orange);
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: color 0.2s ease;
+}
+
+.register-link:hover {
+  color: #ff8c00;
+}

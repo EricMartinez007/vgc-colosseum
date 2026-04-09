@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createTeam } from "../../services/teamServices"
+import "./NewTeam.css"
 
 export const NewTeam = ({ currentUser }) => {
     const [newTeam, setNewTeam] = useState({

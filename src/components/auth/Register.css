@@ -1,0 +1,7 @@
+.container-login h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--accent-purple);
+  text-align: center;
+  letter-spacing: 0.1em;
+}

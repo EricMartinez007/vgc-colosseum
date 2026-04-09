@@ -1,0 +1,83 @@
+.form-edituser {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-edituser h2 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.form-edituser span {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-name,
+.form-email {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-name:focus,
+.form-email:focus {
+  outline: none;
+  border-color: var(--accent-purple);
+}
+
+.edituser-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.submit-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent-purple);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #6a1fff;
+}
+
+.delete-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent-red);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createUser, getUserByEmail } from "../../services/userServices"
+import "./Register.css"
 
 export const Register = (props) => {
   const [user, setUser] = useState({

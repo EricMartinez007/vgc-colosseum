@@ -1,0 +1,84 @@
+.pokemon-select {
+  padding: 0.6rem 1rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  width: 250px;
+}
+
+.pokemon-select:focus {
+  outline: none;
+  border-color: var(--accent-purple);
+}
+
+.pokemon-display {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+}
+
+.pokemon-display img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.pokemon-stats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pokemon-stat {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.btn-save-edits {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent-purple);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-right: 1rem;
+}
+
+.btn-save-edits:hover {
+  background-color: #6a1fff;
+}
+
+.btn-delete-pokemon {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent-red);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-delete-pokemon:hover {
+  background-color: #c0392b;
+}

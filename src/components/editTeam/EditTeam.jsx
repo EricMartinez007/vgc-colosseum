@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteTeam, getPokemonByTeamId, getTeamById, updateTeam } from "../../services/teamServices"
+import "./EditTeam.css"
 
 export const EditTeam = ({ currentUser }) => {
     const [team, setTeam] = useState({})
