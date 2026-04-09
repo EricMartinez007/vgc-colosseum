@@ -14,7 +14,7 @@ export const NavBar = ({ currentUser }) => {
         <nav className="navbar">
             <div className="navbar-brand">
                 <Link to="/">
-                    <img src="/vgc-logo.png" alt="VGC Colosseum" className="navbar-logo" />
+                    <img src="/VGC_Colosseum_Final_Logo.png" alt="VGC Colosseum" className="navbar-logo" />
                 </Link>
             </div>
             <div className="navbar-links">
