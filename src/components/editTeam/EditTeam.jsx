@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { deleteTeam, getPokemonByTeamId, getTeamById, updateTeam } from "../../services/teamServices"
 import "./EditTeam.css"
 
-export const EditTeam = ({ currentUser }) => {
+export const EditTeam = () => {
     const [team, setTeam] = useState({})
     const [pokemon, setPokemon] = useState([])
     

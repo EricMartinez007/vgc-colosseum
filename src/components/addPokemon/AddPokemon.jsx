@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { createPokemonTeam, getPokemon } from "../../services/pokemonServices"
 import "./AddPokemon.css"
 
-export const AddPokemon = ({ currentUser }) => {
+export const AddPokemon = () => {
     const [allPokemon, setAllPokemon] = useState([])
     const [selectedPokemon, setSelectedPokemon] = useState({})
 

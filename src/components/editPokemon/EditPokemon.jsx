@@ -4,7 +4,7 @@ import { deletePokemonTeam, editPokemonTeam, getPokemon, getPokemonTeamById } fr
 import "./EditPokemon.css"
 
 
-export const EditPokemon = ({ currentUser }) => {
+export const EditPokemon = () => {
     const [pokemonTeam, setPokemonTeam] =useState({})
     const [allPokemon, setAllPokemon] = useState([])
     const [selectedPokemon, setSelectedPokemon] = useState({})

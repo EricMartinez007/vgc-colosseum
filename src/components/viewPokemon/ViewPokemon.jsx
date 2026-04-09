@@ -4,7 +4,7 @@ import { getPokemonTeamById } from "../../services/pokemonServices"
 import { getTeamById } from "../../services/teamServices"
 import "./ViewPokemon.css"
 
-export const ViewPokemon = ({ currentUser }) => {
+export const ViewPokemon = () => {
     const [pokemonTeam, setPokemonTeam] = useState({})
     const [team, setTeam] = useState({})
 

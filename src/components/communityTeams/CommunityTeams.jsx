@@ -4,7 +4,7 @@ import { getPokemon } from "../../services/pokemonServices"
 import { Link } from "react-router-dom"
 import "./CommunityTeams.css"
 
-export const CommunityTeams = ({ currentUser }) => {
+export const CommunityTeams = () => {
     const [allTeams, setAllTeams] = useState([])
     const [allPokemon, setAllPokemon] = useState([])
     const [selectedPokemon, setSelectedPokemon] = useState({})
