@@ -5,7 +5,7 @@ export const NavBar = ({ currentUser }) => {
 
     const handleLogout = () => {
         localStorage.removeItem("vgc_user")
-        navigate("/login")
+        navigate("/login", { replace:true })
     }
 
 

@@ -1,5 +1,46 @@
-export const MyTeams = () => {
+import { useEffect, useState } from "react"
+import { getPokemonByTeamId, getTeamsByUserId } from "../../services/teamServices"
+import { Link } from "react-router-dom"
+
+export const MyTeams = ({ currentUser }) => {
+    const [teams, setTeams] = useState([])
+
+    useEffect(() => {
+        getTeamsByUserId(currentUser.id).then((teams) => {
+            Promise.all(
+                teams.map((team) => getPokemonByTeamId(team.id))
+            ).then((pokemonArrays) => {
+                const teamsWithPokemon = teams.map((team, index) => ({
+                    ...team,
+                    pokemon: pokemonArrays[index]
+                }))
+                setTeams(teamsWithPokemon)
+            })
+        })
+    }, [currentUser.id])
+    
     return (
-        <>Welcome to the My Teams Page</>
+        <main className="page-container">
+            <section>
+                <h1 className="page-title">My Teams</h1>
+                <span className="page-subtitle">View your competitive teams!</span>
+                    <section className="teams-list">
+                        {!teams.length ? (
+                            <p className="empty-msg">No teams created yet.</p>
+                        ) : (
+                            teams.map((team) => (
+                                <div key={team.id} className="team-card">
+                                    <h3>{team.name}</h3>
+                                    <Link to={`/viewteam/${team.id}`}>
+                                        {team.pokemon.map((pokemonTeam) => (
+                                            <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                        ))}
+                                    </Link>
+                                </div>  
+                            ))
+                        )}
+                </section>
+            </section>
+        </main>
     )
 }

@@ -82,10 +82,14 @@ export const EditTeam = ({ currentUser }) => {
                 <section className="team-section">
                     <h2>Pokemon</h2>
                     <div className="pokemon-list">
-                        {pokemon.map((pt) => (
-                            <div key={pt.id} className="pokemon-card">
-                                <img src={pt.pokemon.imageUrl} alt={pt.pokemon.name} />
-                                <span>{pt.pokemon.name}</span>
+                        {pokemon.map((pokemonTeam) => (
+                            <div 
+                                key={pokemonTeam.id} 
+                                className="pokemon-card" 
+                                onClick={() => navigate(`/editpokemon/${teamId}/${pokemonTeam.id}`)}
+                            >
+                                <img src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                <span>{pokemonTeam.pokemon.name}</span>
                             </div>
                         ))}
                     </div>
