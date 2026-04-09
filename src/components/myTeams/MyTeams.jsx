@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 export const MyTeams = ({ currentUser }) => {
     const [teams, setTeams] = useState([])
 
+    //we are first grabbing all the teams made by the user, then we are using Promise.all to send back all the pokemon fetches all at once before we try to match them with their teams. the double .map here allows for our team[0] to always match with pokemonArray[0]
     useEffect(() => {
         getTeamsByUserId(currentUser.id).then((teams) => {
             Promise.all(

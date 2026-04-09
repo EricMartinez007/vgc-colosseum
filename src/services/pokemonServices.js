@@ -11,3 +11,23 @@ export const createPokemonTeam = (newPokemonToTeam) => {
     body: JSON.stringify(newPokemonToTeam),
   }).then((res) => res.json())
 }
+
+export const getPokemonTeamById = (pokemonTeamId) => {
+    return fetch(`http://localhost:8088/pokemonTeams/${pokemonTeamId}?_expand=pokemon`).then((res) => res.json())
+}
+
+export const editPokemonTeam = (editPokemonOnTeam) => {
+    return fetch(`http://localhost:8088/pokemonTeams/${editPokemonOnTeam.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(editPokemonOnTeam),
+  }).then((res) => res.json())
+}
+
+export const deletePokemonTeam = (pokemonTeam) => {
+    return fetch(`http://localhost:8088/pokemonTeams/${pokemonTeam.id}`, {
+    method: "DELETE"
+    })
+}
