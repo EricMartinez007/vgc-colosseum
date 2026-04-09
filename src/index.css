@@ -10,6 +10,7 @@
   --border-color: #2a2a4a;
   --font-heading: 'Bebas Neue', cursive;
   --font-body: 'Rajdhani', sans-serif;
+  --font-data: 'Oxanium', sans-serif;
 }
 
 * {
@@ -44,4 +45,16 @@ body {
   font-size: 1rem;
   display: block;
   margin-bottom: 1.5rem;
+}
+
+.pokemon-card span {
+    font-family: var(--font-data);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.pokemon-stat {
+    font-family: var(--font-data);
 }

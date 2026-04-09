@@ -34,7 +34,7 @@ export const ViewTeam = ({ currentUser }) => {
 
     return (
         <div className="page-container">
-            <h1 className="page-title">({team.name})</h1>
+            <h1 className="page-title">{team.name}</h1>
             <span className="page-subtitle">Team made by: {team.user.name}</span>
             <div className="team-layout">
                 <section className="team-section">
