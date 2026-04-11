@@ -80,3 +80,25 @@ fieldset {
 .btn-go-back:hover {
   background-color: #3a3a5a;
 }
+
+.label-stat-name { color: #b388ff !important; }
+.label-base { color: #00b4d8 !important; }
+.label-ev { color: #2ecc71 !important; }
+.label-iv { color: #ffd700 !important; }
+.label-total { color: var(--accent-orange) !important; }
+
+.label-type { color: #b388ff !important; }
+.label-strong { color: #2ecc71 !important; }
+.label-weak { color: var(--accent-orange) !important; }
+
+.label-hp { color: #ff5959 !important; }
+.label-atk { color: #f5ac78 !important; }
+.label-def { color: #fae078 !important; }
+.label-spatk { color: #9db7f5 !important; }
+.label-spdef { color: #a7db8d !important; }
+.label-spd { color: #fa92b2 !important; }
+
+.value-base { color: #00b4d8 !important; }
+.value-ev { color: #2ecc71 !important; }
+.value-iv { color: #ffd700 !important; }
+.value-total { color: var(--accent-orange) !important; }

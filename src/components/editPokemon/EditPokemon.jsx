@@ -226,7 +226,7 @@ export const EditPokemon = () => {
                 </div>
                 <div className="pokemon-form-dropdowns">
                     <div className="dropdown-group">
-                        <label className="dropdown-label">Pokémon</label>
+                        <label className="dropdown-label label-pokemon">Pokémon</label>
                         <select value={selectedPokemon.id} onChange={handlePokemonSelect}>
                             <option value="0">Select a Pokémon</option>
                             {allPokemon.map((pokemon) => (
@@ -235,7 +235,7 @@ export const EditPokemon = () => {
                         </select>
                     </div>
                     <div className="dropdown-group">
-                        <label className="dropdown-label">Ability</label>
+                        <label className="dropdown-label label-ability">Ability</label>
                         <select value={pokemonTeam.abilityId} onChange={handleAbilitySelect}>
                             <option value="0">Select an Ability</option>
                             {allAbilities.map((ability) => (
@@ -244,7 +244,7 @@ export const EditPokemon = () => {
                         </select>
                     </div>
                     <div className="dropdown-group">
-                        <label className="dropdown-label">Move 1</label>
+                        <label className="dropdown-label label-move">Move 1</label>
                         <select value={selectedMove[0]} onChange={(evt) => handleMoveSelect(evt, 0)}>
                             <option value="0">Select a Move</option>
                             {allMoves.map((move) => (
@@ -253,7 +253,7 @@ export const EditPokemon = () => {
                         </select>
                     </div>
                     <div className="dropdown-group">
-                        <label className="dropdown-label">Move 2</label>
+                        <label className="dropdown-label label-move">Move 2</label>
                         <select value={selectedMove[1]} onChange={(evt) => handleMoveSelect(evt, 1)}>
                             <option value="0">Select a Move</option>
                             {allMoves.map((move) => (
@@ -262,7 +262,7 @@ export const EditPokemon = () => {
                         </select>
                     </div>
                     <div className="dropdown-group">
-                        <label className="dropdown-label">Nature</label>
+                        <label className="dropdown-label label-nature">Nature</label>
                         <select value={pokemonTeam.natureId} onChange={handleNatureSelect}>
                             <option value="0">Select a Nature</option>
                             {allNatures.map((nature) => (
@@ -271,7 +271,7 @@ export const EditPokemon = () => {
                         </select>
                     </div>
                     <div className="dropdown-group">
-                        <label className="dropdown-label">Item</label>
+                        <label className="dropdown-label label-item">Item</label>
                         <select value={pokemonTeam.itemId} onChange={handleItemSelect}>
                             <option value="0">Select an Item</option>
                             {allItems.map((item) => (
@@ -280,7 +280,7 @@ export const EditPokemon = () => {
                         </select>
                     </div>
                     <div className="dropdown-group">
-                        <label className="dropdown-label">Move 3</label>
+                        <label className="dropdown-label label-move">Move 3</label>
                         <select value={selectedMove[2]} onChange={(evt) => handleMoveSelect(evt, 2)}>
                             <option value="0">Select a Move</option>
                             {allMoves.map((move) => (
@@ -289,7 +289,7 @@ export const EditPokemon = () => {
                         </select>
                     </div>
                     <div className="dropdown-group">
-                        <label className="dropdown-label">Move 4</label>
+                        <label className="dropdown-label label-move">Move 4</label>
                         <select value={selectedMove[3]} onChange={(evt) => handleMoveSelect(evt, 3)}>
                             <option value="0">Select a Move</option>
                             {allMoves.map((move) => (
@@ -304,16 +304,16 @@ export const EditPokemon = () => {
                 <div className="pokemon-stats-type-card">
                     <div className="pokemon-stats-container">
                         <div className="pokemon-stats-header">
-                            <span className="header-stat-name">Pokémon Stats</span>
-                            <span className="header-base">Base</span>
-                            <span className="header-ev">EVs</span>
-                            <span className="header-iv">IVs</span>
-                            <span className="header-total">Total</span>
+                            <span className="header-stat-name label-stat-name">Pokémon Stats</span>
+                            <span className="header-base label-base">Base</span>
+                            <span className="header-ev label-ev">EVs</span>
+                            <span className="header-iv label-iv">IVs</span>
+                            <span className="header-total label-total">Total</span>
                         </div>
                         <ul className="pokemon-stats">
                             <li className="pokemon-stat">
-                                <span>Hp</span>
-                                <span>{selectedPokemon.baseStats.hp}</span>
+                                <span className="label-hp">Hp</span>
+                                <span className="value-base">{selectedPokemon.baseStats.hp}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -321,7 +321,7 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.hpEv}
                                     onChange={(evt) => handleStatChange("hpEv", evt.target.value)}
                                 />
-                                <span className="ev-value">{pokemonTeam.hpEv}</span>
+                                <span className="ev-value value-ev">{pokemonTeam.hpEv}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -329,12 +329,12 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.hpIv}
                                     onChange={(evt) => handleStatChange("hpIv", evt.target.value)}
                                 />
-                                <span className="iv-value">{pokemonTeam.hpIv}</span>
-                                <span>{calculateStat(selectedPokemon.baseStats.hp, pokemonTeam.hpIv, pokemonTeam.hpEv, true)}</span>
+                                <span className="iv-value value-iv">{pokemonTeam.hpIv}</span>
+                                <span className="value-total">{calculateStat(selectedPokemon.baseStats.hp, pokemonTeam.hpIv, pokemonTeam.hpEv, true)}</span>
                             </li>
                             <li className="pokemon-stat">
-                                <span>Atk</span>
-                                <span>{selectedPokemon.baseStats.attack}</span>
+                                <span className="label-atk">Atk</span>
+                                <span className="value-base">{selectedPokemon.baseStats.attack}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -342,7 +342,7 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.atkEv}
                                     onChange={(evt) => handleStatChange("atkEv", evt.target.value)}
                                 />
-                                <span className="ev-value">{pokemonTeam.atkEv}</span>
+                                <span className="ev-value value-ev">{pokemonTeam.atkEv}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -350,12 +350,12 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.atkIv}
                                     onChange={(evt) => handleStatChange("atkIv", evt.target.value)}
                                 />
-                                <span className="iv-value">{pokemonTeam.atkIv}</span>
-                                <span>{calculateStat(selectedPokemon.baseStats.attack, pokemonTeam.atkIv, pokemonTeam.atkEv, false)}</span>
+                                <span className="iv-value value-iv">{pokemonTeam.atkIv}</span>
+                                <span className="value-total">{calculateStat(selectedPokemon.baseStats.attack, pokemonTeam.atkIv, pokemonTeam.atkEv, false)}</span>
                             </li>
                             <li className="pokemon-stat">
-                                <span>Def</span>
-                                <span>{selectedPokemon.baseStats.defense}</span>
+                                <span className="label-def">Def</span>
+                                <span className="value-base">{selectedPokemon.baseStats.defense}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -363,7 +363,7 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.defEv}
                                     onChange={(evt) => handleStatChange("defEv", evt.target.value)}
                                 />
-                                <span className="ev-value">{pokemonTeam.defEv}</span>
+                                <span className="ev-value value-ev">{pokemonTeam.defEv}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -371,12 +371,12 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.defIv}
                                     onChange={(evt) => handleStatChange("defIv", evt.target.value)}
                                 />
-                                <span className="iv-value">{pokemonTeam.defIv}</span>
-                                <span>{calculateStat(selectedPokemon.baseStats.defense, pokemonTeam.defIv, pokemonTeam.defEv, false)}</span>
+                                <span className="iv-value value-iv">{pokemonTeam.defIv}</span>
+                                <span className="value-total">{calculateStat(selectedPokemon.baseStats.defense, pokemonTeam.defIv, pokemonTeam.defEv, false)}</span>
                             </li>
                             <li className="pokemon-stat">
-                                <span>Sp. Atk.</span>
-                                <span>{selectedPokemon.baseStats.specialAttack}</span>
+                                <span className="label-spatk">Sp. Atk.</span>
+                                <span className="value-base">{selectedPokemon.baseStats.specialAttack}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -384,7 +384,7 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.spAtkEv}
                                     onChange={(evt) => handleStatChange("spAtkEv", evt.target.value)}
                                 />
-                                <span className="ev-value">{pokemonTeam.spAtkEv}</span>
+                                <span className="ev-value value-ev">{pokemonTeam.spAtkEv}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -392,12 +392,12 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.spAtkIv}
                                     onChange={(evt) => handleStatChange("spAtkIv", evt.target.value)}
                                 />
-                                <span className="iv-value">{pokemonTeam.spAtkIv}</span>
-                                <span>{calculateStat(selectedPokemon.baseStats.specialAttack, pokemonTeam.spAtkIv, pokemonTeam.spAtkEv, false)}</span>
+                                <span className="iv-value value-iv">{pokemonTeam.spAtkIv}</span>
+                                <span className="value-total">{calculateStat(selectedPokemon.baseStats.specialAttack, pokemonTeam.spAtkIv, pokemonTeam.spAtkEv, false)}</span>
                             </li>
                             <li className="pokemon-stat">
-                                <span>Sp. Def.</span>
-                                <span>{selectedPokemon.baseStats.specialDefense}</span>
+                                <span className="label-spdef">Sp. Def.</span>
+                                <span className="value-base">{selectedPokemon.baseStats.specialDefense}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -405,7 +405,7 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.spDefEv}
                                     onChange={(evt) => handleStatChange("spDefEv", evt.target.value)}
                                 />
-                                <span className="ev-value">{pokemonTeam.spDefEv}</span>
+                                <span className="ev-value value-ev">{pokemonTeam.spDefEv}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -413,12 +413,12 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.spDefIv}
                                     onChange={(evt) => handleStatChange("spDefIv", evt.target.value)}
                                 />
-                                <span className="iv-value">{pokemonTeam.spDefIv}</span>
-                                <span>{calculateStat(selectedPokemon.baseStats.specialDefense, pokemonTeam.spDefIv, pokemonTeam.spDefEv, false)}</span>
+                                <span className="iv-value value-iv">{pokemonTeam.spDefIv}</span>
+                                <span className="value-total">{calculateStat(selectedPokemon.baseStats.specialDefense, pokemonTeam.spDefIv, pokemonTeam.spDefEv, false)}</span>
                             </li>
                             <li className="pokemon-stat">
-                                <span>Speed</span>
-                                <span>{selectedPokemon.baseStats.speed}</span>
+                                <span className="label-spd">Speed</span>
+                                <span className="value-base">{selectedPokemon.baseStats.speed}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -426,7 +426,7 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.spdEv}
                                     onChange={(evt) => handleStatChange("spdEv", evt.target.value)}
                                 />
-                                <span className="ev-value">{pokemonTeam.spdEv}</span>
+                                <span className="ev-value value-ev">{pokemonTeam.spdEv}</span>
                                 <input 
                                     type="range"
                                     min="0"
@@ -434,14 +434,14 @@ export const EditPokemon = () => {
                                     value={pokemonTeam.spdIv}
                                     onChange={(evt) => handleStatChange("spdIv", evt.target.value)}
                                 />
-                                <span className="iv-value">{pokemonTeam.spdIv}</span>
-                                <span>{calculateStat(selectedPokemon.baseStats.speed, pokemonTeam.spdIv, pokemonTeam.spdEv, false)}</span>
+                                <span className="iv-value value-iv">{pokemonTeam.spdIv}</span>
+                                <span className="value-total">{calculateStat(selectedPokemon.baseStats.speed, pokemonTeam.spdIv, pokemonTeam.spdEv, false)}</span>
                             </li>
                         </ul>
                     </div>
                     <section className="type-display">
                         <div>
-                            <h2>Type</h2>
+                            <h2 className="label-type">Type</h2>
                             <div className="type-badge-container">
                                 {pokemonTypes.map((pokemonType) => (
                                 <span className="type-badge" key={pokemonType.id}>{pokemonType.type.name}</span>
@@ -449,7 +449,7 @@ export const EditPokemon = () => {
                             </div>
                         </div>
                         <div>
-                            <h2>Strong Against</h2>
+                            <h2 className="label-strong">Strong Against</h2>
                             <div className="type-badge-container">
                             {getStrongAgainstTypes().map((type) => (
                                 <span className="type-badge" key={type.id}>{type.name}</span>
@@ -457,7 +457,7 @@ export const EditPokemon = () => {
                             </div>
                         </div>
                         <div>
-                            <h2>Weak Against</h2>
+                            <h2 className="label-weak">Weak Against</h2>
                             <div className="type-badge-container">
                             {getWeakAgainstTypes().map((type) => (
                                 <span className="type-badge" key={type.id}>{type.name}</span>

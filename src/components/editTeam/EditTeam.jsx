@@ -2,28 +2,35 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteTeam, getPokemonByTeamId, getTeamById, updateTeam } from "../../services/teamServices"
 import "./EditTeam.css"
+import { getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
 
 export const EditTeam = () => {
+    const navigate = useNavigate()
+    const { teamId } = useParams()
+    
     const [team, setTeam] = useState({})
     const [pokemon, setPokemon] = useState([])
+    const [pokemonMoves, setPokemonMoves] = useState([])
     
-
-    const navigate = useNavigate()
-
-    const { teamId } = useParams()
-
-    const getAndSetTeamAndPokemon = () => {
+    useEffect(() => {
         getTeamById(teamId).then((team) => {
             setTeam(team)
         })
-        getPokemonByTeamId(teamId).then((pokemonArray) => {
-            setPokemon(pokemonArray)
-        })
-    } 
 
-    useEffect(() => {
-        getAndSetTeamAndPokemon()
-    }, [])
+        getPokemonByTeamId(teamId).then((pokemonTeamArray) => {
+            setPokemon(pokemonTeamArray)
+            // i need to fetch the moves for EACH pokemonTeam object!
+            Promise.all(
+                pokemonTeamArray.map((pokemonTeam) => 
+                getPokemonMovesByPokemonTeamId(pokemonTeam.id)
+                )
+            ).then((allMovesArrays) => {
+                // allMovesArrays is an array of six arrays since there six pokemon on a team, and each inner array has the moves for one of those pokemon
+                setPokemonMoves(allMovesArrays)
+            })
+        })
+                
+    }, [teamId])
 
     const handleTeamNameChange = (evt) => {
         const copy = { ...team }
@@ -39,67 +46,112 @@ export const EditTeam = () => {
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
+
+        if(pokemon.length !== 6){
+            alert("Your team must have exactly 6 Pokémon!")
+            return
+        }
+
         updateTeam(team).then(() => {
             navigate(`/myteams`)
         })
     }
     
-    
+    if (!team.id) 
+        return <div>Loading...</div>
+
     //pt in the map method stand for pokemonTeam the objs im fetching belong to this array in which im expanding pokemon to access the image and name
     return (
         <div className="page-container">
             <h1 className="page-title">Edit {team.name}</h1>
             <span className="page-subtitle">Make edits to your competitive team!</span>
-            <form className="form-newteam" onSubmit={handleSubmit}>
-                <h2>Team Name</h2>
-                <fieldset>
-                <div className="form-group">
-                    <input
-                            type="text"
-                            id="name"
-                            value={team.name}
-                            onChange={handleTeamNameChange}
-                            className="form-teamname"
-                            placeholder="Change your team's name"
-                            required
-                            autoFocus
-                    />
-                </div>
-                </fieldset>
-                <div className="btn-container">
-                    <button type="submit" className="btn-create-team">
-                        Save Team
-                    </button>
-                    <button 
-                        type ="button" 
-                        className="btn-delete-team"
-                        onClick={handleDeleteTeam}
-                    >
-                        Delete Team
-                    </button>
-                </div>
-            </form>
             <div className="edit-team-layout">
+                <div>
+                    <form className="form-newteam" onSubmit={handleSubmit}>
+                        <h2>Team Name</h2>
+                        <fieldset>
+                        <div className="form-group">
+                            <input
+                                    type="text"
+                                    id="name"
+                                    value={team.name}
+                                    onChange={handleTeamNameChange}
+                                    className="form-teamname"
+                                    placeholder="Change your team's name"
+                                    required
+                                    autoFocus
+                            />
+                        </div>
+                        </fieldset>
+                        <div className="btn-container">
+                            <button type="submit" className="btn-create-team">
+                                Save Team
+                            </button>
+                            <button 
+                                type ="button" 
+                                className="btn-delete-team"
+                                onClick={handleDeleteTeam}
+                            >
+                                Delete Team
+                            </button>
+                        </div>
+                    </form>
+                </div>
                 <section className="team-section">
                     <h2>Pokemon</h2>
                     <div className="pokemon-list">
-                        {pokemon.map((pokemonTeam) => (
-                            <div 
-                                key={pokemonTeam.id} 
-                                className="pokemon-card" 
-                                onClick={() => navigate(`/editpokemon/${teamId}/${pokemonTeam.id}`)}
-                            >
-                                <img src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
-                                <span>{pokemonTeam.pokemon.name}</span>
-                            </div>
-                        ))}
+                        {/* Array.from creates an array of 6 slots. If a pokemon exists at that index in the array then it renders the pokemon's card, otherwise it renders an empty card with an Add Pokemon button. The _ used in Array.from parameters is a way of telling JavaScript that I know this parameter exists but I don't want to use it */}
+                        {Array.from({ length: 6 }, (_, index) => {
+                            const pokemonTeam = pokemon[index]
+                            return pokemonTeam ? (
+                                <div 
+                                    key={pokemonTeam.id} 
+                                    className="pokemon-card" 
+                                    onClick={() => navigate(`/editpokemon/${teamId}/${pokemonTeam.id}`)}
+                                >
+                                    <img src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                    <div className="pokemon-card-info">
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-pokemon">Pokémon</span>
+                                            <span className="card-info-value">{pokemonTeam.pokemon.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-ability">Ability</span>
+                                            <span className="card-info-value">{pokemonTeam.ability?.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-move">Move 1</span>
+                                            <span className="card-info-value">{pokemonMoves[index]?.[0]?.move.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-move">Move 2</span>
+                                            <span className="card-info-value">{pokemonMoves[index]?.[1]?.move.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-nature">Nature</span>
+                                            <span className="card-info-value">{pokemonTeam.nature?.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-item">Item</span>
+                                            <span className="card-info-value">{pokemonTeam.item?.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-move">Move 3</span>
+                                            <span className="card-info-value">{pokemonMoves[index]?.[2]?.move.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-move">Move 4</span>
+                                            <span className="card-info-value">{pokemonMoves[index]?.[3]?.move.name}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div key={index} className="pokemon-card pokemon-card-empty" onClick={() => navigate(`/addpokemon/${teamId}`)}>
+                                    <span>Add Pokémon</span>
+                                </div>
+                            )
+                        })}
                     </div>
-                    <button
-                        className="btn-add-pokemon"
-                        onClick={() => navigate(`/addpokemon/${teamId}`)}
-                    >
-                        Add Pokémon
-                    </button>
                 </section>
             </div>
         </div>  

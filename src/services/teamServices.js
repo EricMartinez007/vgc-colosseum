@@ -15,7 +15,7 @@ export const getTeamById = (teamId) => {
 
 //Need to filter through all objs in pokemonTeams since we can have multiple hits matching the current teamId in the URL params
 export const getPokemonByTeamId = (teamId) => {
-    return fetch(`http://localhost:8088/pokemonTeams?teamId=${teamId}&_expand=pokemon`).then((res) => res.json())
+    return fetch(`http://localhost:8088/pokemonTeams?teamId=${teamId}&_expand=pokemon&_expand=ability&_expand=nature&_expand=item`).then((res) => res.json())
 }
 
 export const updateTeam = (team) => {

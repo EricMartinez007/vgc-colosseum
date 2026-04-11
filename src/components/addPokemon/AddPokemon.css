@@ -203,3 +203,9 @@
 .pokemon-stat input:nth-child(5) { flex: 1; }
 .pokemon-stat span:nth-child(6) { width: 45px; flex-shrink: 0; text-align: center; }
 .pokemon-stat span:nth-child(7) { width: 55px; flex-shrink: 0; text-align: right; }
+
+.label-pokemon { color: #b388ff !important; }
+.label-ability { color: #00b4d8 !important; }
+.label-nature { color: #2ecc71 !important; }
+.label-item { color: #ffd700 !important; }
+.label-move { color: var(--accent-orange) !important; }
