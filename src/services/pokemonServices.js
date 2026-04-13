@@ -13,7 +13,7 @@ export const createPokemonTeam = (newPokemonToTeam) => {
 }
 
 export const getPokemonTeamById = (pokemonTeamId) => {
-    return fetch(`http://localhost:8088/pokemonTeams/${pokemonTeamId}?_expand=pokemon`).then((res) => res.json())
+    return fetch(`http://localhost:8088/pokemonTeams/${pokemonTeamId}?_expand=pokemon&_expand=ability&_expand=nature&_expand=item`).then((res) => res.json())
 }
 
 export const editPokemonTeam = (editPokemonOnTeam) => {
