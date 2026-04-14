@@ -89,6 +89,45 @@ export const ViewTeam = ({ currentUser }) => {
         setNewComment(copy)
     }
 
+    const getEvsForPokemon = (pokemonTeam) => {
+        const evs = [
+            {value: pokemonTeam.hpEv, label: "HP"},
+            {value: pokemonTeam.atkEv, label: "Atk"},
+            {value: pokemonTeam.defEv, label: "Def"},
+            {value: pokemonTeam.spAtkEv, label: "SpA"},
+            {value: pokemonTeam.spDefEv, label: "SpD"},
+            {value: pokemonTeam.spdEv, label: "Spe"}
+        ]
+
+        //Filtering out Evs with 0 in them, then mapping into strings, then join
+        const evsLine = evs
+            .filter(ev => ev.value > 0)
+            .map(ev => `${ev.value} ${ev.label}`)
+            .join(" / ")
+
+        return `EVs: ${evsLine}`
+    }
+
+    const generateShowdownExport = () => {
+        return pokemon.map((pokemonTeam, index) => {
+            return `${pokemonTeam.pokemon.name} @ ${pokemonTeam.item?.name}
+Ability: ${pokemonTeam.ability?.name}
+Level: 50
+${getEvsForPokemon(pokemonTeam)}
+Nature: ${pokemonTeam.nature?.name}
+- ${pokemonMoves[index]?.[0]?.move.name}
+- ${pokemonMoves[index]?.[1]?.move.name}
+- ${pokemonMoves[index]?.[2]?.move.name}
+- ${pokemonMoves[index]?.[3]?.move.name}`
+        }).join("\n\n")
+    }
+
+    const handleCopyToClipboard = () => {
+        const exportString = generateShowdownExport()
+        navigator.clipboard.writeText(exportString)
+        alert("Your team has been copied to your clipboard!")
+    }
+
     if (!team.id) {
         return (
             <div>
@@ -179,6 +218,12 @@ export const ViewTeam = ({ currentUser }) => {
                     </button>
                     </>
                 )}
+                <button
+                    className="btn-export"
+                    onClick={handleCopyToClipboard}
+                >
+                    Export to Showdown
+                </button>
             </div>
             <div className="comments-container">
                 <section className="comments">
