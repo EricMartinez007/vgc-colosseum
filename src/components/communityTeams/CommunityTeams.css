@@ -9,6 +9,7 @@
   margin-bottom: 1.5rem;
   cursor: pointer;
   width: 250px;
+  margin-right: 1rem;
 }
 
 .filter-bar:focus {
