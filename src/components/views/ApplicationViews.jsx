@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Outlet, Route, Routes } from "react-router-dom"
 import { Welcome } from "../welcome/Welcome"
 import { CommunityTeams } from "../communityTeams/CommunityTeams"
@@ -16,14 +16,11 @@ import { NavBar } from "../nav/NavBar"
 
 
 export const ApplicationViews = () => {
-    const [currentUser, setCurrentUser] = useState({})
-
-    useEffect(() => {
+    // The () => makes useState run the function once to get the initial value so currentUser is populated immediately on the first render and doesn't need to wait for a useEffect. This helps so pages don't get stuck on the loading buffers I have in my code
+    const [currentUser, setCurrentUser] = useState(() => {
         const localVgcUser = localStorage.getItem("vgc_user")
-        const vgcUserObj = JSON.parse(localVgcUser)
-
-        setCurrentUser(vgcUserObj)
-    }, [])
+        return JSON.parse(localVgcUser)
+    })
 
     return (
         <Routes>
