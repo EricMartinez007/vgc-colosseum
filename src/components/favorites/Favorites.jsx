@@ -4,11 +4,14 @@ import { getPokemon } from "../../services/pokemonServices"
 import { Link } from "react-router-dom"
 import "./Favorites.css"
 import { getFavoriteTeams } from "../../services/likesServices"
+import { getAllFormats } from "../../services/formatsServices"
 
 export const Favorites = ({ currentUser }) => {
     const [favoriteTeams, setFavoriteTeams] = useState([])
     const [allPokemon, setAllPokemon] = useState([])
+    const [allFormats, setAllFormats] = useState([])
     const [selectedPokemon, setSelectedPokemon] = useState({})
+    const [selectedFormat, setSelectedFormat] = useState({})
 
     //we are first grabbing all the team in the database, then we are using Promise.all to send back all the pokemon fetches all at once before we try to match them with their teams. the double .map here allows for our team[0] to always match with pokemonArray[0]
     useEffect(() => {
@@ -26,6 +29,9 @@ export const Favorites = ({ currentUser }) => {
         getPokemon().then((pokemonArray) => {
             setAllPokemon(pokemonArray)
         })
+        getAllFormats().then((formatsArray) => {
+            setAllFormats(formatsArray)
+        })
     }, [currentUser])
     
     const handlePokemonSelect = (evt) => {
@@ -37,37 +43,58 @@ export const Favorites = ({ currentUser }) => {
         setSelectedPokemon(matchPokemon)
     }
 
+    const handleFormatSelect = (evt) => {
+        if (evt.target.value === "0") {
+            setSelectedFormat({})
+            return
+        }
+        const matchFormat = allFormats.find(format => format.id === parseInt(evt.target.value))
+        setSelectedFormat(matchFormat)
+    }
+
+
     return (
         <main className="page-container">
             <section>
                 <h1 className="page-title">Favorite Teams</h1>
                 <span className="page-subtitle">Browse and view your favorite teams!</span>
                 <select className="filter-bar" onChange={handlePokemonSelect}>
-                    <option value="0">Select a Pokémon</option>
+                    <option value="0">All Pokémon</option>
                     {allPokemon.map((pokemon) => (
                         <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
+                    ))}
+                </select>
+                <select className="filter-bar" onChange={handleFormatSelect}>
+                    <option value="0">All Formats</option>
+                    {allFormats.map((format) => (
+                        <option value={format.id} key={format.id}>{format.name}</option>
                     ))}
                 </select>
                     <section className="teams-list">
                         {!favoriteTeams.length ? (
                             <p className="empty-msg">You haven't liked any teams yet!</p>
                         ) : (
-                            favoriteTeams.filter(team => {
-                                if (!selectedPokemon.id) return true
-                                return team.pokemon.some(pokemonTeam => pokemonTeam.pokemonId === selectedPokemon.id)
-                            })
-                            .map((team) => (
-                                <Link key={team.id} to={`/viewteam/${team.id}`} className="team-card">
-                                <h3>{team.name}</h3>
-                                <h4>{team.user.name}</h4>
-                                    {team.pokemon.map((pokemonTeam) => (
-                                        <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
-                                    ))}
-                                <span className="team-likes">❤️{team.likes.length}</span>
-                                </Link>  
-                            ))
+                            favoriteTeams
+                                .filter(team => {
+                                    if (!selectedPokemon.id) return true
+                                    return team.pokemon.some(pokemonTeam => pokemonTeam.pokemonId === selectedPokemon.id)
+                                })
+                                .filter(team => {
+                                    if(!selectedFormat.id) return true
+                                    return team.formatId === selectedFormat.id
+                                })
+                                .map((team) => (
+                                    <Link key={team.id} to={`/viewteam/${team.id}`} className="team-card">
+                                    <h3>{team.name}</h3>
+                                    <h4>{team.user.name}</h4>
+                                        {team.pokemon.map((pokemonTeam) => (
+                                            <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                        ))}
+                                    <span className="team-likes">❤️{team.likes.length}</span>
+                                    </Link>  
+                                ))
                         )}
-                </section>
+                    </section>
             </section>
         </main>
     )
