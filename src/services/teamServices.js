@@ -10,7 +10,7 @@ export const createTeam = (newTeam) => {
 
 //Finds and returns the obj that has a matching teamId to the current teamId in the URL params 
 export const getTeamById = (teamId) => {
-    return fetch(`http://localhost:8088/teams/${teamId}?_expand=user`).then((res) => res.json())
+    return fetch(`http://localhost:8088/teams/${teamId}?_expand=user&_embed=likes`).then((res) => res.json())
 }
 
 //Need to filter through all objs in pokemonTeams since we can have multiple hits matching the current teamId in the URL params
@@ -35,9 +35,9 @@ export const deleteTeam = (team) => {
 }
 
 export const getTeamsByUserId = (currentUserId) => {
-    return fetch(`http://localhost:8088/teams?userId=${currentUserId}&_embed=pokemonTeams`).then((res) => res.json())
+    return fetch(`http://localhost:8088/teams?userId=${currentUserId}&_embed=pokemonTeams&_embed=likes`).then((res) => res.json())
 }
 
 export const getAllTeams = () => {
-    return fetch(`http://localhost:8088/teams?_embed=pokemonTeams&_expand=user`).then((res) => res.json())
+    return fetch(`http://localhost:8088/teams?_embed=pokemonTeams&_expand=user&_embed=likes`).then((res) => res.json())
 }

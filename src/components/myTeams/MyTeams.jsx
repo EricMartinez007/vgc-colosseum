@@ -57,6 +57,7 @@ export const MyTeams = ({ currentUser }) => {
                                     {team.pokemon.map((pokemonTeam) => (
                                         <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
                                     ))}
+                                <span className="team-likes">❤️{team.likes.length}</span>
                                 </Link>
                             ))
                         )}

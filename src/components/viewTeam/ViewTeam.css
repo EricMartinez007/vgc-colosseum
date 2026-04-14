@@ -102,3 +102,22 @@
 .btn-edit-team:hover {
   background-color: #6a1fff;
 }
+
+.btn-like {
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-data);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-like:hover {
+    border-color: var(--accent-red);
+}
