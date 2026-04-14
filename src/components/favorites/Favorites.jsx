@@ -26,7 +26,7 @@ export const Favorites = ({ currentUser }) => {
         getPokemon().then((pokemonArray) => {
             setAllPokemon(pokemonArray)
         })
-    }, [])
+    }, [currentUser])
     
     const handlePokemonSelect = (evt) => {
         if (evt.target.value === "0") {
