@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { getPokemonByTeamId, getTeamById } from "../../services/teamServices"
+import { getPokemonByTeamId, getTeamById, updateTeam } from "../../services/teamServices"
 import "./ViewTeam.css"
 import { getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
+import { createLike, deleteLike } from "../../services/likesServices"
 
 export const ViewTeam = ({ currentUser }) => {
     const { teamId } = useParams()
@@ -29,6 +30,29 @@ export const ViewTeam = ({ currentUser }) => {
                 })
             })
     }, [teamId])
+
+    const handleLike = () => {
+        const existingLike = team.likes.find(like => like.userId === currentUser.id)
+
+        const newLike = {
+            userId: currentUser.id,
+            teamId: parseInt(teamId)
+        }
+
+        if(!existingLike) {
+            createLike(newLike).then(() => {
+                getTeamById(teamId).then((updateTeam) => {
+                    setTeam(updateTeam)
+                })
+            })
+        }else {
+            deleteLike(existingLike.id).then(() => {
+                getTeamById(teamId).then((updateTeam) => {
+                    setTeam(updateTeam)
+                })
+            })
+        }
+    }
 
     if (!team.id) {
         return (
@@ -106,7 +130,15 @@ export const ViewTeam = ({ currentUser }) => {
                     onClick={() => navigate(-1)}
                 >
                     Go Back
-                </button>   
+                </button>
+                <button 
+                    className="btn-like"
+                    onClick={handleLike}
+                >
+                    {team.likes.find(like => parseInt(like.userId) === parseInt(currentUser.id)) ? "❤️" : "🤍"}
+                    {team.likes.length}
+                </button>
+                
             </div>
         </div>  
     )

@@ -4,7 +4,7 @@ import { getPokemon } from "../../services/pokemonServices"
 import { Link } from "react-router-dom"
 import "./CommunityTeams.css"
 
-export const CommunityTeams = () => {
+export const CommunityTeams = ({ currentUser }) => {
     const [allTeams, setAllTeams] = useState([])
     const [allPokemon, setAllPokemon] = useState([])
     const [selectedPokemon, setSelectedPokemon] = useState({})
@@ -62,6 +62,7 @@ export const CommunityTeams = () => {
                                     {team.pokemon.map((pokemonTeam) => (
                                         <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
                                     ))}
+                                <span className="team-likes">❤️{team.likes.length}</span>
                                 </Link>  
                             ))
                         )}
