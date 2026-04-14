@@ -62,8 +62,16 @@ export const Profile = ({ currentUser }) => {
         <div className="page-container">
             <h1 className="page-title">Profile</h1>
             <section className="profile-section">
-                <h2 className="profile-name">{user.name}</h2>
-                
+                <div className="profile-banner">
+                    {getMostUsedPokemon() && (
+                        <img
+                            className="profile-avatar"
+                            src={getMostUsedPokemon().imageUrl}
+                            alt={getMostUsedPokemon().name}
+                        />
+                    )}
+                    <h2 className="profile-name">{user.name}</h2>
+                </div>
                 <div className="profile-stats">
                     <div className="profile-stat-card">
                         <span className="profile-stat-label">Email: </span>
