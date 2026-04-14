@@ -20,6 +20,7 @@ export const NavBar = () => {
             <div className="navbar-links">
                 <Link to="/communityteams">Community Teams</Link>
                 <Link to="/myteams">My Teams</Link>
+                <Link to="/favorites">Favorites</Link>
                 <Link to="/newteam">New Team</Link>
                 <Link to="/profile">Profile</Link>
                 <button 
