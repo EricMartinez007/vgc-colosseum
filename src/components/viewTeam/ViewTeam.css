@@ -121,3 +121,98 @@
 .btn-like:hover {
     border-color: var(--accent-red);
 }
+
+.comments-container {
+    margin-top: 2rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.comments h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.form-newcomment {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.comment-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.form-comment {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+.form-comment:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+}
+
+.comment-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: #b388ff;
+    font-weight: 600;
+}
+
+.comment-timestamp {
+    font-family: var(--font-data);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.comment-text {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.btn-delete-comment {
+    padding: 0.3rem 0.75rem;
+    background-color: var(--accent-red);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.btn-delete-comment:hover {
+    opacity: 1;
+}

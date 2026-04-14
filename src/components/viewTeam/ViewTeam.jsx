@@ -4,6 +4,7 @@ import { getPokemonByTeamId, getTeamById } from "../../services/teamServices"
 import "./ViewTeam.css"
 import { getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
 import { createLike, deleteLike } from "../../services/likesServices"
+import { createComment, deleteComment, getCommentByTeamId } from "../../services/commentsServices"
 
 export const ViewTeam = ({ currentUser }) => {
     const { teamId } = useParams()
@@ -12,6 +13,13 @@ export const ViewTeam = ({ currentUser }) => {
     const [team, setTeam] = useState({})
     const [pokemon, setPokemon] = useState([])
     const [pokemonMoves, setPokemonMoves] = useState([])
+    const [comments, setComments] = useState([])
+    const [newComment, setNewComment] = useState({
+        userId: currentUser.id,
+        teamId: teamId,
+        comment: "",
+        timestamp: new Date()
+    })
 
     useEffect(() => {
         getTeamById(teamId).then((team) => {
@@ -28,7 +36,10 @@ export const ViewTeam = ({ currentUser }) => {
                     // allMovesArrays is an array of six arrays since there six pokemon on a team, and each inner array has the moves for one of those pokemon
                     setPokemonMoves(allMovesArrays)
                 })
-            })
+        })
+        getCommentByTeamId(teamId).then((commentsArray) => {
+            setComments(commentsArray)
+        })
     }, [teamId])
 
     const handleLike = () => {
@@ -52,6 +63,30 @@ export const ViewTeam = ({ currentUser }) => {
                 })
             })
         }
+    }
+
+    const handleCreateComment = () => {
+        createComment(newComment).then(() => {
+            getCommentByTeamId(teamId).then((commentsArray) => {
+                setComments(commentsArray)
+
+                setNewComment({...newComment, comment: ""})
+            })
+        })
+    }
+
+    const handleDeleteComment = (comment) => {
+        deleteComment(comment).then(() => {
+            getCommentByTeamId(teamId).then((commentsArray) => {
+                setComments(commentsArray)
+            })
+        })
+    }
+
+    const updateNewComment = (evt) => {
+        const copy = { ...newComment }
+        copy[evt.target.id] = evt.target.value
+        setNewComment(copy)
     }
 
     if (!team.id) {
@@ -144,7 +179,56 @@ export const ViewTeam = ({ currentUser }) => {
                     </button>
                     </>
                 )}
-                
+            </div>
+            <div className="comments-container">
+                <section className="comments">
+                    <h3>Comments</h3>
+                    <form className="form-newcomment" onSubmit={handleCreateComment}>
+                        <label className="comment-label">Write a comment!</label>
+                        <fieldset>
+                            <input
+                                type="text"
+                                id="comment"
+                                value={newComment.comment}
+                                onChange={updateNewComment}
+                                className="form-comment"
+                                placeholder="Type your comment here!"
+                                required
+                                autoFocus
+                            />
+                        </fieldset>
+                        <fieldset>
+                            <div className="form-newcomment-buttons">
+                                <button className="submit-btn" type="submit">
+                                    Post Comment
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div className="comments-list">
+                        {comments.length === 0 ? (
+                            <p>No comments yet — be the first!</p>
+                        ) : (
+                            comments.map((comment) => (
+                                <div key={comment.id} className="comment-card">
+                                    <div className="comment-header">
+                                        <span className="comment-author">{comment.user.name}</span>
+                                        <span className="comment-timestamp">{new Date(comment.timestamp).toLocaleDateString()}</span>
+                                    </div>
+                                    <p className="comment-text">{comment.comment}</p>
+                                    {parseInt(currentUser.id) === parseInt(comment.userId) && (
+                                        <button 
+                                            className="btn-delete-comment"
+                                            onClick={() => handleDeleteComment(comment)}
+                                        >
+                                            Delete
+                                        </button>
+                                    )}
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </section>
             </div>
         </div>  
     )
