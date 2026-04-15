@@ -14,6 +14,7 @@ import { EditProfile } from "../editProfile/EditProfile"
 import { AddPokemon } from "../addPokemon/AddPokemon"
 import { NavBar } from "../nav/NavBar"
 import { TeamCoverage } from "../teamCoverage/TeamCoverage"
+import { DamageCalculator } from "../damageCalculator/DamageCalculator"
 
 
 export const ApplicationViews = () => {
@@ -47,6 +48,7 @@ export const ApplicationViews = () => {
                 <Route path="profile" element={<Profile currentUser={currentUser} />} />
                 <Route path="editprofile"element={<EditProfile currentUser={currentUser} />} />
                 <Route path="teamcoverage/:teamId" element={<TeamCoverage currentUser={currentUser} />} />
+                <Route path="damagecalculator" element={<DamageCalculator currentUser={currentUser} />} />
             </Route>
         </Routes>
     )
