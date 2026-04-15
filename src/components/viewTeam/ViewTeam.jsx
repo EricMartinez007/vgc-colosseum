@@ -224,6 +224,12 @@ Nature: ${pokemonTeam.nature?.name}
                 >
                     Export to Showdown
                 </button>
+                <button 
+                    className="btn-coverage"
+                    onClick={() => navigate(`/teamcoverage/${teamId}`)}
+                >
+                    Coverage Analysis
+                </button>
             </div>
             <div className="comments-container">
                 <section className="comments">

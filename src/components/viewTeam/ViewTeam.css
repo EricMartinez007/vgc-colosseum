@@ -234,3 +234,20 @@
 .btn-export:hover {
     opacity: 0.85;
 }
+
+.btn-coverage {
+    padding: 0.75rem 1.5rem;
+    background-color: #00b4d8;
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-coverage:hover {
+    opacity: 0.85;
+}

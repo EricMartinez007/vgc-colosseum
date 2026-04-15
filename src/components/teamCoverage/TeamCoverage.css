@@ -1,0 +1,52 @@
+.coverage-map h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+.coverage-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.coverage-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coverage-card span {
+    font-family: var(--font-data);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.coverage-card.has-coverage {
+    border-color: #2ecc71;
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+.coverage-card.no-coverage {
+    border-color: var(--accent-red);
+    background-color: rgba(230, 57, 70, 0.1);
+}
+
+.coverage-card.is-weak {
+    border-color: #ffd700;
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+.coverage-card.not-weak {
+    border-color: #2ecc71;
+    background-color: rgba(46, 204, 113, 0.1);
+}
