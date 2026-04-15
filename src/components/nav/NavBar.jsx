@@ -22,8 +22,8 @@ export const NavBar = () => {
                 <Link to="/myteams">My Teams</Link>
                 <Link to="/favorites">Favorites</Link>
                 <Link to="/newteam">New Team</Link>
-                <Link to="/profile">Profile</Link>
                 <Link to="/damagecalculator">Damage Calculator</Link>
+                <Link to="/profile">Profile</Link>
                 <button 
                     className="logout-btn"
                     onClick={handleLogout}
