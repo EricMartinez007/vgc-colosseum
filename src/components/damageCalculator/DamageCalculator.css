@@ -1,0 +1,224 @@
+.calc-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.calc-attacker,
+.calc-conditions,
+.calc-defender {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.calc-attacker h2,
+.calc-conditions h2,
+.calc-defender h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+}
+
+.dc-btn-calculate-dmg {
+    padding: 0.75rem 2rem;
+    background-color: var(--accent-purple);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dc-btn-calculate-dmg:hover {
+    background-color: #6a1fff;
+}
+
+.dc-results {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    font-family: var(--font-data);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.calc-attacker select,
+.calc-conditions select,
+.calc-defender select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    cursor: pointer;
+    appearance: none;
+}
+
+.calc-attacker select:focus,
+.calc-conditions select:focus,
+.calc-defender select:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+}
+
+.dc-dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.dc-dropdown-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.toggle-switch {
+    width: 48px;
+    height: 24px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    transition: background-color 0.2s ease;
+}
+
+.toggle-switch.toggle-on {
+    background-color: var(--accent-purple);
+    border-color: var(--accent-purple);
+}
+
+.toggle-knob {
+    width: 18px;
+    height: 18px;
+    background-color: var(--text-primary);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.toggle-switch.toggle-on .toggle-knob {
+    transform: translateX(24px);
+}
+
+.toggle-label {
+    font-family: var(--font-data);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.calc-attacker .pokemon-stats,
+.calc-defender .pokemon-stats {
+    width: 100%;
+    overflow: hidden;
+}
+
+.calc-attacker .pokemon-stat,
+.calc-defender .pokemon-stat {
+    width: 100%;
+}
+
+.calc-attacker .pokemon-stat input[type="range"],
+.calc-defender .pokemon-stat input[type="range"] {
+    flex: 1;
+    min-width: 0;
+}
+
+.dc-pokemon-stats {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+}
+
+.dc-pokemon-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-data);
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.dc-pokemon-stat input[type="range"] {
+    flex: 1;
+    min-width: 0;
+    accent-color: var(--accent-purple);
+}
+
+.dc-pokemon-stat span {
+    font-family: var(--font-data);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.dc-value-base { color: #00b4d8; min-width: 30px; }
+.dc-value-ev { color: #2ecc71; min-width: 25px; text-align: center; }
+.dc-value-iv { color: #ffd700; min-width: 25px; text-align: center; }
+.dc-value-total { color: var(--accent-orange); min-width: 35px; text-align: right; }
+
+.dc-btn-container {
+    margin-top: 1rem;
+}
+
+.dc-stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 100%;
+}
+
+.dc-stats-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-data);
+    font-size: 0.8rem;
+}
+
+.dc-header-stat-name { width: 55px; flex-shrink: 0; }
+.dc-header-base { width: 30px; flex-shrink: 0; color: #00b4d8; }
+.dc-header-ev { flex: 1; text-align: center; color: #2ecc71; }
+.dc-header-iv { flex: 1; text-align: center; color: #ffd700; }
+.dc-header-total { width: 35px; flex-shrink: 0; text-align: right; color: var(--accent-orange); }
+
+.dc-pokemon-stat span:nth-child(1) { width: 55px; flex-shrink: 0; }
+.dc-pokemon-stat span:nth-child(2) { width: 30px; flex-shrink: 0; }
+.dc-pokemon-stat span:nth-child(4) { width: 25px; flex-shrink: 0; text-align: center; }
+.dc-pokemon-stat span:nth-child(6) { width: 25px; flex-shrink: 0; text-align: center; }
+.dc-pokemon-stat span:nth-child(7) { width: 35px; flex-shrink: 0; text-align: right; }
+
+.label-stages { color: #e879f9; }
+.label-weather { color: #2ecc71; }
+.label-terrain { color: #ffd700; }
+.label-atk-item { color: #ff6b9d; }
+.label-crit { color: #ff4d4d; }
