@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { deletePokemonTeam, editPokemonTeam, getPokemon, getPokemonTeamById } from "../../services/pokemonServices"
 import "./EditPokemon.css"
-import { getAllAbilities } from "../../services/abilitiesServices"
+import { getPokemonAbilities } from "../../services/abilitiesServices"
 import { getAllNatures } from "../../services/naturesServices"
 import { getAllItems } from "../../services/itemsServices"
-import { createPokemonMove, deletePokemonMove, getAllMoves, getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
+import { createPokemonMove, deletePokemonMove, getPokemonLearnsets, getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
 import { getAllTypes, getPokemonTypeByPokemonId, getTypeMatchups } from "../../services/typeServices"
 
 
@@ -15,14 +15,14 @@ export const EditPokemon = () => {
     
     const [pokemonTeam, setPokemonTeam] =useState({})
     const [allPokemon, setAllPokemon] = useState([])
-    const [allAbilities, setAllAbilities] = useState([])
     const [allNatures, setAllNatures] = useState([])
     const [allItems, setAllItems] = useState([])
-    const [allMoves, setAllMoves] = useState([])
     const [allTypes, setAllTypes] = useState([])
     const [allTypeMatchups, setAllTypeMatchups] =useState([])
     const [pokemonTypes, setPokemonTypes] = useState([])
     const [selectedPokemon, setSelectedPokemon] = useState({})
+    const [pokemonAbilities, setPokemonAbilities] = useState([])
+    const [pokemonLearnset, setPokemonLearnset] = useState([])
     //index 0 = move 1, index 1 = move 2....
     const [selectedMove, setSelectedMove] = useState([0, 0, 0, 0])
 
@@ -33,20 +33,16 @@ export const EditPokemon = () => {
         Promise.all([
             getPokemon(),
             getPokemonTeamById(pokemonTeamId),
-            getAllAbilities(),
             getAllNatures(),
             getAllItems(),
-            getAllMoves(),
             getAllTypes(),
             getTypeMatchups(),
             getPokemonMovesByPokemonTeamId(pokemonTeamId)
-        ]).then(([pokemonArray, pokemonTeamObj, abilitiesArray, naturesArray, itemsArray, movesArray, typesArray, typeMatchupsArray, existingMoves]) => {
+        ]).then(([pokemonArray, pokemonTeamObj, naturesArray, itemsArray, typesArray, typeMatchupsArray, existingMoves]) => {
             setAllPokemon(pokemonArray)
             setPokemonTeam(pokemonTeamObj)
-            setAllAbilities(abilitiesArray)
             setAllNatures(naturesArray)
             setAllItems(itemsArray)
-            setAllMoves(movesArray)
             setAllTypes(typesArray)
             setAllTypeMatchups(typeMatchupsArray)
 
@@ -56,6 +52,13 @@ export const EditPokemon = () => {
             
             const match = pokemonArray.find(pokemon => pokemon.id === pokemonTeamObj.pokemonId)
             setSelectedPokemon(match)
+
+            getPokemonAbilities(pokemonTeamObj.pokemonId).then((abilitiesArray) => {
+                setPokemonAbilities(abilitiesArray)
+            })
+            getPokemonLearnsets(pokemonTeamObj.pokemonId).then((movesArray) => {
+                setPokemonLearnset(movesArray)
+            })
             
             // convert existing moves to just moveIds
             const moveIds = existingMoves.map(pokemonMove => pokemonMove.moveId)
@@ -70,6 +73,13 @@ export const EditPokemon = () => {
         }
         const matchPokemon = allPokemon.find(pokemon => pokemon.id === parseInt(evt.target.value))
         setSelectedPokemon(matchPokemon)
+
+        getPokemonAbilities(evt.target.value).then((abilitiesArray) => {
+            setPokemonAbilities(abilitiesArray)
+        })
+        getPokemonLearnsets(evt.target.value).then((movesArray) => {
+            setPokemonLearnset(movesArray)
+        })
 
         getPokemonTypeByPokemonId(evt.target.value).then((typeArray) => {
                     setPokemonTypes(typeArray)
@@ -238,8 +248,8 @@ export const EditPokemon = () => {
                         <label className="dropdown-label label-ability">Ability</label>
                         <select value={pokemonTeam.abilityId} onChange={handleAbilitySelect}>
                             <option value="0">Select an Ability</option>
-                            {allAbilities.map((ability) => (
-                                <option value={ability.id} key={ability.id}>{ability.name}</option>
+                            {pokemonAbilities.map((pokemonAbility) => (
+                                <option value={pokemonAbility.ability.id} key={pokemonAbility.id}>{pokemonAbility.ability.name}</option>
                             ))}
                         </select>
                     </div>
@@ -247,8 +257,8 @@ export const EditPokemon = () => {
                         <label className="dropdown-label label-move">Move 1</label>
                         <select value={selectedMove[0]} onChange={(evt) => handleMoveSelect(evt, 0)}>
                             <option value="0">Select a Move</option>
-                            {allMoves.map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -256,8 +266,8 @@ export const EditPokemon = () => {
                         <label className="dropdown-label label-move">Move 2</label>
                         <select value={selectedMove[1]} onChange={(evt) => handleMoveSelect(evt, 1)}>
                             <option value="0">Select a Move</option>
-                            {allMoves.map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -283,8 +293,8 @@ export const EditPokemon = () => {
                         <label className="dropdown-label label-move">Move 3</label>
                         <select value={selectedMove[2]} onChange={(evt) => handleMoveSelect(evt, 2)}>
                             <option value="0">Select a Move</option>
-                            {allMoves.map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -292,8 +302,8 @@ export const EditPokemon = () => {
                         <label className="dropdown-label label-move">Move 4</label>
                         <select value={selectedMove[3]} onChange={(evt) => handleMoveSelect(evt, 3)}>
                             <option value="0">Select a Move</option>
-                            {allMoves.map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>

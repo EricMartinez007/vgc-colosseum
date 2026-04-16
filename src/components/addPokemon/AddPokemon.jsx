@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { createPokemonTeam, getPokemon } from "../../services/pokemonServices"
 import "./AddPokemon.css"
-import { getAllAbilities } from "../../services/abilitiesServices"
+import { getPokemonAbilities } from "../../services/abilitiesServices"
 import { getAllNatures } from "../../services/naturesServices"
 import { getAllItems } from "../../services/itemsServices"
-import { createPokemonMove, getAllMoves } from "../../services/movesServices"
+import { createPokemonMove, getPokemonLearnsets } from "../../services/movesServices"
 import { getAllTypes, getPokemonTypeByPokemonId, getTypeMatchups } from "../../services/typeServices"
 
 export const AddPokemon = ({ currentUser }) => {
@@ -13,14 +13,14 @@ export const AddPokemon = ({ currentUser }) => {
     const { teamId } = useParams()
 
     const [allPokemon, setAllPokemon] = useState([])
-    const [allAbilities, setAllAbilities] = useState([])
     const [allNatures, setAllNatures] = useState([])
     const [allItems, setAllItems] = useState([])
-    const [allMoves, setAllMoves] = useState([])
     const [allTypes, setAllTypes] = useState([])
     const [allTypeMatchups, setAllTypeMatchups] =useState([])
     const [pokemonTypes, setPokemonTypes] = useState([])
     const [selectedPokemon, setSelectedPokemon] = useState({})
+    const [pokemonAbilities, setPokemonAbilities] = useState([])
+    const [pokemonLearnset, setPokemonLearnset] = useState([])
     //index 0 = move 1, index 1 = move 2....
     const [selectedMove, setSelectedMove] = useState([0, 0, 0, 0])
     const [newPokemonTeam, setNewPokemonTeam] = useState({
@@ -47,17 +47,11 @@ export const AddPokemon = ({ currentUser }) => {
         getPokemon().then((pokemon) => {
             setAllPokemon(pokemon)
         })
-        getAllAbilities().then((abilitiesArray) => {
-            setAllAbilities(abilitiesArray)
-        })
         getAllNatures().then((naturesArray) => {
             setAllNatures(naturesArray)
         })
         getAllItems().then((itemsArray) => {
             setAllItems(itemsArray)
-        })
-        getAllMoves().then((movesArray) => {
-            setAllMoves(movesArray)
         })
         getTypeMatchups().then((typeMatchupsArray) => {
             setAllTypeMatchups(typeMatchupsArray)
@@ -102,6 +96,13 @@ export const AddPokemon = ({ currentUser }) => {
 
         getPokemonTypeByPokemonId(evt.target.value).then((typeArray) => {
             setPokemonTypes(typeArray)
+        })
+
+        getPokemonAbilities(evt.target.value).then((abilitiesArray) => {
+            setPokemonAbilities(abilitiesArray)
+        })
+        getPokemonLearnsets(evt.target.value).then((movesArray) => {
+            setPokemonLearnset(movesArray)
         })
 
         setNewPokemonTeam({
@@ -238,8 +239,8 @@ export const AddPokemon = ({ currentUser }) => {
                         <label className="dropdown-label label-ability">Ability</label>
                         <select onChange={handleAbilitySelect}>
                             <option value="0">Select an Ability</option>
-                            {allAbilities.map((ability) => (
-                                <option value={ability.id} key={ability.id}>{ability.name}</option>
+                            {pokemonAbilities.map((pokemonAbility) => (
+                                <option value={pokemonAbility.ability.id} key={pokemonAbility.id}>{pokemonAbility.ability.name}</option>
                             ))}
                         </select>
                     </div>
@@ -247,8 +248,8 @@ export const AddPokemon = ({ currentUser }) => {
                         <label className="dropdown-label label-move">Move 1</label>
                         <select onChange={(evt) => handleMoveSelect(evt, 0)}>
                             <option value="0">Select a Move</option>
-                            {allMoves.map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -256,8 +257,8 @@ export const AddPokemon = ({ currentUser }) => {
                         <label className="dropdown-label label-move">Move 2</label>
                         <select onChange={(evt) => handleMoveSelect(evt, 1)}>
                             <option value="0">Select a Move</option>
-                            {allMoves.map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -283,8 +284,8 @@ export const AddPokemon = ({ currentUser }) => {
                         <label className="dropdown-label label-move">Move 3</label>
                         <select onChange={(evt) => handleMoveSelect(evt, 2)}>
                             <option value="0">Select a Move</option>
-                            {allMoves.map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -292,8 +293,8 @@ export const AddPokemon = ({ currentUser }) => {
                         <label className="dropdown-label label-move">Move 4</label>
                         <select onChange={(evt) => handleMoveSelect(evt, 3)}>
                             <option value="0">Select a Move</option>
-                            {allMoves.map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>

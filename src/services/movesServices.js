@@ -25,3 +25,7 @@ export const deletePokemonMove = (pokemonMoveId) => {
     method: "DELETE"
     })
 }
+
+export const getPokemonLearnsets = (pokemonId) => {
+    return fetch(`http://localhost:8088/pokemonLearnsets?pokemonId=${pokemonId}&_expand=move`).then((res) => res.json())
+}
