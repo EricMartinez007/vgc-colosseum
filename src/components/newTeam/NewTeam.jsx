@@ -1,14 +1,22 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createTeam } from "../../services/teamServices"
 import "./NewTeam.css"
+import { getAllFormats } from "../../services/formatsServices"
 
 export const NewTeam = ({ currentUser }) => {
+    const [allFormats, setAllFormats] = useState([])
     const [newTeam, setNewTeam] = useState({
         name: "",
         userId: currentUser.id,
         formatId: 1
     })
+
+    useEffect(() => {
+        getAllFormats().then((formatsArray) => {
+            setAllFormats(formatsArray)
+        })
+    }, [])
 
     const navigate = useNavigate()
 
@@ -16,6 +24,13 @@ export const NewTeam = ({ currentUser }) => {
         const copy = { ...newTeam }
         copy[evt.target.id] = evt.target.value
         setNewTeam(copy)
+    }
+
+    const handleFormatSelect = (evt) => {
+        setNewTeam({
+        ...newTeam,
+        formatId: parseInt(evt.target.value)
+        })
     }
 
     const handleSubmit = (e) => {
@@ -46,6 +61,12 @@ export const NewTeam = ({ currentUser }) => {
                             autoFocus
                         />
                     </div>
+                    <select className="filter-bar" onChange={handleFormatSelect}>
+                    <option value="0">Select a Format</option>
+                        {allFormats.map((format) => (
+                            <option value={format.id} key={format.id}>{format.name}</option>
+                        ))}
+                    </select>
                 </fieldset>
                 <button type="submit" className="btn-create-team">
                     Create Team

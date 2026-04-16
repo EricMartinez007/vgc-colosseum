@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { deleteTeam, getPokemonByTeamId, getTeamById, updateTeam } from "../../services/teamServices"
 import "./EditTeam.css"
 import { getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
+import { getAllFormats } from "../../services/formatsServices"
 
 export const EditTeam = () => {
     const navigate = useNavigate()
@@ -11,6 +12,7 @@ export const EditTeam = () => {
     const [team, setTeam] = useState({})
     const [pokemon, setPokemon] = useState([])
     const [pokemonMoves, setPokemonMoves] = useState([])
+    const [allFormats, setAllFormats] = useState([])
     
     useEffect(() => {
         getTeamById(teamId).then((team) => {
@@ -29,6 +31,10 @@ export const EditTeam = () => {
                 setPokemonMoves(allMovesArrays)
             })
         })
+
+        getAllFormats().then((formatsArray) => {
+            setAllFormats(formatsArray)
+        })
                 
     }, [teamId])
 
@@ -36,6 +42,13 @@ export const EditTeam = () => {
         const copy = { ...team }
         copy[evt.target.id] = evt.target.value
         setTeam(copy)
+    }
+
+    const handleFormatChange = (evt) => {
+        setTeam({
+        ...team,
+        formatId: parseInt(evt.target.value)
+        })
     }
 
     const handleDeleteTeam = () => {
@@ -83,6 +96,12 @@ export const EditTeam = () => {
                             />
                         </div>
                         </fieldset>
+                        <select className="filter-bar" value={team.formatId} onChange={handleFormatChange}>
+                        <option value="0">Select a Format</option>
+                            {allFormats.map((format) => (
+                                <option value={format.id} key={format.id}>{format.name}</option>
+                            ))}
+                        </select>
                         <div className="btn-container">
                             <button type="submit" className="btn-create-team">
                                 Save Team
