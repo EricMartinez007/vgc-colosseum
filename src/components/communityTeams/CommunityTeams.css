@@ -85,3 +85,13 @@
     margin-left: auto;
     padding-left: 1rem;
 }
+
+.team-trainer-link {
+    color: #b388ff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.team-trainer-link:hover {
+    color: var(--accent-purple);
+}

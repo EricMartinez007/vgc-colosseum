@@ -1,23 +1,36 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getUserById } from "../../services/userServices"
-import { getTeamsByUserId } from "../../services/teamServices"
+import { getPokemonByTeamId, getTeamsByUserId } from "../../services/teamServices"
 import "./Profile.css"
 import { getPokemon } from "../../services/pokemonServices"
 
 export const Profile = ({ currentUser }) => {
+    const { userId } = useParams()
+    
     const [user, setUser] = useState({})
     const [teams, setTeams] = useState([])
     const [allPokemon, setAllPokemon] = useState([])
+    const [totalLikesReceived, setTotalLikesReceived] = useState(0)
 
     const navigate = useNavigate()
 
     const getAndSetUserAndTeams = () =>{
-        getUserById(currentUser.id).then((userObj) => {
+        getUserById(parseInt(userId)).then((userObj) => {
             setUser(userObj)
         })
-        getTeamsByUserId(currentUser.id).then((teams) => {
-            setTeams(teams)
+        getTeamsByUserId(parseInt(userId)).then((teams) => {
+            Promise.all(
+                teams.map((team) => getPokemonByTeamId(team.id))
+            ).then((pokemonArrays) => {
+                const teamsWithPokemon = teams.map((team, index) => ({
+                    ...team,
+                    pokemonTeams: pokemonArrays[index]
+                }))
+                setTeams(teamsWithPokemon)
+                const total = teamsWithPokemon.reduce((sum, team) => sum + (team.likes?.length || 0), 0)
+                setTotalLikesReceived(total)
+            })
         })
         getPokemon().then((pokemonArray) => {
             setAllPokemon(pokemonArray)
@@ -26,7 +39,7 @@ export const Profile = ({ currentUser }) => {
 
     useEffect(() => {
             getAndSetUserAndTeams()
-    }, [])
+    }, [userId])
     
     const getMostUsedPokemon = () => {
         if(!teams.length || !allPokemon.length) return null
@@ -61,45 +74,79 @@ export const Profile = ({ currentUser }) => {
     return (
         <div className="page-container">
             <h1 className="page-title">Profile</h1>
-            <section className="profile-section">
-                <div className="profile-banner">
-                    {getMostUsedPokemon() && (
-                        <img
-                            className="profile-avatar"
-                            src={getMostUsedPokemon().imageUrl}
-                            alt={getMostUsedPokemon().name}
-                        />
-                    )}
-                    <h2 className="profile-name">{user.name}</h2>
-                </div>
-                <div className="profile-stats">
-                    <div className="profile-stat-card">
-                        <span className="profile-stat-label">Email: </span>
-                        <span className="profile-stat-value">{user.email}</span>
+            <span className="page-subtitle">Gladiator Stats</span>
+            <div className="profile-layout">
+                <section className="profile-section">
+                    <div className="profile-banner">
+                        {getMostUsedPokemon() && (
+                            <img
+                                className="profile-avatar"
+                                src={getMostUsedPokemon().imageUrl}
+                                alt={getMostUsedPokemon().name}
+                            />
+                        )}
+                        <h2 className="profile-name">⚔️ {user.name}</h2>
                     </div>
-                    <div className="profile-stat-card">
-                        <span className="profile-stat-label">Teams Made: </span>
-                        <span className="profile-stat-value">{teams.length}</span>
-                    </div>
-                    {getMostUsedPokemon() && (
+                    <div className="profile-stats">
                         <div className="profile-stat-card">
-                            <span className="profile-stat-label">Most Used Pokémon: </span>
-                            <img src={getMostUsedPokemon().imageUrl} alt={getMostUsedPokemon().name} />
-                            <span className="profile-stat-value">{getMostUsedPokemon().name}</span>
+                            <span className="profile-stat-label">📧 Email</span>
+                            <span className="profile-stat-value">{user.email}</span>
                         </div>
-                    )}
-                </div>
+                        <div className="profile-stat-card">
+                            <span className="profile-stat-label">🏆 Teams Made</span>
+                            <span className="profile-stat-value">{teams.length}</span>
+                        </div>
+                        <div className="profile-stat-card">
+                            <span className="profile-stat-label">❤️ Likes Received</span>
+                            <span className="profile-stat-value">{totalLikesReceived}</span>
+                        </div>
+                        {getMostUsedPokemon() && (
+                            <div className="profile-stat-card">
+                                <span className="profile-stat-label">⭐ Most Used</span>
+                                <img src={getMostUsedPokemon().imageUrl} alt={getMostUsedPokemon().name} />
+                                <span className="profile-stat-value">{getMostUsedPokemon().name}</span>
+                            </div>
+                        )}
+                    </div>
+                    <div className="profile-buttons">
+                        {parseInt(currentUser.id) === parseInt(userId) && (
+                            <button 
+                                className="edit-btn"
+                                type="button"
+                                onClick={() => navigate(`/editprofile`)}
+                            >
+                                Edit Profile
+                            </button> 
+                        )}
+                    </div>
+                </section>
 
-                <div className="profile-buttons">
-                    <button 
-                        className="edit-btn"
-                        type="button"
-                        onClick={() => navigate(`/editprofile`)}
-                    >
-                        Edit Profile
-                    </button> 
-                </div>
-            </section>
+                {/* My Teams Preview */}
+                <section className="profile-teams-preview">
+                    <div className="profile-teams-banner">
+                        <h2 className="profile-teams-title">My Teams</h2>
+                    </div>
+                    {teams.length === 0 ? (
+                        <p className="profile-no-teams">No teams created yet!</p>
+                    ) : (
+                        teams.map((team) => (
+                            <div 
+                                key={team.id} 
+                                className="profile-team-card"
+                                onClick={() => navigate(`/viewteam/${team.id}`)}
+                            >
+                                <span className="profile-team-name">{team.name}</span>
+                                <div className="profile-team-sprites">
+                                    {team.pokemonTeams?.slice(0, 6).map((pt) => (
+                                        pt.pokemon && <img key={pt.id} src={pt.pokemon.imageUrl} alt={pt.pokemon.name} />
+                                    ))}
+                                </div>
+                                <span className="profile-team-likes">❤️ {team.likes?.length || 0}</span>
+                            </div>
+                        ))
+                    )}
+                </section>
+            </div>
         </div>
-)
+    )
 }

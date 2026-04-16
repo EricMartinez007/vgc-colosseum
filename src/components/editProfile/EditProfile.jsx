@@ -27,7 +27,7 @@ export const EditProfile = ({ currentUser }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         updateUser(user).then(() => {
-            navigate(`/profile`)
+            navigate(`/profile/${currentUser.id}`)
         })
     }
 
@@ -47,65 +47,50 @@ export const EditProfile = ({ currentUser }) => {
     }
 
     return (
-        <main className="page-container">
-            <section>
-                <h1 className="page-title">Edit User</h1>
-                <span className="page-subtitle">Update your profile information below.</span>
-                <form className="form-edituser" onSubmit={handleSubmit}>
-                <fieldset>
-                    <h2>Full Name</h2>
-                    <span>Enter your first and last name as you'd like it displayed.</span>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            id="name"
-                            value={user.name}
-                            onChange={editUser}
-                            className="form-name"
-                            placeholder={user.name}
-                            required
-                            autoFocus
-                        />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <h2>Email Address</h2>
-                    <span>Enter your email address as you'd like it displayed.</span>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            id="email"
-                            value={user.email}
-                            onChange={editUser}
-                            className="form-email"
-                            placeholder={user.email}
-                            required
-                            autoFocus
-                        />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group edituser-buttons">
-                        <button className="submit-btn" type="submit">
-                            Save Changes
-                        </button>
-                        <button 
-                            className="delete-btn" 
-                            type="button"
-                            onClick={() => handleDelete()}
-                        >
-                            Delete Profile
-                        </button>
-                        <button
-                            className="btn-go-back"
-                            onClick={() => navigate(-1)}
-                        >
-                            Go Back
-                        </button>
-                    </div>
-                </fieldset>
-                </form>
-            </section>
-        </main>
+         <main className="page-container">
+        <h1 className="page-title">Edit Profile</h1>
+        <span className="page-subtitle">Update your gladiator information</span>
+        <form className="form-edituser" onSubmit={handleSubmit}>
+            <div className="editprofile-banner">
+                <h2 className="editprofile-banner-title">⚔️ {user.name}</h2>
+            </div>
+            <fieldset>
+                <h2>Full Name</h2>
+                <span>Enter your first and last name as you'd like it displayed.</span>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        id="name"
+                        value={user.name}
+                        onChange={editUser}
+                        className="form-name"
+                        required
+                        autoFocus
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <h2>Email Address</h2>
+                <span>Enter your email address as you'd like it displayed.</span>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        id="email"
+                        value={user.email}
+                        onChange={editUser}
+                        className="form-email"
+                        required
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group edituser-buttons">
+                    <button className="submit-btn" type="submit">Save Changes</button>
+                    <button className="delete-btn" type="button" onClick={handleDelete}>Delete Profile</button>
+                    <button className="btn-go-back" onClick={() => navigate(-1)}>Go Back</button>
+                </div>
+            </fieldset>
+        </form>
+    </main>
     )
 }
