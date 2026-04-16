@@ -97,10 +97,10 @@ export const EditTeam = () => {
                         </div>
                         </fieldset>
                         <select className="filter-bar" value={team.formatId} onChange={handleFormatChange}>
-                        <option value="0">Select a Format</option>
-                            {allFormats.map((format) => (
-                                <option value={format.id} key={format.id}>{format.name}</option>
-                            ))}
+                            <option value="0">Select a Format</option>
+                                {allFormats.map((format) => (
+                                    <option value={format.id} key={format.id}>{format.name}</option>
+                                ))}
                         </select>
                         <div className="btn-container">
                             <button type="submit" className="btn-create-team">

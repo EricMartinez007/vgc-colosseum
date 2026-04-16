@@ -61,12 +61,14 @@ export const NewTeam = ({ currentUser }) => {
                             autoFocus
                         />
                     </div>
-                    <select className="filter-bar" onChange={handleFormatSelect}>
-                    <option value="0">Select a Format</option>
-                        {allFormats.map((format) => (
-                            <option value={format.id} key={format.id}>{format.name}</option>
-                        ))}
-                    </select>
+                    <div className="format-select">
+                        <select className="filter-bar" onChange={handleFormatSelect}>
+                            <option value="0">Select a Format</option>
+                                {allFormats.map((format) => (
+                                    <option value={format.id} key={format.id}>{format.name}</option>
+                                ))}
+                        </select>
+                    </div>
                 </fieldset>
                 <button type="submit" className="btn-create-team">
                     Create Team

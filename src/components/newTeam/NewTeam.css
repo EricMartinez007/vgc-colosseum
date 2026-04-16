@@ -136,3 +136,7 @@
 .btn-add-pokemon:hover {
   background-color: #e05a00;
 }
+
+.format-select {
+    margin-top: 1rem;
+}
