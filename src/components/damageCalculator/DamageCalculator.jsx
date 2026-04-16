@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAllMoves } from "../../services/movesServices"
+import { getPokemonLearnsets } from "../../services/movesServices"
 import { getPokemon } from "../../services/pokemonServices"
 import { getAllTypes, getPokemonTypeByPokemonId, getTypeMatchups } from "../../services/typeServices"
 import "./DamageCalculator.css"
@@ -15,7 +15,6 @@ const immunities = {
 
 export const DamageCalculator = () => {
     const [allPokemon, setAllPokemon] = useState([])
-    const [allMoves, setAllMoves] = useState([])
     const [allTypes, setAllTypes] = useState([])
     const [allTypeMatchups, setAllTypeMatchups] = useState([])
     const [selectedAttacker, setSelectedAttacker] = useState({})
@@ -23,6 +22,7 @@ export const DamageCalculator = () => {
     const [selectedMove, setSelectedMove] = useState({})
     const [attackerTypes, setAttackerTypes] = useState([])
     const [defenderTypes, setDefenderTypes] = useState([])
+    const [pokemonLearnset, setPokemonLearnset] = useState([])
     const [attackerSpread, setAttackerSpread] = useState({
         atkEv: 0, atkIv: 31, spAtkEv: 0, spAtkIv: 31
     })
@@ -41,9 +41,6 @@ export const DamageCalculator = () => {
         getPokemon().then((pokemonArray) => {
             setAllPokemon(pokemonArray)
         })
-        getAllMoves().then((movesArray) => {
-            setAllMoves(movesArray)
-        })
         getAllTypes().then((typesArray) => {
             setAllTypes(typesArray)
         })
@@ -61,6 +58,9 @@ export const DamageCalculator = () => {
         setSelectedAttacker(matchPokemon)
         getPokemonTypeByPokemonId(parseInt(evt.target.value)).then((typesArray) => {
             setAttackerTypes(typesArray)
+        })
+        getPokemonLearnsets(evt.target.value).then((movesArray) => {
+            setPokemonLearnset(movesArray)
         })
     }
 
@@ -81,8 +81,8 @@ export const DamageCalculator = () => {
             setSelectedMove({})
             return
         }
-        const matchMove = allMoves.find(move => move.id === parseInt(evt.target.value))
-        setSelectedMove(matchMove)
+        const matchLearnset = pokemonLearnset.find(pokemonMove => pokemonMove.move.id === parseInt(evt.target.value))
+            setSelectedMove(matchLearnset.move)
     }
 
     const handleWeatherSelect = (evt) => {
@@ -322,8 +322,8 @@ export const DamageCalculator = () => {
                         <label className="dc-dropdown-label label-move">Move Select</label>
                         <select value={selectedMove.id || "0"} onChange={handleMoveSelect}>
                             <option value="0">Choose a Move</option>
-                            {allMoves.filter(move => move.power > 0).map((move) => (
-                                <option value={move.id} key={move.id}>{move.name}</option>
+                            {pokemonLearnset.map((pokemonMove) => (
+                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -486,5 +486,4 @@ export const DamageCalculator = () => {
             </div>
         </div>
     )
-    
 }
