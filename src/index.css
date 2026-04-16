@@ -43,10 +43,11 @@ fieldset {
   letter-spacing: 0.1em;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
+  text-shadow: 0 0 30px rgba(123, 47, 255, 0.6);
 }
 
 .page-subtitle {
-  color: var(--text-secondary);
+  color: var(--accent-orange);
   font-size: 1rem;
   display: block;
   margin-bottom: 1.5rem;

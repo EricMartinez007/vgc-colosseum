@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = () => {
+export const NavBar = ({ currentUser }) => {
     const navigate = useNavigate()
 
     const handleLogout = () => {
@@ -23,7 +23,7 @@ export const NavBar = () => {
                 <Link to="/favorites">Favorites</Link>
                 <Link to="/newteam">New Team</Link>
                 <Link to="/damagecalculator">Damage Calculator</Link>
-                <Link to="/profile">Profile</Link>
+                <Link to={`/profile/${currentUser.id}`}>Profile</Link>
                 <button 
                     className="logout-btn"
                     onClick={handleLogout}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { getPokemonByTeamId, getTeamById } from "../../services/teamServices"
 import "./ViewTeam.css"
 import { getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
@@ -139,7 +139,7 @@ Nature: ${pokemonTeam.nature?.name}
     return (
         <div className="page-container">
             <h1 className="page-title">{team.name}</h1>
-            <span className="page-subtitle">Team made by: {team.user.name}</span>
+            <span className="page-subtitle">Team by <Link to={`/profile/${team.userId}`} className="team-trainer-link">{team.user.name}</Link></span>
             <div className="view-team-layout">
                 <section className="team-section">
                     <h2>Pokémon</h2>

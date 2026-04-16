@@ -45,7 +45,7 @@ export const ApplicationViews = () => {
                 <Route path="favorites" element={<Favorites currentUser={currentUser} />} />
                 <Route path="newteam" element={<NewTeam currentUser={currentUser} />} />
                 <Route path="addpokemon/:teamId" element={<AddPokemon currentUser={currentUser} />} />
-                <Route path="profile" element={<Profile currentUser={currentUser} />} />
+                <Route path="profile/:userId" element={<Profile currentUser={currentUser} />} />
                 <Route path="editprofile"element={<EditProfile currentUser={currentUser} />} />
                 <Route path="teamcoverage/:teamId" element={<TeamCoverage currentUser={currentUser} />} />
                 <Route path="damagecalculator" element={<DamageCalculator currentUser={currentUser} />} />

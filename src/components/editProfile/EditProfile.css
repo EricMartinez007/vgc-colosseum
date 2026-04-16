@@ -13,12 +13,12 @@
   font-family: var(--font-heading);
   font-size: 1.3rem;
   letter-spacing: 0.05em;
-  color: var(--text-secondary);
+  color: #b388ff;
   margin-bottom: 0.25rem;
 }
 
 .form-edituser span {
-  color: var(--text-secondary);
+  color: var(--accent-orange);
   font-size: 0.85rem;
   display: block;
   margin-bottom: 0.5rem;
@@ -80,4 +80,30 @@
 
 .delete-btn:hover {
   background-color: #c0392b;
+}
+
+.editprofile-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #7b2fff 50%, #1a1a2e 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+    border-radius: 8px 8px 0 0;
+    padding: 1.5rem;
+    margin: -2rem -2rem 0 -2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.editprofile-banner .editprofile-banner-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    text-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
 }
