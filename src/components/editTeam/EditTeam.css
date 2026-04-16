@@ -32,8 +32,6 @@
     align-items: center;
 }
 
-
-
 .pokemon-card-moves {
     grid-column: span 2;
     display: contents;
@@ -94,3 +92,11 @@
 .card-label-nature { color: #2ecc71 !important; }   /* clean green */
 .card-label-item { color: #ffd700 !important; }     /* gold */
 .card-label-move { color: var(--accent-orange) !important; }
+
+.edit-form-title {
+    color: #b388ff;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}

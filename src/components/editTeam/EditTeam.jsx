@@ -81,7 +81,7 @@ export const EditTeam = () => {
             <div className="edit-team-layout">
                 <div>
                     <form className="form-newteam" onSubmit={handleSubmit}>
-                        <h2>Team Name</h2>
+                        <h2 className="edit-form-title">Team Name</h2>
                         <fieldset>
                         <div className="form-group">
                             <input
@@ -96,6 +96,7 @@ export const EditTeam = () => {
                             />
                         </div>
                         </fieldset>
+                        <h2 className="edit-form-title">Format</h2>
                         <select className="filter-bar" value={team.formatId} onChange={handleFormatChange}>
                             <option value="0">Select a Format</option>
                                 {allFormats.map((format) => (
@@ -117,7 +118,7 @@ export const EditTeam = () => {
                     </form>
                 </div>
                 <section className="team-section">
-                    <h2>Pokemon</h2>
+                    <h2 className="edit-form-title">Pokemon</h2>
                     <div className="pokemon-list">
                         {/* Array.from creates an array of 6 slots. If a pokemon exists at that index in the array then it renders the pokemon's card, otherwise it renders an empty card with an Add Pokemon button. The _ used in Array.from parameters is a way of telling JavaScript that I know this parameter exists but I don't want to use it */}
                         {Array.from({ length: 6 }, (_, index) => {

@@ -47,8 +47,8 @@ export const NewTeam = ({ currentUser }) => {
                 <h1 className="page-title">Create a New Team</h1>
                 <span className="page-subtitle">Build a new competitive team!</span>
                 <form className="form-newteam" onSubmit={handleSubmit}>
-                <h2>Team Name</h2>
                 <fieldset>
+                    <h2 className="new-form-title">Team Name</h2>
                     <div className="form-group">
                         <input
                             type="text"
@@ -62,6 +62,7 @@ export const NewTeam = ({ currentUser }) => {
                         />
                     </div>
                     <div className="format-select">
+                        <h2 className="new-form-title">Format</h2>
                         <select className="filter-bar" onChange={handleFormatSelect}>
                             <option value="0">Select a Format</option>
                                 {allFormats.map((format) => (
