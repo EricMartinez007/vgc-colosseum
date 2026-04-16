@@ -29,32 +29,29 @@ export const Login = () => {
 
     return (
         <main className="container-login">
-            <h1>Welcome To VGC Colosseum</h1>
+            <img className="auth-logo" src="/VGC_Colosseum_Final_Logo.png" alt="VGC Colosseum" />
+            <h1>VGC Colosseum</h1>
             <form className="form-login" onSubmit={handleLogin}>
                 <h2>Enter The Colosseum</h2>
                 <fieldset>
                     <div className="form-group">
-                        <label className="form-login-label">Login</label>
+                        <label>Email Address</label>
                         <input
                             type="email"
                             value={email}
                             onChange={(evt) => setEmail(evt.target.value)}
                             className="form-control"
-                            placeholder="Email address"
+                            placeholder="Enter your email"
                             required
                             autoFocus
                         />
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="form-group">
-                        <button className="login-btn btn-info" type="submit">
-                            Sign in
-                        </button>
-                    </div>
+                    <button className="login-btn" type="submit">Sign In</button>
                 </fieldset>
             </form>
-            <Link to="/register" className="register-link">Not a member yet?</Link>
+            <Link to="/register" className="register-link">Not a gladiator yet? Register here!</Link>
         </main>
     )
 }
