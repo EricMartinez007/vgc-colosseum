@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { createUser, getUserByEmail } from "../../services/userServices"
 import "./Register.css"
 
@@ -45,49 +45,39 @@ export const Register = (props) => {
   }
 
   return (
-    <main className="container-login">
-      <h1>Welcome To VGC Colosseum</h1>
-      <form className="form-login" onSubmit={handleRegister}>
-        <h2>Gladiator Registration Here</h2>
-        <fieldset>
-          <div className="form-group">
-            <input
-              onChange={updateUser}
-              type="text"
-              id="name"
-              className="form-control"
-              placeholder="Enter your name"
-              required
-              autoFocus
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="form-group">
-            <input
-              onChange={updateUser}
-              type="email"
-              id="email"
-              className="form-control"
-              placeholder="Email address"
-              required
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="form-group">
-            <button className="login-btn btn-info" type="submit">
-              Register
-            </button>
-          </div>
-          <button
-              className="btn-go-back"
-              onClick={() => navigate(-1)}
-            >
-              Go Back
-            </button>
-        </fieldset>
-      </form>
-    </main>
+      <main className="container-login">
+          <img className="auth-logo" src="/VGC_Colosseum_Final_Logo.png" alt="VGC Colosseum" />
+          <h1>VGC Colosseum</h1>
+          <form className="form-login" onSubmit={handleRegister}>
+              <h2>Gladiator Registration</h2>
+              <fieldset>
+                  <label>Name</label>
+                  <input
+                      onChange={updateUser}
+                      type="text"
+                      id="name"
+                      className="form-control"
+                      placeholder="Enter your name"
+                      required
+                      autoFocus
+                  />
+              </fieldset>
+              <fieldset>
+                  <label>Email Address</label>
+                  <input
+                      onChange={updateUser}
+                      type="email"
+                      id="email"
+                      className="form-control"
+                      placeholder="Email address"
+                      required
+                  />
+              </fieldset>
+              <fieldset>
+                  <button className="login-btn" type="submit">Register</button>
+              </fieldset>
+          </form>
+          <Link to="/login" className="register-link">Already a gladiator? Sign in!</Link>
+      </main>
   )
 }

@@ -95,3 +95,25 @@
 .register-link:hover {
   color: #ff8c00;
 }
+
+.auth-logo {
+    width: 120px;
+    filter: drop-shadow(0 0 20px var(--accent-purple));
+    margin-bottom: 1rem;
+}
+
+.container-login h1 {
+    text-shadow: 0 0 20px rgba(123, 47, 255, 0.6);
+    margin-bottom: 2rem;
+}
+
+.form-login {
+    box-shadow: 0 0 30px rgba(123, 47, 255, 0.15);
+}
+
+.form-login label {
+    color: var(--accent-orange);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
