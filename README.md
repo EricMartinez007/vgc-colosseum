@@ -64,28 +64,34 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 
 ### Installation
 
-1. Clone the repository
+1. Clone the client repository
 ```bash
 git clone https://github.com/EricMartinez007/vgc-colosseum.git
 cd vgc-colosseum
 ```
 
-2. Install dependencies
+2. Clone the API repository
+```bash
+git clone https://github.com/EricMartinez007/vgc-colosseum-api.git
+cd vgc-colosseum-api
+```
+
+3. Install dependencies for both
 ```bash
 npm install
 ```
 
-3. Start the JSON Server
+4. Start the JSON Server (from the API directory)
 ```bash
 json-server --watch db.json --port 8088
 ```
 
-4. Start the React app
+5. Start the React app (from the client directory)
 ```bash
 npm run dev
 ```
 
-5. Navigate to `http://localhost:5173`
+6. Navigate to `http://localhost:5173`
 
 ### Demo Accounts
 | Name | Email |
