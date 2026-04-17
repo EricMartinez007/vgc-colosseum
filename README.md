@@ -83,7 +83,7 @@ npm install
 
 4. Start the JSON Server (from the API directory)
 ```bash
-json-server --watch db.json --port 8088
+npm start
 ```
 
 5. Start the React app (from the client directory)

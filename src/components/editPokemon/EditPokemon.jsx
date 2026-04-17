@@ -187,6 +187,7 @@ export const EditPokemon = () => {
         })
     }
 
+    // database is too large so I had to add setTimeout to prevent the app from crashing when going from EditPokemon to EditTeam after hitting save edits button
     const handleSaveEdits = () => {
         editPokemonTeam(pokemonTeam).then(() => {
             getPokemonMovesByPokemonTeamId(pokemonTeamId).then((existingMoves) => {
