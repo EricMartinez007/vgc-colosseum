@@ -482,7 +482,16 @@ export const DamageCalculator = () => {
             {/* Result display */}
             <div className="dc-results">
                 {damageResult && (
-                    <p>{damageResult.minDamage} - {damageResult.maxDamage} ({damageResult.minPercent}% - {damageResult.maxPercent}%)</p>
+                    <p className={`damage-result ${
+                        damageResult.maxPercent >= 100 ? "result-ohko" :
+                        damageResult.minPercent >= 50 ? "result-2hko" : "result-safe"
+                    }`}>
+                        {damageResult.minDamage} - {damageResult.maxDamage} ({damageResult.minPercent}% - {damageResult.maxPercent}%)
+                        <span className="result-label">
+                            {damageResult.maxPercent >= 100 ? "💀 OHKO!" :
+                            damageResult.minPercent >= 50 ? "⚠️ 2HKO Range" : "✅ Safe"}
+                        </span>
+                    </p>
                 )}
             </div>
         </div>

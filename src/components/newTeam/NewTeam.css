@@ -127,7 +127,8 @@
 }
 
 .new-form-title {
-    color: #b388ff;
+    color: #c084fc;
+    text-shadow: 0 0 10px rgba(192, 132, 252, 0.4);
     font-family: var(--font-heading);
     font-size: 1.3rem;
     letter-spacing: 0.05em;

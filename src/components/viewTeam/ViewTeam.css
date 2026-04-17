@@ -134,7 +134,6 @@
     font-family: var(--font-heading);
     font-size: 1.5rem;
     letter-spacing: 0.05em;
-    color: var(--text-primary);
     margin-bottom: 1rem;
 }
 
@@ -250,4 +249,33 @@
 
 .btn-coverage:hover {
     opacity: 0.85;
+}
+
+.pokemon-card {
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 15px rgba(123, 47, 255, 0.3);
+}
+
+.pokemon-card:hover img {
+    animation: bounce 0.6s ease infinite;
+}
+
+.view-team-title {
+    color: #c084fc;
+    text-shadow: 0 0 10px rgba(192, 132, 252, 0.4);
+}
+
+.view-comment-title {
+    color: #c084fc;
+    text-shadow: 0 0 10px rgba(192, 132, 252, 0.4);
+}
+
+.submit-btn:hover {
+    box-shadow: 0 0 10px rgba(123, 47, 255, 0.3);
+    transform: translateY(-2px);
 }

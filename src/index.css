@@ -31,6 +31,10 @@ fieldset {
     border: none;
 }
 
+button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 .page-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -103,3 +107,75 @@ fieldset {
 .value-ev { color: #2ecc71 !important; }
 .value-iv { color: #ffd700 !important; }
 .value-total { color: var(--accent-orange) !important; }
+
+/* CommunityTeams, MyTeams, Favorites */
+.team-card {
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 15px rgba(123, 47, 255, 0.3);
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+.team-card:hover img {
+    animation: bounce 0.6s ease infinite;
+}
+
+.btn-go-back:hover {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 10px rgba(123, 47, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-edit-team:hover {
+    box-shadow: 0 0 10px rgba(123, 47, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-add-pokemon:hover {
+    box-shadow: 0 0 10px rgba(123, 47, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-save-edits:hover {
+    box-shadow: 0 0 10px rgba(123, 47, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-delete-pokemon:hover {
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-delete-team:hover {
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-create-team:hover {
+    box-shadow: 0 0 10px rgba(123, 47, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-coverage:hover {
+    box-shadow: 0 0 10px rgba(0, 180, 216, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-export:hover {
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-like:hover {
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+    transform: translateY(-2px);
+}

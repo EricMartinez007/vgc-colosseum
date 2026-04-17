@@ -42,8 +42,10 @@
   font-family: var(--font-heading);
   font-size: 1.5rem;
   letter-spacing: 0.05em;
-  color: var(--text-primary);
-  min-width: 180px;
+  color: #b388ff;
+  -webkit-text-stroke: 0.1px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 8px rgba(179, 136, 255, 0.2);
+  min-width: 180px
 }
 
 .team-card h4 {
