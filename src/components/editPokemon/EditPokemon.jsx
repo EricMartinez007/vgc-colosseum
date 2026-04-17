@@ -188,26 +188,25 @@ export const EditPokemon = () => {
     }
 
     const handleSaveEdits = () => {
-        //edit the pokemonTeam
         editPokemonTeam(pokemonTeam).then(() => {
-            // need to fetch existing moves
             getPokemonMovesByPokemonTeamId(pokemonTeamId).then((existingMoves) => {
-                // need to delete all existing moves at once
                 Promise.all(
                     existingMoves.map((move) => deletePokemonMove(move.id))
                 ).then(() => {
-                    // need to create all four new moves at once
-                    Promise.all(
-                        selectedMove.map((moveId) => 
-                            createPokemonMove ({
-                                pokemonTeamId: pokemonTeam.id,
-                                moveId: moveId
-                            })
-                        )
-                    // want to nav back to the editTeam page after all four new moves have been created
-                    ).then(() => {
-                        navigate(`/editteam/${teamId}`)
-                    })
+                    setTimeout(() => {
+                        Promise.all(
+                            selectedMove
+                                .filter(moveId => moveId !== 0)
+                                .map((moveId) => 
+                                    createPokemonMove({
+                                        pokemonTeamId: pokemonTeam.id,
+                                        moveId: moveId
+                                    })
+                                )
+                        ).then(() => {
+                            navigate(`/editteam/${teamId}`)
+                        })
+                    }, 1000)
                 })
             })
         })       
@@ -225,9 +224,9 @@ export const EditPokemon = () => {
     // added a value={selectedPokemon.id} to select to prepopulate it with the current pokemon the user is editing 
     return (
         <div className="page-container">
-            <h1 className="page-title">Edit Pokémon </h1>
-            <span className="page-subtitle">Edit a Pokémon to your team!</span>
-            
+            <div className="page-banner">
+                <h2 className="page-banner-title">⚔️ Edit Pokémon</h2>
+            </div>
             <div className="pokemon-form-card">
                 <div className="pokemon-form-image">
                     {selectedPokemon.id && (

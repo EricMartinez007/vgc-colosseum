@@ -216,9 +216,9 @@ export const AddPokemon = ({ currentUser }) => {
     
     return (
         <div className="page-container">
-            <h1 className="page-title">Add Pokémon </h1>
-            <span className="page-subtitle">Add a Pokémon to your team!</span>
-            
+            <div className="page-banner">
+                <h2 className="page-banner-title">⚔️ Add Pokémon</h2>
+            </div>
             <div className="pokemon-form-card">
                 <div className="pokemon-form-image">
                     {selectedPokemon.id && (

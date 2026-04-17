@@ -76,10 +76,12 @@ export const EditTeam = () => {
     //pt in the map method stand for pokemonTeam the objs im fetching belong to this array in which im expanding pokemon to access the image and name
     return (
         <div className="page-container">
-            <h1 className="page-title">Edit {team.name}</h1>
-            <span className="page-subtitle">Make edits to your competitive team!</span>
+            <div className="page-banner">
+                <h2 className="page-banner-title">⚔️ Edit {team.name}</h2>
+            </div>
             <div className="edit-team-layout">
                 <div>
+                    <h2 className="edit-form-title">Team Details</h2>
                     <form className="form-newteam" onSubmit={handleSubmit}>
                         <h2 className="edit-form-title">Team Name</h2>
                         <fieldset>
@@ -118,7 +120,7 @@ export const EditTeam = () => {
                     </form>
                 </div>
                 <section className="team-section">
-                    <h2 className="edit-form-title">Pokemon</h2>
+                    <h2 className="edit-form-title">Pokémon Details</h2>
                     <div className="pokemon-list">
                         {/* Array.from creates an array of 6 slots. If a pokemon exists at that index in the array then it renders the pokemon's card, otherwise it renders an empty card with an Add Pokemon button. The _ used in Array.from parameters is a way of telling JavaScript that I know this parameter exists but I don't want to use it */}
                         {Array.from({ length: 6 }, (_, index) => {

@@ -116,3 +116,7 @@
     border-color: var(--accent-orange);
     box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
 }
+
+.filter-bar {
+    width: 100%;
+}
