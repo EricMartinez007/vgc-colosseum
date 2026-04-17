@@ -222,3 +222,31 @@
 .label-terrain { color: #ffd700; }
 .label-atk-item { color: #ff6b9d; }
 .label-crit { color: #ff4d4d; }
+
+.damage-result {
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.result-label {
+    font-size: 1.1rem;
+}
+
+.result-ohko {
+    color: var(--accent-red);
+    text-shadow: 0 0 20px rgba(230, 57, 70, 0.6);
+}
+
+.result-2hko {
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.result-safe {
+    color: #2ecc71;
+    text-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
+}

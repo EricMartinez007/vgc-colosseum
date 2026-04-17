@@ -142,7 +142,7 @@ Nature: ${pokemonTeam.nature?.name}
             <span className="page-subtitle">Team by <Link to={`/profile/${team.userId}`} className="team-trainer-link">{team.user.name}</Link></span>
             <div className="view-team-layout">
                 <section className="team-section">
-                    <h2>Pokémon</h2>
+                    <h2 className="view-team-title">Pokémon</h2>
                     <div className="pokemon-list">
                         {pokemon.map((pokemonTeam, index) => (
                             <div 
@@ -233,7 +233,7 @@ Nature: ${pokemonTeam.nature?.name}
             </div>
             <div className="comments-container">
                 <section className="comments">
-                    <h3>Comments</h3>
+                    <h3 className="view-comment-title">Comments</h3>
                     <form className="form-newcomment" onSubmit={handleCreateComment}>
                         <label className="comment-label">Write a comment!</label>
                         <fieldset>

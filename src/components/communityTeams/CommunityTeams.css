@@ -45,14 +45,16 @@
   font-family: var(--font-heading);
   font-size: 1.5rem;
   letter-spacing: 0.05em;
-  color: var(--text-primary);
-  min-width: 180px;
+  color: #b388ff;
+  -webkit-text-stroke: 0.1px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 8px rgba(179, 136, 255, 0.2);
+  min-width: 180px
 }
 
 .team-card h4 {
-  color: var(--text-secondary);
   font-size: 0.9rem;
   min-width: 120px;
+  color: inherit;
 }
 
 .team-card a {
@@ -87,11 +89,12 @@
 }
 
 .team-trainer-link {
-    color: #b388ff;
+    color: var(--text-primary);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .team-trainer-link:hover {
-    color: var(--accent-purple);
+    color: #b388ff;
+    text-shadow: 0 0 10px rgba(179, 136, 255, 0.8);
 }
