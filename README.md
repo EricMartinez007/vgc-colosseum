@@ -45,6 +45,13 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 - Stats including total teams created and most used Pokémon
 - Edit profile information
 
+### Damage Calculator
+- Calculate damage between any two Pokémon using the official Level 50 VGC damage formula
+- Adjust EV and IV spreads for both attacker and defender
+- Factor in weather, terrain, attacker item, and critical hits
+- Attacker stage modifiers for boosted scenarios
+- Displays min/max damage range with OHKO, 2HKO, and safe indicators
+
 ---
 
 ## 🛠️ Tech Stack
@@ -109,7 +116,6 @@ npm run dev
 ---
 
 ## 🔮 Future Features
-- Damage calculator using official VGC damage formula
 - Move search and filtering by type and category
 - Team rating system
 - Speed tier calculator
