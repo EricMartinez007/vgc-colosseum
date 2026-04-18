@@ -163,3 +163,114 @@
 .label-nature { color: #2ecc71 !important; }
 .label-item { color: #ffd700 !important; }
 .label-move { color: var(--accent-orange) !important; }
+
+@media (max-width: 768px) {
+  .pokemon-form-card {
+    grid-template-columns: 1fr;
+  }
+
+  .pokemon-form-image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+  }
+
+  .pokemon-form-image img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .pokemon-form-info {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .pokemon-stats-type-card {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .pokemon-stats-container {
+    width: 100%;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+
+  .type-display {
+    padding-left: 0;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .vp-page .pokemon-stats-container {
+    font-size: 0.75rem;
+  }
+
+  .vp-page .pokemon-stats-header,
+  .vp-page .pokemon-stat {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 2px;
+    align-items: center;
+    font-size: 0.75rem;
+    width: 100%;
+  }
+
+  .vp-page .pokemon-stats-header span,
+  .vp-page .pokemon-stat span {
+    text-align: center;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .vp-page .pokemon-stats-header span:first-child,
+  .vp-page .pokemon-stat span:first-child {
+    text-align: left;
+    font-size: 0.7rem;
+    white-space: normal;
+  }
+
+  /* Base */
+  .vp-page .pokemon-stats-header span:nth-child(2) {
+    text-align: left;
+  }
+
+  /* EVs */
+  .vp-page .pokemon-stats-header span:nth-child(3) {
+    text-align: center;
+    padding-right: 8px;
+  }
+
+  /* IVs */
+  .vp-page .pokemon-stats-header span:nth-child(4) {
+    text-align: center;
+    padding-right: 13px;
+  }
+
+  /* Total */
+  .vp-page .pokemon-stats-header span:last-child,
+  .vp-page .pokemon-stat span:last-child {
+    text-align: left;
+  }
+
+  .vp-page .vp-stat-name { width: auto; }
+  .vp-page .vp-base { width: auto; }
+  .vp-page .vp-ev { width: auto; }
+  .vp-page .vp-iv { width: auto; }
+  .vp-page .vp-total { width: auto; margin-left: 0; }
+
+  .vp-page .ev-value,
+  .vp-page .iv-value {
+    width: auto;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-form-info {
+    grid-template-columns: 1fr;
+  }
+}

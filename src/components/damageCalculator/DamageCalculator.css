@@ -205,10 +205,10 @@
     font-size: 0.8rem;
 }
 
-.dc-header-stat-name { width: 55px; flex-shrink: 0; }
+.dc-header-stat-name { width: 55px; flex-shrink: 0; color: #b388ff; }
 .dc-header-base { width: 30px; flex-shrink: 0; color: #00b4d8; }
 .dc-header-ev { flex: 1; text-align: center; color: #2ecc71; }
-.dc-header-iv { flex: 1; text-align: center; color: #ffd700; }
+.dc-header-iv { flex: 1; text-align: center; color: #ffd700; padding-right: 20px;}
 .dc-header-total { width: 35px; flex-shrink: 0; text-align: right; color: var(--accent-orange); }
 
 .dc-pokemon-stat span:nth-child(1) { width: 55px; flex-shrink: 0; }
@@ -249,4 +249,68 @@
 .result-safe {
     color: #2ecc71;
     text-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
+}
+
+@media (max-width: 900px) {
+  .calc-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dc-stats-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .dc-stats-header {
+    font-size: 0.65rem;
+    gap: 0.3rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .dc-header-stat-name { width: 45px; flex-shrink: 0; font-size: 0.65rem; }
+  .dc-header-base     { width: 28px; flex-shrink: 0; font-size: 0.65rem; text-align: center; }
+  .dc-header-ev       { flex: 1; text-align: center; font-size: 0.65rem; padding-right: 2px;}
+  .dc-header-iv       { flex: 1; text-align: center; font-size: 0.65rem; padding-right: 34px;}
+  .dc-header-total    { width: 40px; flex-shrink: 0; text-align: center; font-size: 0.65rem; }
+
+  .dc-pokemon-stat {
+    font-size: 0.65rem;
+    gap: 0.3rem;
+  }
+
+  .dc-pokemon-stat span:nth-child(1) { width: 45px; flex-shrink: 0; font-size: 0.65rem; }
+  .dc-pokemon-stat span:nth-child(2) { width: 28px; flex-shrink: 0; font-size: 0.65rem; text-align: center; }
+  .dc-pokemon-stat span:nth-child(4) { width: 20px; flex-shrink: 0; font-size: 0.65rem; text-align: center;  }
+  .dc-pokemon-stat span:nth-child(6) { width: 20px; flex-shrink: 0; font-size: 0.65rem; text-align: center; }
+  .dc-pokemon-stat span:nth-child(7) { width: 40px; flex-shrink: 0; font-size: 0.65rem; text-align: center; }
+
+  .dc-value-base { min-width: 28px; font-size: 0.65rem; }
+  .dc-value-ev   { min-width: 20px; font-size: 0.65rem; }
+  .dc-value-iv   { min-width: 20px; font-size: 0.65rem; }
+  .dc-value-total { min-width: 40px; font-size: 0.65rem; text-align: center; padding-left: 28px; }
+
+  .dc-pokemon-stat input[type="range"] {
+    height: 4px;
+    padding: 0;
+    max-width: 60px;
+    flex-shrink: 1;
+  }
+
+  .dc-btn-calculate-dmg {
+    width: 100%;
+    padding: 0.85rem;
+  }
+
+  .dc-results {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .damage-result {
+    font-size: 1.2rem;
+  }
 }

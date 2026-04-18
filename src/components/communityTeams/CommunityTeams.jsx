@@ -83,20 +83,24 @@ export const CommunityTeams = ({ currentUser }) => {
                                 })
                                 .map((team) => (
                                     <Link key={team.id} to={`/viewteam/${team.id}`} className="team-card">
-                                        <h3>{team.name}</h3>
-                                        <h4>
-                                            <Link 
-                                                to={`/profile/${team.userId}`} 
-                                                className="team-trainer-link"
-                                                onClick={(e) => e.stopPropagation()}
-                                            >
-                                                {team.user.name}
-                                            </Link>
-                                        </h4>
-                                        {team.pokemon.map((pokemonTeam) => (
-                                            <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
-                                        ))}
-                                        <span className="team-likes">❤️{team.likes.length}</span>
+                                        <div className="team-card-header">
+                                            <h3>{team.name}</h3>
+                                            <h4>
+                                                <Link 
+                                                    to={`/profile/${team.userId}`} 
+                                                    className="team-trainer-link"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    {team.user.name}
+                                                </Link>
+                                            </h4>
+                                        </div>
+                                        <div className="team-card-sprites">
+                                            {team.pokemon.map((pokemonTeam) => (
+                                                <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                            ))}
+                                            <span className="team-likes">❤️{team.likes.length}</span>
+                                        </div>
                                     </Link>  
                                 ))
                         )}
