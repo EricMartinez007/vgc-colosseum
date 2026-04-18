@@ -252,7 +252,7 @@ export const DamageCalculator = () => {
                     {selectedAttacker.id && (
                         <div className="dc-stats-container">
                             <div className="dc-stats-header">
-                                <span className="dc-header-stat-name"></span>
+                                <span className="dc-header-stat-name">Stats</span>
                                 <span className="dc-header-base dc-label-base">Base</span>
                                 <span className="dc-header-ev dc-label-ev">EVs</span>
                                 <span className="dc-header-iv dc-label-iv">IVs</span>
@@ -386,7 +386,7 @@ export const DamageCalculator = () => {
                     {selectedDefender.id && (
                         <div className="dc-stats-container">
                             <div className="dc-stats-header">
-                                <span className="dc-header-stat-name"></span>
+                                <span className="dc-header-stat-name">Stats</span>
                                 <span className="dc-header-base dc-label-base">Base</span>
                                 <span className="dc-header-ev dc-label-ev">EVs</span>
                                 <span className="dc-header-iv dc-label-iv">IVs</span>

@@ -243,3 +243,88 @@
 .label-nature { color: #2ecc71 !important; }
 .label-item { color: #ffd700 !important; }
 .label-move { color: var(--accent-orange) !important; }
+
+@media (max-width: 768px) {
+  .pokemon-form-card {
+    grid-template-columns: 1fr;
+  }
+
+  .pokemon-form-image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+  }
+
+  .pokemon-form-image img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .pokemon-form-dropdowns {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .pokemon-stats-type-card {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .pokemon-stats-container {
+    width: 100%;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+
+  .pokemon-stats-header {
+    font-size: 0.65rem;
+    gap: 0.3rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .pokemon-stats-header span {
+    font-size: 0.65rem;
+    text-align: center;
+  }
+
+  .pokemon-stats-header span:nth-child(1) { width: 55px; flex-shrink: 0; text-align: left; }
+  .pokemon-stats-header span:nth-child(2) { width: 28px; flex-shrink: 0; text-align: center; padding-right: 20px; }
+  .pokemon-stats-header span:nth-child(3) { flex: 1; text-align: center; padding-left: 10px;}
+  .pokemon-stats-header span:nth-child(4) { flex: 1; text-align: center; }
+  .pokemon-stats-header span:nth-child(5) { width: 32px; flex-shrink: 0; text-align: right; }
+
+  .pokemon-stat {
+    font-size: 0.65rem;
+    gap: 0.3rem;
+  }
+
+  .pokemon-stat span { font-size: 0.65rem; }
+  .pokemon-stat span:nth-child(1) { width: 55px; flex-shrink: 0; }
+  .pokemon-stat span:nth-child(2) { width: 28px; flex-shrink: 0; }
+  .pokemon-stat span:nth-child(4) { width: 24px; flex-shrink: 0; text-align: center; }
+  .pokemon-stat span:nth-child(6) { width: 24px; flex-shrink: 0; text-align: center; }
+  .pokemon-stat span:nth-child(7) { width: 32px; flex-shrink: 0; text-align: right; padding-right: 11px; }
+
+  .pokemon-stat input[type="range"] {
+    height: 4px;
+    padding: 0;
+    max-width: 60px;
+    flex-shrink: 1;
+  }
+
+  .type-display {
+    padding-left: 0;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-form-dropdowns {
+    grid-template-columns: 1fr;
+  }
+}

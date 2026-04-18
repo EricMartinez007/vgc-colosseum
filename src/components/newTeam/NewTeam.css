@@ -207,3 +207,44 @@
     color: var(--text-primary);
     text-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
 }
+
+@media (max-width: 768px) {
+  .newteam-layout {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    gap: 1rem;
+  }
+
+  .newteam-mascot {
+    padding: 1.5rem;
+  }
+
+  .mascot-sprite {
+    width: 130px;
+    height: 130px;
+  }
+
+  .pokemon-list {
+    justify-content: center;
+  }
+
+  .pokemon-card {
+    width: 100px;
+  }
+
+  .pokemon-card img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .btn-container {
+    flex-wrap: wrap;
+  }
+
+  .btn-create-team,
+  .btn-delete-team,
+  .btn-add-pokemon {
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+}

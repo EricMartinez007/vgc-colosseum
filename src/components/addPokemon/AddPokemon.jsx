@@ -305,7 +305,7 @@ export const AddPokemon = ({ currentUser }) => {
                 <div className="pokemon-stats-type-card">
                     <div className="pokemon-stats-container">
                         <div className="pokemon-stats-header">
-                            <span className="header-stat-name label-stat-name">Pokémon Stats</span>
+                            <span className="header-stat-name label-stat-name">Stats</span>
                             <span className="header-base label-base">Base</span>
                             <span className="header-ev label-ev">EVs</span>
                             <span className="header-iv label-iv">IVs</span>

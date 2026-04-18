@@ -219,3 +219,65 @@
     color: var(--text-secondary);
     font-family: var(--font-body);
 }
+
+@media (max-width: 768px) {
+  .profile-section {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .profile-banner {
+    margin: -1rem -1rem 1.5rem -1rem;
+    padding: 1.5rem 1rem;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .profile-name {
+    font-size: 2rem;
+  }
+
+  .profile-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .profile-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .profile-stat-card {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .profile-stat-card img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .profile-team-card {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .profile-team-name {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .profile-team-sprites {
+    grid-template-columns: repeat(6, 36px);
+  }
+
+  .profile-team-sprites img {
+    width: 36px;
+    height: 36px;
+  }
+}

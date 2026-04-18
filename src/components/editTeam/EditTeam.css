@@ -120,3 +120,35 @@
 .form-newteam .filter-bar {
     width: 100%;
 }
+
+@media (max-width: 768px) {
+  .edit-team-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .pokemon-card {
+    grid-template-columns: 70px 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .pokemon-card-info {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem;
+  }
+
+  .pokemon-card img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card-info-value {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.35rem;
+  }
+
+  .card-label {
+    font-size: 0.65rem;
+  }
+}

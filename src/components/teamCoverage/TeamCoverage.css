@@ -50,3 +50,28 @@
     border-color: #2ecc71;
     background-color: rgba(46, 204, 113, 0.1);
 }
+
+@media (max-width: 768px) {
+  .coverage-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .coverage-card {
+    padding: 0.5rem;
+  }
+
+  .coverage-card span {
+    font-size: 0.75rem;
+  }
+
+  .coverage-map h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coverage-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

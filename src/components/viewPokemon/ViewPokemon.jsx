@@ -73,7 +73,7 @@ export const ViewPokemon = () => {
     }
 
     return (
-        <div className="page-container">
+        <div className="page-container vp-page">
             <h1 className="page-title">
                 {team.user.name}'s {pokemonTeam.pokemon.name}
             </h1>
@@ -127,7 +127,7 @@ export const ViewPokemon = () => {
                 <div className="pokemon-stats-type-card">
                     <div className="pokemon-stats-container">
                         <div className="pokemon-stats-header">
-                            <span className="vp-stat-name label-stat-name">Pokémon Stats</span>
+                            <span className="vp-stat-name label-stat-name">Stats</span>
                             <span className="vp-base label-base">Base</span>
                             <span className="vp-ev label-ev">EVs</span>
                             <span className="vp-iv label-iv">IVs</span>
