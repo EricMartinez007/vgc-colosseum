@@ -454,7 +454,7 @@ export const EditPokemon = () => {
                             <h2 className="label-type">Type</h2>
                             <div className="type-badge-container">
                                 {pokemonTypes.map((pokemonType) => (
-                                <span className="type-badge" key={pokemonType.id}>{pokemonType.type.name}</span>
+                                <span className="type-badge" data-type={pokemonType.type.name} key={pokemonType.id}>{pokemonType.type.name}</span>
                                 ))}
                             </div>
                         </div>
@@ -462,7 +462,7 @@ export const EditPokemon = () => {
                             <h2 className="label-strong">Strong Against</h2>
                             <div className="type-badge-container">
                             {getStrongAgainstTypes().map((type) => (
-                                <span className="type-badge" key={type.id}>{type.name}</span>
+                                <span className="type-badge" data-type={type.name} key={type.id}>{type.name}</span>
                             ))}
                             </div>
                         </div>
@@ -470,7 +470,7 @@ export const EditPokemon = () => {
                             <h2 className="label-weak">Weak Against</h2>
                             <div className="type-badge-container">
                             {getWeakAgainstTypes().map((type) => (
-                                <span className="type-badge" key={type.id}>{type.name}</span>
+                                <span className="type-badge" data-type={type.name} key={type.id}>{type.name}</span>
                             ))}
                             </div>
                         </div>

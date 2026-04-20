@@ -210,6 +210,25 @@
 .label-item { color: #ffd700 !important; }
 .label-move { color: var(--accent-orange) !important; }
 
+.type-badge[data-type="Normal"]   { background-color: #A8A878; color: #fff; border-color: #A8A878; }
+.type-badge[data-type="Fire"]     { background-color: #F08030; color: #fff; border-color: #F08030; }
+.type-badge[data-type="Water"]    { background-color: #6890F0; color: #fff; border-color: #6890F0; }
+.type-badge[data-type="Grass"]    { background-color: #78C850; color: #fff; border-color: #78C850; }
+.type-badge[data-type="Electric"] { background-color: #F8D030; color: #333; border-color: #F8D030; }
+.type-badge[data-type="Ice"]      { background-color: #98D8D8; color: #333; border-color: #98D8D8; }
+.type-badge[data-type="Fighting"] { background-color: #C03028; color: #fff; border-color: #C03028; }
+.type-badge[data-type="Poison"]   { background-color: #A040A0; color: #fff; border-color: #A040A0; }
+.type-badge[data-type="Ground"]   { background-color: #E0C068; color: #333; border-color: #E0C068; }
+.type-badge[data-type="Flying"]   { background-color: #A890F0; color: #fff; border-color: #A890F0; }
+.type-badge[data-type="Psychic"]  { background-color: #F85888; color: #fff; border-color: #F85888; }
+.type-badge[data-type="Bug"]      { background-color: #A8B820; color: #fff; border-color: #A8B820; }
+.type-badge[data-type="Rock"]     { background-color: #B8A038; color: #fff; border-color: #B8A038; }
+.type-badge[data-type="Ghost"]    { background-color: #705898; color: #fff; border-color: #705898; }
+.type-badge[data-type="Dragon"]   { background-color: #7038F8; color: #fff; border-color: #7038F8; }
+.type-badge[data-type="Dark"]     { background-color: #705848; color: #fff; border-color: #705848; }
+.type-badge[data-type="Steel"]    { background-color: #B8B8D0; color: #333; border-color: #B8B8D0; }
+.type-badge[data-type="Fairy"]    { background-color: #EE99AC; color: #333; border-color: #EE99AC; }
+
 @media (max-width: 768px) {
   .pokemon-form-card {
     grid-template-columns: 1fr;
