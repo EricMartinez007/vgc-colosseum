@@ -106,14 +106,6 @@
     gap: 0.5rem;
 }
 
-.type-display h2 {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.3rem;
-    white-space: nowrap;
-}
-
 .type-badge {
     display: inline-block;
     padding: 0.2rem 0.6rem;
@@ -138,7 +130,7 @@
 }
 
 .ev-value, .iv-value {
-     display: flex;
+    display: flex;
     justify-content: center;
     width: 45px;
     flex-shrink: 0;
@@ -150,6 +142,17 @@
 
 .header-base {
     width: 60px;
+}
+
+.type-display h2 {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+    font-weight: normal;
 }
 
 .vp-stat-name { width: 90px; flex-shrink: 0; }

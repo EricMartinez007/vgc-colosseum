@@ -92,9 +92,9 @@ button {
 .label-iv { color: #ffd700 !important; }
 .label-total { color: var(--accent-orange) !important; }
 
-.label-type { color: #b388ff !important; }
-.label-strong { color: #2ecc71 !important; }
-.label-weak { color: var(--accent-orange) !important; }
+.label-type { color: var(--text-primary) !important; }
+.label-strong { color: var(--text-primary) !important; }
+.label-weak { color: var(--text-primary) !important; }
 
 .label-hp { color: #ff5959 !important; }
 .label-atk { color: #f5ac78 !important; }
