@@ -20,6 +20,7 @@ export const ViewTeam = ({ currentUser }) => {
         comment: "",
         timestamp: new Date()
     })
+    const [showToast, setShowToast] = useState(false)
 
     useEffect(() => {
         getTeamById(teamId).then((team) => {
@@ -125,7 +126,10 @@ Nature: ${pokemonTeam.nature?.name}
     const handleCopyToClipboard = () => {
         const exportString = generateShowdownExport()
         navigator.clipboard.writeText(exportString)
-        alert("Your team has been copied to your clipboard!")
+        setShowToast(true)
+        setTimeout(() => {
+            setShowToast(false)
+        }, 2000)
     }
 
     if (!team.id) {
@@ -281,6 +285,7 @@ Nature: ${pokemonTeam.nature?.name}
                     </div>
                 </section>
             </div>
+            {showToast && <div className="toast">✅ Copied to clipboard!</div>}
         </div>  
     )
 }
