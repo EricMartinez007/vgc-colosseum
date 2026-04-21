@@ -52,6 +52,12 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 - Attacker stage modifiers for boosted scenarios
 - Displays min/max damage range with OHKO, 2HKO, and safe indicators
 
+### Pokémon Showdown Import
+- Paste any Showdown format team string to instantly import a full team
+- Automatically parses Pokémon, ability, nature, item, EVs, IVs, and moves
+- Handles Showdown name differences (e.g. Urshifu, Calyrex forms)
+- Defaults to Hardy nature for Pokémon exported without a nature line
+
 ---
 
 ## 🛠️ Tech Stack
@@ -119,6 +125,7 @@ npm run dev
 - Move search and filtering by type and category
 - Team rating system
 - Speed tier calculator
+- Team synergy score with weakness analysis
 
 ---
 
