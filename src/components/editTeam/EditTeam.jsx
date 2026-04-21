@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteTeam, getPokemonByTeamId, getTeamById, updateTeam } from "../../services/teamServices"
 import "./EditTeam.css"
-import { getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
+import { deletePokemonMove, getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
 import { getAllFormats } from "../../services/formatsServices"
+import { deletePokemonTeam } from "../../services/pokemonServices"
 
 export const EditTeam = () => {
     const navigate = useNavigate()
@@ -52,8 +53,20 @@ export const EditTeam = () => {
     }
 
     const handleDeleteTeam = () => {
-        deleteTeam(team).then(() => {
-            navigate(`/myteams`)
+        Promise.all(
+            pokemon.map((pokemonTeam, index) => {
+                return Promise.all(
+                    pokemonMoves[index].map(pokemonMove => 
+                        deletePokemonMove(pokemonMove.id)
+                    )
+                ).then(() => {
+                    return deletePokemonTeam(pokemonTeam)
+                })
+            })
+        ).then(() => {
+            return deleteTeam(team).then(() => {
+                navigate(`/myteams`)
+            })
         })
     }
 
