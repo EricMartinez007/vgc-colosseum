@@ -297,6 +297,30 @@
     animation: toastFadeIn 0.3s ease;
 }
 
+.btn-speed-tiers {
+    padding: 0.75rem 1.5rem;
+    background-color: #ffd700;
+    color: #0f0f1a;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-right-group {
+    margin-left: auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-left-group {
+    display: flex;
+    gap: 1rem;
+}
+
 @keyframes toastFadeIn {
     from { opacity: 0; transform: translateX(-50%) translateY(10px); }
     to   { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -315,16 +339,60 @@
   }
 
   .btn-edit-team,
-  .btn-like,
-  .btn-export,
   .btn-coverage,
-  .btn-go-back {
+  .btn-speed-tiers {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
     font-size: 0.95rem;
     padding: 0.6rem 1rem;
   }
 
-  .btn-export {
+  .btn-go-back {
+    flex: 0 0 auto;
+    text-align: center;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .btn-like {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    flex: 0 0 auto;
+    width: auto;
+    align-self: center;
+  }
+
+  .btn-right-group {
     margin-left: 0;
+    flex: 1 1 100%;
+    gap: 0.5rem;
+  }
+
+  .btn-right-group .btn-coverage,
+  .btn-right-group .btn-speed-tiers {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .btn-left-group {
+    flex: 1 1 100%;
+    gap: 0.5rem;
+  }
+
+  .btn-left-group .btn-edit-team,
+  .btn-left-group .btn-go-back {
+    flex: 1;
+    min-width: 0;
+    max-width: 50%;
+  }
+
+  .btn-export {
+    flex: 1 1 100%;
+    margin-left: 0;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    text-align: center;
   }
 
   .pokemon-card {

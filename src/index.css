@@ -180,6 +180,11 @@ button {
     transform: translateY(-2px);
 }
 
+.btn-speed-tiers:hover {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
 .page-banner {
     background: linear-gradient(135deg, #1a1a2e 0%, #7b2fff 50%, #1a1a2e 100%);
     background-size: 200% 200%;
