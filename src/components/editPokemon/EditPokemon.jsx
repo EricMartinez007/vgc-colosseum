@@ -188,29 +188,49 @@ export const EditPokemon = () => {
     }
 
     // trying to do too many requests at once, so I had to add setTimeout to prevent the app from crashing when going from EditPokemon to EditTeam after hitting save edits button
-    const handleSaveEdits = () => {
-        editPokemonTeam(pokemonTeam).then(() => {
-            getPokemonMovesByPokemonTeamId(pokemonTeamId).then((existingMoves) => {
-                Promise.all(
-                    existingMoves.map((move) => deletePokemonMove(move.id))
-                ).then(() => {
-                    setTimeout(() => {
-                        Promise.all(
-                            selectedMove
-                                .filter(moveId => moveId !== 0)
-                                .map((moveId) => 
-                                    createPokemonMove({
-                                        pokemonTeamId: pokemonTeam.id,
-                                        moveId: moveId
-                                    })
-                                )
-                        ).then(() => {
-                            navigate(`/editteam/${teamId}`)
-                        })
-                    }, 1000)
-                })
+    // const handleSaveEdits = () => {
+    //     editPokemonTeam(pokemonTeam).then(() => {
+    //         getPokemonMovesByPokemonTeamId(pokemonTeamId).then((existingMoves) => {
+    //             Promise.all(
+    //                 existingMoves.map((move) => deletePokemonMove(move.id))
+    //             ).then(() => {
+    //                 setTimeout(() => {
+    //                     Promise.all(
+    //                         selectedMove
+    //                             .filter(moveId => moveId !== 0)
+    //                             .map((moveId) => 
+    //                                 createPokemonMove({
+    //                                     pokemonTeamId: pokemonTeam.id,
+    //                                     moveId: moveId
+    //                                 })
+    //                             )
+    //                     ).then(() => {
+    //                         navigate(`/editteam/${teamId}`)
+    //                     })
+    //                 }, 1000)
+    //             })
+    //         })
+    //     })       
+    // }
+
+    // Changed handleSaveEdits to process everything sequentially so JSON server doesn't get overwhelmed with parallel fetches 
+    const handleSaveEdits = async () => {
+        await editPokemonTeam(pokemonTeam)
+        
+        const existingMoves = await getPokemonMovesByPokemonTeamId(pokemonTeamId)
+        
+        for (const move of existingMoves) {
+            await deletePokemonMove(move.id)
+        }
+        
+        for (const moveId of selectedMove.filter(id => id !== 0)) {
+            await createPokemonMove({
+                pokemonTeamId: pokemonTeam.id,
+                moveId: moveId
             })
-        })       
+        }
+        
+        navigate(`/editteam/${teamId}`)
     }
 
     const handleDeletePokemon = () => {
