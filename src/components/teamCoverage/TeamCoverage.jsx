@@ -58,6 +58,39 @@ export const TeamCoverage = () => {
         )
     }
 
+    const weaknessCount = (typeId) => {
+        return pokemonTypes.filter(singlePokemonTypes =>
+            singlePokemonTypes.some(pokemonType => {
+                const matchups = allTypeMatchups.find(m => m.typeId === pokemonType.typeId)
+                return matchups?.weakAgainst.includes(typeId)
+            })
+        ).length
+    }
+
+    const getSharedWeaknesses = () => {
+        return allTypes.filter(type => weaknessCount(type.id) >= 2)
+    }
+
+    const teamGrade = () => {
+        const sharedWeaknesses = getSharedWeaknesses()
+        const criticalCount = sharedWeaknesses.filter(type => weaknessCount(type.id) >= 3).length
+        const warningCount = sharedWeaknesses.filter(type => weaknessCount(type.id) === 2).length
+        const coverageCount = allTypes.filter(type => teamHasCoverageAgainst(type.id)).length
+
+        // Start at 100, subtract for weaknesses, reward for coverage
+        let score = 100
+        score -= criticalCount * 12  // critical weaknesses hurt a lot
+        score -= warningCount * 4    // warnings hurt a little
+        score += coverageCount * 1   // bonus for each type covered
+
+        if (score >= 95) return "S"
+        if (score >= 75) return "A"
+        if (score >= 58) return "B"
+        if (score >= 40) return "C"
+        if (score >= 25) return "D"
+        return "F"
+    }
+
     if (!team.id || !allTypes.length || !pokemonTypes.length) {
         return (
             <div>
@@ -95,6 +128,26 @@ export const TeamCoverage = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                </section>
+                <section className="synergy-section">
+                    <h2>Type Synergy Score</h2>
+                    <div className="grade-display">
+                        <span className="grade-letter">{teamGrade()}</span>
+                    </div>
+                    <h3>Shared Weaknesses</h3>
+                    <div className="shared-weaknesses-list">
+                        {getSharedWeaknesses().map((type) => {
+                            const count = weaknessCount(type.id)
+                            return (
+                                <div key={type.id} className={count >= 3 ? "weakness-critical" : "weakness-warning"}>
+                                    <span>{type.name}: {count} Pokémon weak</span>
+                                </div>
+                            )
+                        })}
+                        {getSharedWeaknesses().length === 0 && (
+                            <p>No shared weaknesses! 🏆</p>
+                        )}
                     </div>
                 </section>
             </div>

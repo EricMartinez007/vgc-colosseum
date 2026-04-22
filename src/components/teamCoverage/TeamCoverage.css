@@ -51,6 +51,76 @@
     background-color: rgba(46, 204, 113, 0.1);
 }
 
+.synergy-section {
+    margin-top: 2rem;
+}
+
+.synergy-section h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.synergy-section h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.grade-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    border: 3px solid var(--accent-purple);
+    margin-bottom: 1rem;
+}
+
+.grade-letter {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--accent-purple);
+}
+
+.shared-weaknesses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.weakness-warning {
+    background-color: rgba(255, 215, 0, 0.1);
+    border: 1px solid #ffd700;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-family: var(--font-data);
+    font-size: 0.9rem;
+    color: #ffd700;
+}
+
+.weakness-critical {
+    background-color: rgba(230, 57, 70, 0.1);
+    border: 1px solid var(--accent-red);
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-family: var(--font-data);
+    font-size: 0.9rem;
+    color: var(--accent-red);
+}
+
+.shared-weaknesses-list p {
+    font-family: var(--font-data);
+    color: #2ecc71;
+    font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
   .coverage-list {
     grid-template-columns: repeat(3, 1fr);
@@ -67,6 +137,15 @@
 
   .coverage-map h2 {
     font-size: 1.2rem;
+  }
+
+  .grade-display {
+    width: 80px;
+    height: 80px;
+  }
+
+  .grade-letter {
+    font-size: 2.5rem;
   }
 }
 
