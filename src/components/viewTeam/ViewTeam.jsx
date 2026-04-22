@@ -195,44 +195,32 @@ Nature: ${pokemonTeam.nature?.name}
                 </section>
             </div>
             <div className="btn-container">
-                {currentUser.id === team.userId && (
-                    <button
-                        className="btn-edit-team"
-                        onClick={() => navigate(`/editteam/${teamId}`)}
-                    >
-                        Edit Team
+                <div className="btn-left-group">
+                    {currentUser.id === team.userId && (
+                        <button className="btn-edit-team" onClick={() => navigate(`/editteam/${teamId}`)}>
+                            Edit Team
+                        </button>
+                    )}
+                    <button className="btn-go-back" onClick={() => navigate(-1)}>
+                        Go Back
                     </button>
-                )}
-                <button
-                    className="btn-go-back"
-                    onClick={() => navigate(-1)}
-                >
-                    Go Back
-                </button>
-                {parseInt(currentUser.id) === parseInt(team.userId) ? (
-                    <></>
-                ) : (
-                    <>
-                    <button 
-                    className="btn-like"
-                    onClick={handleLike}
-                    >
-                        {team.likes.find(like => parseInt(like.userId) === parseInt(currentUser.id)) ? "❤️" : "🤍"}
-                        {team.likes.length}
+                    {parseInt(currentUser.id) !== parseInt(team.userId) && (
+                        <button className="btn-like" onClick={handleLike}>
+                            {team.likes.find(like => parseInt(like.userId) === parseInt(currentUser.id)) ? "❤️" : "🤍"}
+                            {team.likes.length}
+                        </button>
+                    )}
+                </div>
+                <div className="btn-right-group">
+                    <button className="btn-coverage" onClick={() => navigate(`/teamcoverage/${teamId}`)}>
+                        Coverage Analysis
                     </button>
-                    </>
-                )}
-                <button
-                    className="btn-export"
-                    onClick={handleCopyToClipboard}
-                >
+                    <button className="btn-speed-tiers" onClick={() => navigate(`/speedtiers/${teamId}`)}>
+                        Speed Tiers
+                    </button>
+                </div>
+                <button className="btn-export" onClick={handleCopyToClipboard}>
                     Export to Showdown
-                </button>
-                <button 
-                    className="btn-coverage"
-                    onClick={() => navigate(`/teamcoverage/${teamId}`)}
-                >
-                    Coverage Analysis
                 </button>
             </div>
             <div className="comments-container">
