@@ -51,7 +51,7 @@ export const Login = () => {
                     <button className="login-btn" type="submit">Sign In</button>
                 </fieldset>
             </form>
-            <Link to="/register" className="register-link">Not a gladiator yet? Register here!</Link>
+            <Link to="/register" className="register-link">Not a Dominus yet? Register here!</Link>
         </main>
     )
 }

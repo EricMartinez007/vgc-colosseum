@@ -49,7 +49,7 @@ export const Register = (props) => {
           <img className="auth-logo" src="/VGC_Colosseum_Final_Logo.png" alt="VGC Colosseum" />
           <h1>VGC Colosseum</h1>
           <form className="form-login" onSubmit={handleRegister}>
-              <h2>Gladiator Registration</h2>
+              <h2>Dominus Registration</h2>
               <fieldset>
                   <label>Name</label>
                   <input
@@ -77,7 +77,7 @@ export const Register = (props) => {
                   <button className="login-btn" type="submit">Register</button>
               </fieldset>
           </form>
-          <Link to="/login" className="register-link">Already a gladiator? Sign in!</Link>
+          <Link to="/login" className="register-link">Already a Dominus? Sign in!</Link>
       </main>
   )
 }
