@@ -11,6 +11,12 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 - Teams require exactly 6 Pokémon before saving
 - Each team card displays Pokémon sprites, ability, nature, item, and all 4 moves
 
+### Pokémon Showdown Import
+- Paste any Showdown format team string to instantly import a full team
+- Automatically parses Pokémon, ability, nature, item, EVs, IVs, and moves
+- Handles Showdown name differences (e.g. Urshifu, Calyrex forms)
+- Defaults to Hardy nature for Pokémon exported without a nature line
+
 ### Pokémon Builder
 - Select from 50 of the most popular VGC Pokémon
 - Choose ability, nature, item, and up to 4 moves
@@ -23,6 +29,17 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 - Visual grid showing offensive coverage against all 18 types
 - Team vulnerability map highlighting defensive weaknesses
 - Color coded cards — green for covered, red for gaps, yellow for vulnerabilities
+
+### Type Synergy Score
+- Letter grade (S through F) based on shared weaknesses and offensive coverage
+- Factors in both critical weaknesses (3+ Pokémon weak) and warnings (2 Pokémon weak)
+- Shared weakness breakdown with color coded cards — yellow for warnings, red for critical
+
+### Speed Tier Calculator
+- Calculates each Pokémon's actual Level 50 speed stat using official formula
+- Factors in EVs, IVs, and nature speed modifiers
+- Compares your team's speeds against all 50 database Pokémon at baseline (0 EVs, 31 IVs, neutral nature)
+- Team Pokémon highlighted in gold for easy identification
 
 ### Pokémon Showdown Export
 - One click export of your full team in official Showdown format
@@ -51,12 +68,6 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 - Factor in weather, terrain, attacker item, and critical hits
 - Attacker stage modifiers for boosted scenarios
 - Displays min/max damage range with OHKO, 2HKO, and safe indicators
-
-### Pokémon Showdown Import
-- Paste any Showdown format team string to instantly import a full team
-- Automatically parses Pokémon, ability, nature, item, EVs, IVs, and moves
-- Handles Showdown name differences (e.g. Urshifu, Calyrex forms)
-- Defaults to Hardy nature for Pokémon exported without a nature line
 
 ---
 
@@ -124,8 +135,7 @@ npm run dev
 ## 🔮 Future Features
 - Move search and filtering by type and category
 - Team rating system
-- Speed tier calculator
-- Team synergy score with weakness analysis
+- Empty state illustrations for My Teams, Community Teams, and Favorites
 
 ---
 
