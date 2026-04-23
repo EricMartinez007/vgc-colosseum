@@ -48,7 +48,7 @@ export const EditProfile = ({ currentUser }) => {
 
     return (
          <main className="page-container">
-        <h1 className="page-title">Edit Profile</h1>
+        <h1 className="page-title">Edit Trainer Card</h1>
         <span className="page-subtitle">Update your gladiator information</span>
         <form className="form-edituser" onSubmit={handleSubmit}>
             <div className="editprofile-banner">

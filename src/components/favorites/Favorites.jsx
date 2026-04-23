@@ -58,20 +58,26 @@ export const Favorites = ({ currentUser }) => {
     return (
         <main className="page-container">
             <section>
-                <h1 className="page-title">Favorite Teams</h1>
-                <span className="page-subtitle">Browse and view your favorite teams!</span>
-                <select className="filter-bar" onChange={handlePokemonSelect}>
-                    <option value="0">All Pokémon</option>
-                    {allPokemon.map((pokemon) => (
-                        <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
-                    ))}
-                </select>
-                <select className="filter-bar" onChange={handleFormatSelect}>
-                    <option value="0">All Formats</option>
-                    {allFormats.map((format) => (
-                        <option value={format.id} key={format.id}>{format.name}</option>
-                    ))}
-                </select>
+                <h1 className="page-title favorites-title">❤️ Favorites</h1>
+                <span className="page-subtitle favorites-subtitle">Browse and view your favorite teams!</span>
+                <div className="favorites-container">
+                <div className="favorites-banner">
+                    <h2 className="favorites-banner-title">👑 Your Honored Teams</h2>
+                </div>
+                    <div className="favorites-banner-filters">
+                        <select className="filter-bar" onChange={handlePokemonSelect}>
+                            <option value="0">All Pokémon</option>
+                            {allPokemon.map((pokemon) => (
+                                <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
+                            ))}
+                        </select>
+                        <select className="filter-bar" onChange={handleFormatSelect}>
+                            <option value="0">All Formats</option>
+                            {allFormats.map((format) => (
+                                <option value={format.id} key={format.id}>{format.name}</option>
+                            ))}
+                        </select>
+                    </div>
                     <section className="teams-list">
                         {!favoriteTeams.length ? (
                             <p className="empty-msg">You haven't liked any teams yet!</p>
@@ -113,6 +119,7 @@ export const Favorites = ({ currentUser }) => {
                                 ))
                         )}
                     </section>
+                </div>
             </section>
         </main>
     )

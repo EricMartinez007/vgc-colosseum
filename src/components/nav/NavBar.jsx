@@ -38,7 +38,7 @@ export const NavBar = ({ currentUser }) => {
                 <Link to="/favorites" onClick={closeMenu}>Favorites</Link>
                 <Link to="/newteam" onClick={closeMenu}>New Team</Link>
                 <Link to="/damagecalculator" onClick={closeMenu}>Damage Calculator</Link>
-                <Link to={`/profile/${currentUser.id}`} onClick={closeMenu}>Profile</Link>
+                <Link to={`/profile/${currentUser.id}`} onClick={closeMenu}>Trainer Card</Link>
                 <button
                     className="logout-btn"
                     onClick={() => { closeMenu(); handleLogout() }}

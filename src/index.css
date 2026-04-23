@@ -206,6 +206,30 @@ button {
     text-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
 }
 
+.community-subtitle {
+    color: #ff6b00;
+}
+
+.myteams-subtitle {
+    color: #7b2fff;
+}
+
+.favorites-subtitle {
+    color: #e63946;
+}
+
+.community-title {
+    text-shadow: 0 0 30px rgba(255, 107, 0, 0.6);
+}
+
+.myteams-title {
+    text-shadow: 0 0 30px rgba(123, 47, 255, 0.6);
+}
+
+.favorites-title {
+    text-shadow: 0 0 30px rgba(230, 57, 70, 0.6);
+}
+
 @media (max-width: 768px) {
   .page-container {
     padding: 1rem;

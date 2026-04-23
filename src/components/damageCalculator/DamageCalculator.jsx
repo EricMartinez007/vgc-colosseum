@@ -233,266 +233,284 @@ export const DamageCalculator = () => {
 
     return (
         <div className="page-container">
-            <h1 className="page-title">Damage Calculator</h1>
-            <span className="page-subtitle">Calculate damage between any two Pokémon!</span>
+            <h1 className="page-title damage-calc-title">💥 Damage Calculator</h1>
+            <span className="page-subtitle damage-calc-subtitle">Calculate damage between any two Pokémon!</span>
             <div className="calc-layout">
-                {/* Attacker side */}
+    
                 <div className="calc-attacker">
-                    <h2>Attacker</h2>
-                    <div className="dc-dropdown-group">
-                        <label className="dc-dropdown-label label-pokemon">Pokémon Select</label>
-                        <select onChange={handleAttackerSelect}>
-                            <option value="0">Choose A Pokémon</option>
-                            {allPokemon.map((pokemon) => (
-                                <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
-                            ))}
-                        </select>
+                    <div className="calc-attacker-banner">
+                        <h2 className="calc-banner-title">⚔️ The Attacker</h2>
                     </div>
-                    {/* EV/IV sliders */}
-                    {selectedAttacker.id && (
-                        <div className="dc-stats-container">
-                            <div className="dc-stats-header">
-                                <span className="dc-header-stat-name">Stats</span>
-                                <span className="dc-header-base dc-label-base">Base</span>
-                                <span className="dc-header-ev dc-label-ev">EVs</span>
-                                <span className="dc-header-iv dc-label-iv">IVs</span>
-                                <span className="dc-header-total dc-label-total">Total</span>
-                            </div>
-                            <ul className="dc-pokemon-stats">
-                                <li className="dc-pokemon-stat">
-                                    <span className="label-atk">Atk</span>
-                                    <span className="dc-value-base">{selectedAttacker.baseStats.attack}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="252"
-                                        value={attackerSpread.atkEv}
-                                        onChange={(evt) => handleAttackerSpreadChange("atkEv", evt.target.value)}
-                                    />
-                                    <span className="dc-ev-value dc-value-ev">{attackerSpread.atkEv}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="31"
-                                        value={attackerSpread.atkIv}
-                                        onChange={(evt) => handleAttackerSpreadChange("atkIv", evt.target.value)}
-                                    />
-                                    <span className="dc-iv-value dc-value-iv">{attackerSpread.atkIv}</span>
-                                    <span className="dc-value-total">{calculateStat(selectedAttacker.baseStats.attack, attackerSpread.atkIv, attackerSpread.atkEv, false)}</span>
-                                </li>
-                                <li className="dc-pokemon-stat">
-                                    <span className="label-spatk">Sp. Atk.</span>
-                                    <span className="dc-value-base">{selectedAttacker.baseStats.specialAttack}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="252"
-                                        value={attackerSpread.spAtkEv}
-                                        onChange={(evt) => handleAttackerSpreadChange("spAtkEv", evt.target.value)}
-                                    />
-                                    <span className="dc-ev-value dc-value-ev">{attackerSpread.spAtkEv}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="31"
-                                        value={attackerSpread.spAtkIv}
-                                        onChange={(evt) => handleAttackerSpreadChange("spAtkIv", evt.target.value)}
-                                    />
-                                    <span className="dc-iv-value dc-value-iv">{attackerSpread.spAtkIv}</span>
-                                    <span className="dc-value-total">{calculateStat(selectedAttacker.baseStats.specialAttack, attackerSpread.spAtkIv, attackerSpread.spAtkEv, false)}</span>
+                    <div className="calc-inner">
+                        <div className="dc-dropdown-group">
+                            <label className="dc-dropdown-label label-pokemon">Pokémon Select</label>
+                            <select onChange={handleAttackerSelect}>
+                                <option value="0">Choose A Pokémon</option>
+                                {allPokemon.map((pokemon) => (
+                                    <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
+                                ))}
+                            </select>
+                        </div>
+                        {selectedAttacker.id && (
+                            <div className="dc-stats-container">
+                                <div className="dc-stats-header">
+                                    <span className="dc-header-stat-name">Stats</span>
+                                    <span className="dc-header-base dc-label-base">Base</span>
+                                    <span className="dc-header-ev dc-label-ev">EVs</span>
+                                    <span className="dc-header-iv dc-label-iv">IVs</span>
+                                    <span className="dc-header-total dc-label-total">Total</span>
+                                </div>
+                                <ul className="dc-pokemon-stats">
+                                    <li className="dc-pokemon-stat">
+                                        <span className="label-atk">Atk</span>
+                                        <span className="dc-value-base">{selectedAttacker.baseStats.attack}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="252"
+                                            value={attackerSpread.atkEv}
+                                            onChange={(evt) => handleAttackerSpreadChange("atkEv", evt.target.value)}
+                                        />
+                                        <span className="dc-ev-value dc-value-ev">{attackerSpread.atkEv}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="31"
+                                            value={attackerSpread.atkIv}
+                                            onChange={(evt) => handleAttackerSpreadChange("atkIv", evt.target.value)}
+                                        />
+                                        <span className="dc-iv-value dc-value-iv">{attackerSpread.atkIv}</span>
+                                        <span className="dc-value-total">{calculateStat(selectedAttacker.baseStats.attack, attackerSpread.atkIv, attackerSpread.atkEv, false)}</span>
                                     </li>
-                            </ul>
-                        </div>
-                    )}
-                    {/* Needed help writing this one */}
-                    <label className="dc-dropdown-label label-stages">Attacker Stages</label>
-                    <select 
-                        defaultValue="0"
-                        onChange={(evt) => setAttackerStages(parseInt(evt.target.value))}>
-                        {Array.from({length: 13}, (_, i) => i - 6).map(stage => (
-                            <option key={stage} value={stage}>{stage > 0 ? `+${stage}` : stage}</option>
-                        ))}
-                    </select>
+                                    <li className="dc-pokemon-stat">
+                                        <span className="label-spatk">Sp. Atk.</span>
+                                        <span className="dc-value-base">{selectedAttacker.baseStats.specialAttack}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="252"
+                                            value={attackerSpread.spAtkEv}
+                                            onChange={(evt) => handleAttackerSpreadChange("spAtkEv", evt.target.value)}
+                                        />
+                                        <span className="dc-ev-value dc-value-ev">{attackerSpread.spAtkEv}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="31"
+                                            value={attackerSpread.spAtkIv}
+                                            onChange={(evt) => handleAttackerSpreadChange("spAtkIv", evt.target.value)}
+                                        />
+                                        <span className="dc-iv-value dc-value-iv">{attackerSpread.spAtkIv}</span>
+                                        <span className="dc-value-total">{calculateStat(selectedAttacker.baseStats.specialAttack, attackerSpread.spAtkIv, attackerSpread.spAtkEv, false)}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+                        <label className="dc-dropdown-label label-stages">Attacker Stages</label>
+                        <select 
+                            defaultValue="0"
+                            onChange={(evt) => setAttackerStages(parseInt(evt.target.value))}>
+                            {Array.from({length: 13}, (_, i) => i - 6).map(stage => (
+                                <option key={stage} value={stage}>{stage > 0 ? `+${stage}` : stage}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
 
-                {/* Middle - move and conditions */}
                 <div className="calc-conditions">
-                    <h2>Move & Conditions</h2>
-                    {/* Move select */}
-                    <div className="dc-dropdown-group">
-                        <label className="dc-dropdown-label label-move">Move Select</label>
-                        <select value={selectedMove.id || "0"} onChange={handleMoveSelect}>
-                            <option value="0">Choose a Move</option>
-                            {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
-                            ))}
-                        </select>
+                    <div className="calc-conditions-banner">
+                        <h2 className="calc-banner-title">⚡ Combat Variables</h2>
                     </div>
-                    {/* Weather */}
-                    <div className="dc-dropdown-group">
-                        <label className="dc-dropdown-label label-weather">Weather Select</label>
-                        <select onChange={handleWeatherSelect}>
-                            <option value="none">No Weather</option>
-                            <option value="sun">Sun</option>
-                            <option value="rain">Rain</option>
-                        </select>
-                    </div>
-                    {/* Terrain */}
-                    <div className="dc-dropdown-group">
-                        <label className="dc-dropdown-label label-terrain">Terrain Select</label>
-                        <select onChange={handleTerrainSelect}>
-                            <option value="none">No Terrain</option>
-                            <option value="electric">Electric</option>
-                            <option value="grassy">Grassy</option>
-                            <option value="psychic">Psychic</option>
-                            <option value="misty">Misty</option>
-                        </select>
-                    </div>
-                    {/* Item */}
-                    <div className="dc-dropdown-group">
-                        <label className="dc-dropdown-label label-atk-item">Attacker Item Select</label>
-                        <select onChange={handleItemSelect}>
-                            <option value="none">No Damage Mult Item</option>
-                            <option value="lifeOrb">Life Orb</option>
-                            <option value="choiceBand">Choice Band</option>
-                            <option value="choiceSpecs">Choice Specs</option>
-                        </select>
-                    </div>
-                    {/* Critical hit checkbox */}
-                    <div className="dc-dropdown-group">
-                        <label className="dc-dropdown-label label-crit">Critical Hit</label>
-                        <div className="toggle-container" onClick={handleCriticalToggle}>
-                            <div className={`toggle-switch ${isCritical ? "toggle-on" : ""}`}>
-                                <div className="toggle-knob"></div>
+                    <div className="calc-inner">
+                        <div className="dc-dropdown-group">
+                            <label className="dc-dropdown-label label-move">Move Select</label>
+                            <select value={selectedMove.id || "0"} onChange={handleMoveSelect}>
+                                <option value="0">Choose a Move</option>
+                                {pokemonLearnset.map((pokemonMove) => (
+                                    <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="dc-dropdown-group">
+                            <label className="dc-dropdown-label label-weather">Weather Select</label>
+                            <select onChange={handleWeatherSelect}>
+                                <option value="none">No Weather</option>
+                                <option value="sun">Sun</option>
+                                <option value="rain">Rain</option>
+                            </select>
+                        </div>
+                        <div className="dc-dropdown-group">
+                            <label className="dc-dropdown-label label-terrain">Terrain Select</label>
+                            <select onChange={handleTerrainSelect}>
+                                <option value="none">No Terrain</option>
+                                <option value="electric">Electric</option>
+                                <option value="grassy">Grassy</option>
+                                <option value="psychic">Psychic</option>
+                                <option value="misty">Misty</option>
+                            </select>
+                        </div>
+                        <div className="dc-dropdown-group">
+                            <label className="dc-dropdown-label label-atk-item">Attacker Item Select</label>
+                            <select onChange={handleItemSelect}>
+                                <option value="none">No Damage Mult Item</option>
+                                <option value="lifeOrb">Life Orb</option>
+                                <option value="choiceBand">Choice Band</option>
+                                <option value="choiceSpecs">Choice Specs</option>
+                            </select>
+                        </div>
+                        <div className="dc-dropdown-group">
+                            <label className="dc-dropdown-label label-crit">Critical Hit</label>
+                            <div className="toggle-container" onClick={handleCriticalToggle}>
+                                <div className={`toggle-switch ${isCritical ? "toggle-on" : ""}`}>
+                                    <div className="toggle-knob"></div>
+                                </div>
+                                <span className="toggle-label">{isCritical ? "Yes" : "No"}</span>
                             </div>
-                            <span className="toggle-label">{isCritical ? "Yes" : "No"}</span>
                         </div>
                     </div>
                 </div>
 
-                {/* Defender side */}
                 <div className="calc-defender">
-                    <h2>Defender</h2>
-                    <div className="dc-dropdown-group">
-                        <label className="dc-dropdown-label label-pokemon">Pokémon Select</label>
-                        <select onChange={handleDefenderSelect}>
-                            <option value="0">Choose A Pokémon</option>
-                            {allPokemon.map((pokemon) => (
-                                <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
+                    <div className="calc-defender-banner">
+                        <h2 className="calc-banner-title">🛡️ The Defender</h2>
+                    </div>
+                    <div className="calc-inner">
+                        <div className="dc-dropdown-group">
+                            <label className="dc-dropdown-label label-pokemon">Pokémon Select</label>
+                            <select onChange={handleDefenderSelect}>
+                                <option value="0">Choose A Pokémon</option>
+                                {allPokemon.map((pokemon) => (
+                                    <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
+                                ))}
+                            </select>
+                        </div>
+                        {selectedDefender.id && (
+                            <div className="dc-stats-container">
+                                <div className="dc-stats-header">
+                                    <span className="dc-header-stat-name">Stats</span>
+                                    <span className="dc-header-base dc-label-base">Base</span>
+                                    <span className="dc-header-ev dc-label-ev">EVs</span>
+                                    <span className="dc-header-iv dc-label-iv">IVs</span>
+                                    <span className="dc-header-total dc-label-total">Total</span>
+                                </div>
+                                <ul className="dc-pokemon-stats">
+                                    <li className="dc-pokemon-stat">
+                                        <span className="label-hp">Hp</span>
+                                        <span className="dc-value-base">{selectedDefender.baseStats.hp}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="252"
+                                            value={defenderSpread.hpEv}
+                                            onChange={(evt) => handleDefenderSpreadChange("hpEv", evt.target.value)}
+                                        />
+                                        <span className="dc-ev-value dc-value-ev">{defenderSpread.hpEv}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="31"
+                                            value={defenderSpread.hpIv}
+                                            onChange={(evt) => handleDefenderSpreadChange("hpIv", evt.target.value)}
+                                        />
+                                        <span className="dc-iv-value dc-value-iv">{defenderSpread.hpIv}</span>
+                                        <span className="dc-value-total">{calculateStat(selectedDefender.baseStats.hp, defenderSpread.hpIv, defenderSpread.hpEv, true)}</span>
+                                    </li>
+                                    <li className="dc-pokemon-stat">
+                                        <span className="label-def">Def</span>
+                                        <span className="dc-value-base">{selectedDefender.baseStats.defense}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="252"
+                                            value={defenderSpread.defEv}
+                                            onChange={(evt) => handleDefenderSpreadChange("defEv", evt.target.value)}
+                                        />
+                                        <span className="dc-ev-value dc-value-ev">{defenderSpread.defEv}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="31"
+                                            value={defenderSpread.defIv}
+                                            onChange={(evt) => handleDefenderSpreadChange("defIv", evt.target.value)}
+                                        />
+                                        <span className="dc-iv-value dc-value-iv">{defenderSpread.defIv}</span>
+                                        <span className="dc-value-total">{calculateStat(selectedDefender.baseStats.defense, defenderSpread.defIv, defenderSpread.defEv, false)}</span>
+                                    </li>
+                                    <li className="dc-pokemon-stat">
+                                        <span className="label-spdef">Sp. Def.</span>
+                                        <span className="dc-value-base">{selectedDefender.baseStats.specialDefense}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="252"
+                                            value={defenderSpread.spDefEv}
+                                            onChange={(evt) => handleDefenderSpreadChange("spDefEv", evt.target.value)}
+                                        />
+                                        <span className="dc-ev-value dc-value-ev">{defenderSpread.spDefEv}</span>
+                                        <input 
+                                            type="range"
+                                            min="0"
+                                            max="31"
+                                            value={defenderSpread.spDefIv}
+                                            onChange={(evt) => handleDefenderSpreadChange("spDefIv", evt.target.value)}
+                                        />
+                                        <span className="dc-iv-value dc-value-iv">{defenderSpread.spDefIv}</span>
+                                        <span className="dc-value-total">{calculateStat(selectedDefender.baseStats.specialDefense, defenderSpread.spDefIv, defenderSpread.spDefEv, false)}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+                        <label className="dc-dropdown-label label-stages">Defender Stages</label>
+                        <select 
+                            defaultValue="0"
+                            onChange={(evt) => setDefenderStages(parseInt(evt.target.value))}>
+                            {Array.from({length: 13}, (_, i) => i - 6).map(stage => (
+                                <option key={stage} value={stage}>{stage > 0 ? `+${stage}` : stage}</option>
                             ))}
                         </select>
                     </div>
-                    {/* EV/IV sliders */}
-                    {selectedDefender.id && (
-                        <div className="dc-stats-container">
-                            <div className="dc-stats-header">
-                                <span className="dc-header-stat-name">Stats</span>
-                                <span className="dc-header-base dc-label-base">Base</span>
-                                <span className="dc-header-ev dc-label-ev">EVs</span>
-                                <span className="dc-header-iv dc-label-iv">IVs</span>
-                                <span className="dc-header-total dc-label-total">Total</span>
-                            </div>
-                            <ul className="dc-pokemon-stats">
-                                <li className="dc-pokemon-stat">
-                                    <span className="label-hp">Hp</span>
-                                    <span className="dc-value-base">{selectedDefender.baseStats.hp}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="252"
-                                        value={defenderSpread.hpEv}
-                                        onChange={(evt) => handleDefenderSpreadChange("hpEv", evt.target.value)}
-                                    />
-                                    <span className="dc-ev-value dc-value-ev">{defenderSpread.hpEv}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="31"
-                                        value={defenderSpread.hpIv}
-                                        onChange={(evt) => handleDefenderSpreadChange("hpIv", evt.target.value)}
-                                    />
-                                    <span className="dc-iv-value dc-value-iv">{defenderSpread.hpIv}</span>
-                                    <span className="dc-value-total">{calculateStat(selectedDefender.baseStats.hp, defenderSpread.hpIv, defenderSpread.hpEv, true)}</span>
-                                </li>
-                                <li className="dc-pokemon-stat">
-                                    <span className="label-def">Def</span>
-                                    <span className="dc-value-base">{selectedDefender.baseStats.defense}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="252"
-                                        value={defenderSpread.defEv}
-                                        onChange={(evt) => handleDefenderSpreadChange("defEv", evt.target.value)}
-                                    />
-                                    <span className="dc-ev-value dc-value-ev">{defenderSpread.defEv}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="31"
-                                        value={defenderSpread.defIv}
-                                        onChange={(evt) => handleDefenderSpreadChange("defIv", evt.target.value)}
-                                    />
-                                    <span className="dc-iv-value dc-value-iv">{defenderSpread.defIv}</span>
-                                    <span className="dc-value-total">{calculateStat(selectedDefender.baseStats.defense, defenderSpread.defIv, defenderSpread.defEv, false)}</span>
-                                </li>
-                                <li className="dc-pokemon-stat">
-                                    <span className="label-spdef">Sp. Def.</span>
-                                    <span className="dc-value-base">{selectedDefender.baseStats.specialDefense}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="252"
-                                        value={defenderSpread.spDefEv}
-                                        onChange={(evt) => handleDefenderSpreadChange("spDefEv", evt.target.value)}
-                                    />
-                                    <span className="dc-ev-value dc-value-ev">{defenderSpread.spDefEv}</span>
-                                    <input 
-                                        type="range"
-                                        min="0"
-                                        max="31"
-                                        value={defenderSpread.spDefIv}
-                                        onChange={(evt) => handleDefenderSpreadChange("spDefIv", evt.target.value)}
-                                    />
-                                    <span className="dc-iv-value dc-value-iv">{defenderSpread.spDefIv}</span>
-                                    <span className="dc-value-total">{calculateStat(selectedDefender.baseStats.specialDefense, defenderSpread.spDefIv, defenderSpread.spDefEv, false)}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    )}
-                    {/* Needed help writing this one */}
-                    <label className="dc-dropdown-label label-stages">Defender Stages</label>
-                    <select 
-                        defaultValue="0"
-                        onChange={(evt) => setDefenderStages(parseInt(evt.target.value))}>
-                        {Array.from({length: 13}, (_, i) => i - 6).map(stage => (
-                            <option key={stage} value={stage}>{stage > 0 ? `+${stage}` : stage}</option>
-                        ))}
-                    </select>
                 </div>
             </div>
-            {/* Calculate button */}
+            
             <div className="dc-btn-container">
                 <button
                     className="dc-btn-calculate-dmg"
                     onClick={handleCalculateDamageResult}
                 >
-                     Calculate Damage
+                    Calculate Damage
                 </button>
             </div>
-            {/* Result display */}
+            
             <div className="dc-results">
-                {damageResult && (
-                    <p className={`damage-result ${
-                        damageResult.maxPercent >= 100 ? "result-ohko" :
-                        damageResult.minPercent >= 50 ? "result-2hko" : "result-safe"
-                    }`}>
-                        {damageResult.minDamage} - {damageResult.maxDamage} ({damageResult.minPercent}% - {damageResult.maxPercent}%)
-                        <span className="result-label">
-                            {damageResult.maxPercent >= 100 ? "💀 OHKO!" :
-                            damageResult.minPercent >= 50 ? "⚠️ 2HKO Range" : "✅ Safe"}
-                        </span>
-                    </p>
-                )}
+                <div className="dc-results-banner">
+                    <h2 className="calc-banner-title">💥 Damage Report</h2>
+                </div>
+                <div className="dc-results-inner">
+                    {damageResult ? (
+                        <>
+                            <p className="type-effectiveness">
+                                {damageResult.multiplier === 0 ? "🚫 Immune!" :
+                                damageResult.multiplier >= 3 ? "🔥 Super Effective! (3x+)" :
+                                damageResult.multiplier >= 2 ? "⚡ Super Effective! (2x)" :
+                                damageResult.multiplier >= 1.5 ? "✨ Super Effective! (1.5x)" :
+                                damageResult.multiplier < 1 && damageResult.multiplier > 0 ? "❄️ Not Very Effective..." :
+                                "➡️ Normal Effectiveness"}
+                            </p>
+                            <p className={`damage-result ${
+                                damageResult.maxPercent >= 100 ? "result-ohko" :
+                                damageResult.minPercent >= 50 ? "result-2hko" : "result-safe"
+                            }`}>
+                                {damageResult.minDamage} - {damageResult.maxDamage} ({damageResult.minPercent}% - {damageResult.maxPercent}%)
+                                <span className="result-label">
+                                    {damageResult.maxPercent >= 100 ? "💀 OHKO!" :
+                                    damageResult.minPercent >= 50 ? "⚠️ 2HKO Range" : "✅ Safe"}
+                                </span>
+                            </p>
+                        </>
+                    ) : (
+                        <p className="dc-results-placeholder">Select a Pokémon, move, and defender to calculate damage!</p>
+                    )}
+                </div>
             </div>
         </div>
     )

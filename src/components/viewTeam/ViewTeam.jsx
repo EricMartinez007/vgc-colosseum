@@ -143,54 +143,58 @@ Nature: ${pokemonTeam.nature?.name}
     return (
         <div className="page-container">
             <h1 className="page-title">{team.name}</h1>
-            <span className="page-subtitle">Team by <Link to={`/profile/${team.userId}`} className="team-trainer-link">{team.user.name}</Link></span>
+            <span className="page-subtitle">Dominus: <Link to={`/profile/${team.userId}`} className="team-trainer-link">{team.user.name}</Link></span>
             <div className="view-team-layout">
                 <section className="team-section">
-                    <h2 className="view-team-title">Pokémon</h2>
-                    <div className="pokemon-list">
-                        {pokemon.map((pokemonTeam, index) => (
-                            <div 
-                                key={pokemonTeam.id} 
-                                className="pokemon-card" 
-                                onClick={() => navigate(`/viewpokemon/${teamId}/${pokemonTeam.id}`)}
-                             >
-                                <img src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
-                                <div className="pokemon-card-info">
-                                    <div className="card-info-group">
-                                        <span className="card-label card-label-pokemon">Pokémon</span>
-                                        <span className="card-info-value">{pokemonTeam.pokemon.name}</span>
-                                    </div>
-                                    <div className="card-info-group">
-                                        <span className="card-label card-label-ability">Ability</span>
-                                        <span className="card-info-value">{pokemonTeam.ability?.name}</span>
-                                    </div>
-                                    <div className="card-info-group">
-                                        <span className="card-label card-label-move">Move 1</span>
-                                        <span className="card-info-value">{pokemonMoves[index]?.[0]?.move.name}</span>
-                                    </div>
-                                    <div className="card-info-group">
-                                        <span className="card-label card-label-move">Move 2</span>
-                                        <span className="card-info-value">{pokemonMoves[index]?.[1]?.move.name}</span>
-                                    </div>
-                                    <div className="card-info-group">
-                                        <span className="card-label card-label-nature">Nature</span>
-                                        <span className="card-info-value">{pokemonTeam.nature?.name}</span>
-                                    </div>
-                                    <div className="card-info-group">
-                                        <span className="card-label card-label-item">Item</span>
-                                        <span className="card-info-value">{pokemonTeam.item?.name}</span>
-                                    </div>
-                                    <div className="card-info-group">
-                                        <span className="card-label card-label-move">Move 3</span>
-                                        <span className="card-info-value">{pokemonMoves[index]?.[2]?.move.name}</span>
-                                    </div>
-                                    <div className="card-info-group">
-                                        <span className="card-label card-label-move">Move 4</span>
-                                        <span className="card-info-value">{pokemonMoves[index]?.[3]?.move.name}</span>
+                    <div className="view-team-container">
+                        <div className="view-team-banner">
+                            <h2 className="view-team-banner-title">🗡️ Gladiators</h2>
+                        </div>
+                        <div className="pokemon-list">
+                            {pokemon.map((pokemonTeam, index) => (
+                                <div 
+                                    key={pokemonTeam.id} 
+                                    className="pokemon-card" 
+                                    onClick={() => navigate(`/viewpokemon/${teamId}/${pokemonTeam.id}`)}
+                                >
+                                    <img src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                    <div className="pokemon-card-info">
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-pokemon">Pokémon</span>
+                                            <span className="card-info-value">{pokemonTeam.pokemon.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-ability">Ability</span>
+                                            <span className="card-info-value">{pokemonTeam.ability?.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-move">Move 1</span>
+                                            <span className="card-info-value">{pokemonMoves[index]?.[0]?.move.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-move">Move 2</span>
+                                            <span className="card-info-value">{pokemonMoves[index]?.[1]?.move.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-nature">Nature</span>
+                                            <span className="card-info-value">{pokemonTeam.nature?.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-item">Item</span>
+                                            <span className="card-info-value">{pokemonTeam.item?.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-move">Move 3</span>
+                                            <span className="card-info-value">{pokemonMoves[index]?.[2]?.move.name}</span>
+                                        </div>
+                                        <div className="card-info-group">
+                                            <span className="card-label card-label-move">Move 4</span>
+                                            <span className="card-info-value">{pokemonMoves[index]?.[3]?.move.name}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </section>
             </div>
@@ -224,54 +228,58 @@ Nature: ${pokemonTeam.nature?.name}
                 </button>
             </div>
             <div className="comments-container">
-                <section className="comments">
-                    <h3 className="view-comment-title">Comments</h3>
-                    <form className="form-newcomment" onSubmit={handleCreateComment}>
-                        <label className="comment-label">Write a comment!</label>
-                        <fieldset>
-                            <input
-                                type="text"
-                                id="comment"
-                                value={newComment.comment}
-                                onChange={updateNewComment}
-                                className="form-comment"
-                                placeholder="Type your comment here!"
-                                required
-                                autoFocus
-                            />
-                        </fieldset>
-                        <fieldset>
-                            <div className="form-newcomment-buttons">
-                                <button className="submit-btn" type="submit">
-                                    Post Comment
-                                </button>
-                            </div>
-                        </fieldset>
-                    </form>
-                    <div className="comments-list">
-                        {comments.length === 0 ? (
-                            <p>No comments yet — be the first!</p>
-                        ) : (
-                            comments.map((comment) => (
-                                <div key={comment.id} className="comment-card">
-                                    <div className="comment-header">
-                                        <span className="comment-author">{comment.user.name}</span>
-                                        <span className="comment-timestamp">{new Date(comment.timestamp).toLocaleDateString()}</span>
-                                    </div>
-                                    <p className="comment-text">{comment.comment}</p>
-                                    {parseInt(currentUser.id) === parseInt(comment.userId) && (
-                                        <button 
-                                            className="btn-delete-comment"
-                                            onClick={() => handleDeleteComment(comment)}
-                                        >
-                                            Delete
-                                        </button>
-                                    )}
+                <div className="comments-banner">
+                    <h2 className="comments-banner-title">📣 The Stands</h2>
+                </div>
+                <div className="comments-inner">
+                    <section className="comments">
+                        <form className="form-newcomment" onSubmit={handleCreateComment}>
+                            <label className="comment-label">Write a comment!</label>
+                            <fieldset>
+                                <input
+                                    type="text"
+                                    id="comment"
+                                    value={newComment.comment}
+                                    onChange={updateNewComment}
+                                    className="form-comment"
+                                    placeholder="Type your comment here!"
+                                    required
+                                    autoFocus
+                                />
+                            </fieldset>
+                            <fieldset>
+                                <div className="form-newcomment-buttons">
+                                    <button className="submit-btn" type="submit">
+                                        Post Comment
+                                    </button>
                                 </div>
-                            ))
-                        )}
-                    </div>
-                </section>
+                            </fieldset>
+                        </form>
+                        <div className="comments-list">
+                            {comments.length === 0 ? (
+                                <p>No comments yet — be the first!</p>
+                            ) : (
+                                comments.map((comment) => (
+                                    <div key={comment.id} className="comment-card">
+                                        <div className="comment-header">
+                                            <span className="comment-author">{comment.user.name}</span>
+                                            <span className="comment-timestamp">{new Date(comment.timestamp).toLocaleDateString()}</span>
+                                        </div>
+                                        <p className="comment-text">{comment.comment}</p>
+                                        {parseInt(currentUser.id) === parseInt(comment.userId) && (
+                                            <button 
+                                                className="btn-delete-comment"
+                                                onClick={() => handleDeleteComment(comment)}
+                                            >
+                                                Delete
+                                            </button>
+                                        )}
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </section>
+                </div>
             </div>
             {showToast && <div className="toast">✅ Copied to clipboard!</div>}
         </div>  

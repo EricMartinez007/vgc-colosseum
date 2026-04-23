@@ -215,7 +215,7 @@ export const NewTeam = ({ currentUser }) => {
     
     return (
         <main className="page-container">
-            <h1 className="page-title">Create a New Team</h1>
+            <h1 className="page-title">✨ Create a New Team</h1>
             <span className="page-subtitle">Build a new competitive team!</span>
             <div className="newteam-layout">
                 

@@ -321,6 +321,74 @@
     gap: 1rem;
 }
 
+.view-team-container {
+    border: 1px solid var(--accent-purple);
+    border-radius: 12px;
+    padding: 0;
+    margin-top: 1rem;
+    box-shadow: 0 0 20px rgba(123, 47, 255, 0.3);
+    background-color: var(--bg-secondary);
+    overflow: hidden;
+}
+
+.view-team-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #7b2fff 50%, #1a1a2e 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.view-team-banner-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.view-team-container .pokemon-list {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.comments-container {
+    border: 1px solid #00b4d8;
+    border-radius: 12px;
+    padding: 0;
+    margin-top: 2rem;
+    box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
+    background-color: var(--bg-secondary);
+    overflow: hidden;
+}
+
+.comments-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #00b4d8 50%, #1a1a2e 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.comments-banner-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.comments-inner {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
 @keyframes toastFadeIn {
     from { opacity: 0; transform: translateX(-50%) translateY(10px); }
     to   { opacity: 1; transform: translateX(-50%) translateY(0); }

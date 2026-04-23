@@ -266,6 +266,10 @@
 .type-badge[data-type="Steel"]    { background-color: #B8B8D0; color: #333; border-color: #B8B8D0; }
 .type-badge[data-type="Fairy"]    { background-color: #EE99AC; color: #333; border-color: #EE99AC; }
 
+.pokemon-form-image img {
+    animation: bounce 1s ease infinite;
+}
+
 @media (max-width: 768px) {
   .pokemon-form-card {
     grid-template-columns: 1fr;

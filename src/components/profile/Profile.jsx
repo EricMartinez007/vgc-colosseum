@@ -73,8 +73,8 @@ export const Profile = ({ currentUser }) => {
 
     return (
         <div className="page-container">
-            <h1 className="page-title">Profile</h1>
-            <span className="page-subtitle">Gladiator Stats</span>
+            <h1 className="page-title">Trainer Card</h1>
+            <span className="page-subtitle">Dominus Stats</span>
             <div className="profile-layout">
                 <section className="profile-section">
                     <div className="profile-banner">
@@ -93,11 +93,11 @@ export const Profile = ({ currentUser }) => {
                             <span className="profile-stat-value">{user.email}</span>
                         </div>
                         <div className="profile-stat-card">
-                            <span className="profile-stat-label">🏆 Teams Made</span>
+                            <span className="profile-stat-label">🏆 Arsenals</span>
                             <span className="profile-stat-value">{teams.length}</span>
                         </div>
                         <div className="profile-stat-card">
-                            <span className="profile-stat-label">❤️ Likes Received</span>
+                            <span className="profile-stat-label">👑 Glory Points</span>
                             <span className="profile-stat-value">{totalLikesReceived}</span>
                         </div>
                         {getMostUsedPokemon() && (

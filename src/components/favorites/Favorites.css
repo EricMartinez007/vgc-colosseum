@@ -12,9 +12,9 @@
   margin-right: 1rem;
 }
 
-.filter-bar:focus {
+.favorites-container .filter-bar:focus {
   outline: none;
-  border-color: var(--accent-purple);
+  border-color: #e63946;;
 }
 
 .teams-list {
@@ -38,8 +38,9 @@
   cursor: pointer;
 }
 
-.team-card:hover {
-  border-color: var(--accent-purple);
+.favorites-container .team-card:hover {
+    border-color: #e63946;
+    box-shadow: 0 0 15px rgba(230, 57, 70, 0.3);
 }
 
 .team-card h3 {
@@ -112,6 +113,46 @@
   color: var(--text-secondary);
   font-size: 1rem;
   margin-top: 1rem;
+}
+
+.favorites-container {
+    border: 1px solid #e63946;
+    border-radius: 12px;
+    padding: 0;
+    margin-top: 1rem;
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+    background-color: var(--bg-secondary);
+    overflow: hidden;
+}
+
+.favorites-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #e63946 50%, #1a1a2e 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.favorites-banner-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.favorites-banner-filters {
+    display: flex;
+    gap: 1rem;
+    padding: 0rem 1.5rem;
+}
+
+.favorites-container .teams-list {
+    padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
 @media (max-width: 768px) {

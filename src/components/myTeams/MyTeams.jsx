@@ -55,20 +55,26 @@ export const MyTeams = ({ currentUser }) => {
     return (
         <main className="page-container">
             <section>
-                <h1 className="page-title">My Teams</h1>
-                <span className="page-subtitle">View your competitive teams!</span>
-                <select className="filter-bar" onChange={handlePokemonSelect}>
-                    <option value="0">All Pokémon</option>
-                    {allPokemon.map((pokemon) => (
-                        <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
-                    ))}
-                </select>
-                <select className="filter-bar" onChange={handleFormatSelect}>
-                    <option value="0">All Formats</option>
-                    {allFormats.map((format) => (
-                        <option value={format.id} key={format.id}>{format.name}</option>
-                    ))}
-                </select>
+                <h1 className="page-title myteams-title">⚔️ My Teams</h1>
+                <span className="page-subtitle myteams-subtitle">View your competitive teams!</span>
+                <div className="myteams-container">
+                <div className="myteams-banner">
+                    <h2 className="myteams-banner-title">🛡️ Your Arsenal</h2>
+                </div>
+                    <div className="myteams-banner-filters">
+                        <select className="filter-bar" onChange={handlePokemonSelect}>
+                            <option value="0">All Pokémon</option>
+                            {allPokemon.map((pokemon) => (
+                                <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
+                            ))}
+                        </select>
+                        <select className="filter-bar" onChange={handleFormatSelect}>
+                            <option value="0">All Formats</option>
+                            {allFormats.map((format) => (
+                                <option value={format.id} key={format.id}>{format.name}</option>
+                            ))}
+                        </select>
+                    </div>
                     <section className="teams-list">
                         {!teams.length ? (
                             <p className="empty-msg">No teams created yet.</p>
@@ -97,6 +103,7 @@ export const MyTeams = ({ currentUser }) => {
                                 ))
                         )}
                     </section>
+                </div>
             </section>
         </main>
     )

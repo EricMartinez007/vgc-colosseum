@@ -13,7 +13,7 @@ export const Welcome = () => {
                 <h1 className="welcome-title">VGC Colosseum</h1>
                 <div className="welcome-taglines">
                     <p className="welcome-tagline">The ultimate competitive Pokémon team builder</p>
-                    <p className="welcome-tagline welcome-tagline-secondary">May the odds be ever in your favor Gladiator</p>
+                    <p className="welcome-tagline welcome-tagline-secondary">May the odds be ever in your favor Dominus</p>
                 </div>
                 <Link to="/communityteams" className="welcome-cta">Enter The Colosseum</Link>
             </div>

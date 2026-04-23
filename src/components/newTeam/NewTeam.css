@@ -269,6 +269,21 @@
     border-color: var(--accent-purple);
 }
 
+.newteam-mascot {
+    border-color: #c084fc;
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.3);
+}
+
+.form-newteam {
+    border-color: #7b2fff;
+    box-shadow: 0 0 20px rgba(123, 47, 255, 0.3);
+}
+
+.form-showdown-import {
+    border-color: #ff6b00;
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+}
+
 @media (max-width: 768px) {
   .newteam-layout {
     grid-template-columns: 1fr;

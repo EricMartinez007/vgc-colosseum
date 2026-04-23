@@ -56,61 +56,68 @@ export const CommunityTeams = ({ currentUser }) => {
     return (
         <main className="page-container">
             <section>
-                <h1 className="page-title">Community Teams</h1>
-                <span className="page-subtitle">Browse and view teams created by community members!</span>
-                <select className="filter-bar" onChange={handlePokemonSelect}>
-                    <option value="0">All Pokémon</option>
-                    {allPokemon.map((pokemon) => (
-                        <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
-                    ))}
-                </select>
-                <select className="filter-bar" onChange={handleFormatSelect}>
-                    <option value="0">All Formats</option>
-                    {allFormats.map((format) => (
-                        <option value={format.id} key={format.id}>{format.name}</option>
-                    ))}
-                </select>
-                    <section className="teams-list">
-                        {!allTeams.length ? (
-                            <p className="empty-msg">No teams created yet.</p>
-                        ) : (
-                            allTeams
-                                .filter(team => {
-                                    if (!selectedPokemon.id) return true
-                                    return team.pokemon.some(pokemonTeam => pokemonTeam.pokemonId === selectedPokemon.id)
-                                })
-                                .filter(team => {
-                                    if(!selectedFormat.id) return true
-                                    return team.formatId === selectedFormat.id
-                                })
-                                .map((team) => (
-                                    <div 
-                                        key={team.id} 
-                                        className="team-card"
-                                        onClick={() => navigate(`/viewteam/${team.id}`)}
-                                    >
-                                        <div className="team-card-header">
-                                            <h3>{team.name}</h3>
-                                            <h4>
-                                                <Link 
-                                                    to={`/profile/${team.userId}`} 
-                                                    className="team-trainer-link"
-                                                    onClick={(e) => e.stopPropagation()}
-                                                >
-                                                    {team.user.name}
-                                                </Link>
-                                            </h4>
-                                        </div>
-                                        <div className="team-card-sprites">
-                                            {team.pokemon.map((pokemonTeam) => (
-                                                <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
-                                            ))}
-                                            <span className="team-likes">❤️{team.likes.length}</span>
-                                        </div>
-                                    </div>  
-                                ))
-                        )}
-                    </section>
+                <h1 className="page-title community-title">🏆 Community Teams</h1>
+                <span className="page-subtitle community-subtitle">Browse and view teams created by community members!</span>
+                <div className="community-container">
+                    <div className="community-banner">
+                        <h2 className="community-banner-title">🏟️ The Arena Awaits</h2>
+                    </div>
+                        <div className="community-banner-filters">
+                            <select className="filter-bar" onChange={handlePokemonSelect}>
+                                <option value="0">All Pokémon</option>
+                                {allPokemon.map((pokemon) => (
+                                    <option value={pokemon.id} key={pokemon.id}>{pokemon.name}</option>
+                                ))}
+                            </select>
+                            <select className="filter-bar" onChange={handleFormatSelect}>
+                                <option value="0">All Formats</option>
+                                {allFormats.map((format) => (
+                                    <option value={format.id} key={format.id}>{format.name}</option>
+                                ))}
+                            </select>
+                        </div>
+                            <section className="teams-list">
+                                {!allTeams.length ? (
+                                    <p className="empty-msg">No teams created yet.</p>
+                                ) : (
+                                    allTeams
+                                        .filter(team => {
+                                            if (!selectedPokemon.id) return true
+                                            return team.pokemon.some(pokemonTeam => pokemonTeam.pokemonId === selectedPokemon.id)
+                                        })
+                                        .filter(team => {
+                                            if(!selectedFormat.id) return true
+                                            return team.formatId === selectedFormat.id
+                                        })
+                                        .map((team) => (
+                                            <div 
+                                                key={team.id} 
+                                                className="team-card"
+                                                onClick={() => navigate(`/viewteam/${team.id}`)}
+                                            >
+                                                <div className="team-card-header">
+                                                    <h3>{team.name}</h3>
+                                                    <h4>
+                                                        <Link 
+                                                            to={`/profile/${team.userId}`} 
+                                                            className="team-trainer-link"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                            {team.user.name}
+                                                        </Link>
+                                                    </h4>
+                                                </div>
+                                                <div className="team-card-sprites">
+                                                    {team.pokemon.map((pokemonTeam) => (
+                                                        <img key={pokemonTeam.id} src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                                                    ))}
+                                                    <span className="team-likes">❤️{team.likes.length}</span>
+                                                </div>
+                                            </div>  
+                                        ))
+                                )}
+                            </section>
+                </div>
             </section>
         </main>
     )

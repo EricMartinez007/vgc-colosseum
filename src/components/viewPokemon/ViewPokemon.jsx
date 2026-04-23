@@ -80,132 +80,138 @@ export const ViewPokemon = () => {
             <span className="page-subtitle">
                 This Pokémon is part of {team.user.name}'s {team.name}
             </span>
-            
-            <div className="pokemon-form-card">
-                <div className="pokemon-form-image">
+            <div className="vp-container">
+                <div className="vp-banner">
+                    <h2 className="vp-banner-title">🗡️ Gladiator Details</h2>
+                </div>
+                <div className="vp-inner">
+                    <div className="pokemon-form-card">
+                        <div className="pokemon-form-image">
+                            {pokemonTeam.id && (
+                                <img src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                            )}
+                        </div>
+                        <div className="pokemon-form-info">
+                            <div className="card-info-group">
+                                <span className="card-label card-label-pokemon">Pokémon</span>
+                                <span className="card-info-value">{pokemonTeam.pokemon.name}</span>
+                            </div>
+                            <div className="card-info-group">
+                                <span className="card-label card-label-ability">Ability</span>
+                                <span className="card-info-value">{pokemonTeam.ability?.name}</span>
+                            </div>
+                            <div className="card-info-group">
+                                <span className="card-label card-label-move">Move 1</span>
+                                <span className="card-info-value">{pokemonMoves[0]?.move.name}</span>
+                            </div>
+                            <div className="card-info-group">
+                                <span className="card-label card-label-move">Move 2</span>
+                                <span className="card-info-value">{pokemonMoves[1]?.move.name}</span>
+                            </div>
+                            <div className="card-info-group">
+                                <span className="card-label card-label-nature">Nature</span>
+                                <span className="card-info-value">{pokemonTeam.nature?.name}</span>
+                            </div>
+                            <div className="card-info-group">
+                                <span className="card-label card-label-item">Item</span>
+                                <span className="card-info-value">{pokemonTeam.item?.name}</span>
+                            </div>
+                            <div className="card-info-group">
+                                <span className="card-label card-label-move">Move 3</span>
+                                <span className="card-info-value">{pokemonMoves[2]?.move.name}</span>
+                            </div>
+                            <div className="card-info-group">
+                                <span className="card-label card-label-move">Move 4</span>
+                                <span className="card-info-value">{pokemonMoves[3]?.move.name}</span>
+                            </div>
+                        </div>
+                    </div>
+                
                     {pokemonTeam.id && (
-                        <img src={pokemonTeam.pokemon.imageUrl} alt={pokemonTeam.pokemon.name} />
+                        <div className="pokemon-stats-type-card">
+                            <div className="pokemon-stats-container">
+                                <div className="pokemon-stats-header">
+                                    <span className="vp-stat-name label-stat-name">Stats</span>
+                                    <span className="vp-base label-base">Base</span>
+                                    <span className="vp-ev label-ev">EVs</span>
+                                    <span className="vp-iv label-iv">IVs</span>
+                                    <span className="vp-total label-total">Total</span>
+                                </div>
+                                <ul className="pokemon-stats">
+                                    <li className="pokemon-stat">
+                                        <span className="label-hp">Hp</span>
+                                        <span className="value-base">{pokemonTeam.pokemon.baseStats.hp}</span>
+                                        <span className="ev-value value-ev">{pokemonTeam.hpEv}</span>
+                                        <span className="iv-value value-iv">{pokemonTeam.hpIv}</span>
+                                        <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.hp, pokemonTeam.hpIv, pokemonTeam.hpEv, true)}</span>
+                                    </li>
+                                    <li className="pokemon-stat">
+                                        <span className="label-atk">Atk</span>
+                                        <span className="value-base">{pokemonTeam.pokemon.baseStats.attack}</span>
+                                        <span className="ev-value value-ev">{pokemonTeam.atkEv}</span>
+                                        <span className="iv-value value-iv">{pokemonTeam.atkIv}</span>
+                                        <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.attack, pokemonTeam.atkIv, pokemonTeam.atkEv, false)}</span>
+                                    </li>
+                                    <li className="pokemon-stat">
+                                        <span className="label-def">Def</span>
+                                        <span className="value-base">{pokemonTeam.pokemon.baseStats.defense}</span>
+                                        <span className="ev-value value-ev">{pokemonTeam.defEv}</span>
+                                        <span className="iv-value value-iv">{pokemonTeam.defIv}</span>
+                                        <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.defense, pokemonTeam.defIv, pokemonTeam.defEv, false)}</span>
+                                    </li>
+                                    <li className="pokemon-stat">
+                                        <span className="label-spatk">Sp. Atk.</span>
+                                        <span className="value-base">{pokemonTeam.pokemon.baseStats.specialAttack}</span>
+                                        <span className="ev-value value-ev">{pokemonTeam.spAtkEv}</span>
+                                        <span className="iv-value value-iv">{pokemonTeam.spAtkIv}</span>
+                                        <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.specialAttack, pokemonTeam.spAtkIv, pokemonTeam.spAtkEv, false)}</span>
+                                    </li>
+                                    <li className="pokemon-stat">
+                                        <span className="label-spdef">Sp. Def.</span>
+                                        <span className="value-base">{pokemonTeam.pokemon.baseStats.specialDefense}</span>
+                                        <span className="ev-value value-ev">{pokemonTeam.spDefEv}</span>
+                                        <span className="iv-value value-iv">{pokemonTeam.spDefIv}</span>
+                                        <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.specialDefense, pokemonTeam.spDefIv, pokemonTeam.spDefEv, false)}</span>
+                                    </li>
+                                    <li className="pokemon-stat">
+                                        <span className="label-spd">Speed</span>
+                                        <span className="value-base">{pokemonTeam.pokemon.baseStats.speed}</span>
+                                        <span className="ev-value value-ev">{pokemonTeam.spdEv}</span>
+                                        <span className="iv-value value-iv">{pokemonTeam.spdIv}</span>
+                                        <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.speed, pokemonTeam.spdIv, pokemonTeam.spdEv, false)}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <section className="type-display">
+                                <div>
+                                    <h2 className="label-type">Type</h2>
+                                    <div className="type-badge-container">
+                                        {pokemonTypes.map((pokemonType) => (
+                                        <span className="type-badge" data-type={pokemonType.type.name} key={pokemonType.id}>{pokemonType.type.name}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <h2 className="label-strong">Strong Against</h2>
+                                    <div className="type-badge-container">
+                                    {getStrongAgainstTypes().map((type) => (
+                                        <span className="type-badge" data-type={type.name} key={type.id}>{type.name}</span>
+                                    ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <h2 className="label-weak">Weak Against</h2>
+                                    <div className="type-badge-container">
+                                    {getWeakAgainstTypes().map((type) => (
+                                        <span className="type-badge" data-type={type.name} key={type.id}>{type.name}</span>
+                                    ))}
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                     )}
                 </div>
-                <div className="pokemon-form-info">
-                    <div className="card-info-group">
-                        <span className="card-label card-label-pokemon">Pokémon</span>
-                        <span className="card-info-value">{pokemonTeam.pokemon.name}</span>
-                    </div>
-                    <div className="card-info-group">
-                        <span className="card-label card-label-ability">Ability</span>
-                        <span className="card-info-value">{pokemonTeam.ability?.name}</span>
-                    </div>
-                    <div className="card-info-group">
-                        <span className="card-label card-label-move">Move 1</span>
-                        <span className="card-info-value">{pokemonMoves[0]?.move.name}</span>
-                    </div>
-                    <div className="card-info-group">
-                        <span className="card-label card-label-move">Move 2</span>
-                        <span className="card-info-value">{pokemonMoves[1]?.move.name}</span>
-                    </div>
-                    <div className="card-info-group">
-                        <span className="card-label card-label-nature">Nature</span>
-                        <span className="card-info-value">{pokemonTeam.nature?.name}</span>
-                    </div>
-                    <div className="card-info-group">
-                        <span className="card-label card-label-item">Item</span>
-                        <span className="card-info-value">{pokemonTeam.item?.name}</span>
-                    </div>
-                    <div className="card-info-group">
-                        <span className="card-label card-label-move">Move 3</span>
-                        <span className="card-info-value">{pokemonMoves[2]?.move.name}</span>
-                    </div>
-                    <div className="card-info-group">
-                        <span className="card-label card-label-move">Move 4</span>
-                        <span className="card-info-value">{pokemonMoves[3]?.move.name}</span>
-                    </div>
-                </div>
             </div>
-            
-            {pokemonTeam.id && (
-                <div className="pokemon-stats-type-card">
-                    <div className="pokemon-stats-container">
-                        <div className="pokemon-stats-header">
-                            <span className="vp-stat-name label-stat-name">Stats</span>
-                            <span className="vp-base label-base">Base</span>
-                            <span className="vp-ev label-ev">EVs</span>
-                            <span className="vp-iv label-iv">IVs</span>
-                            <span className="vp-total label-total">Total</span>
-                        </div>
-                        <ul className="pokemon-stats">
-                            <li className="pokemon-stat">
-                                <span className="label-hp">Hp</span>
-                                <span className="value-base">{pokemonTeam.pokemon.baseStats.hp}</span>
-                                <span className="ev-value value-ev">{pokemonTeam.hpEv}</span>
-                                <span className="iv-value value-iv">{pokemonTeam.hpIv}</span>
-                                <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.hp, pokemonTeam.hpIv, pokemonTeam.hpEv, true)}</span>
-                            </li>
-                            <li className="pokemon-stat">
-                                <span className="label-atk">Atk</span>
-                                <span className="value-base">{pokemonTeam.pokemon.baseStats.attack}</span>
-                                <span className="ev-value value-ev">{pokemonTeam.atkEv}</span>
-                                <span className="iv-value value-iv">{pokemonTeam.atkIv}</span>
-                                <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.attack, pokemonTeam.atkIv, pokemonTeam.atkEv, false)}</span>
-                            </li>
-                            <li className="pokemon-stat">
-                                <span className="label-def">Def</span>
-                                <span className="value-base">{pokemonTeam.pokemon.baseStats.defense}</span>
-                                <span className="ev-value value-ev">{pokemonTeam.defEv}</span>
-                                <span className="iv-value value-iv">{pokemonTeam.defIv}</span>
-                                <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.defense, pokemonTeam.defIv, pokemonTeam.defEv, false)}</span>
-                            </li>
-                            <li className="pokemon-stat">
-                                <span className="label-spatk">Sp. Atk.</span>
-                                <span className="value-base">{pokemonTeam.pokemon.baseStats.specialAttack}</span>
-                                <span className="ev-value value-ev">{pokemonTeam.spAtkEv}</span>
-                                <span className="iv-value value-iv">{pokemonTeam.spAtkIv}</span>
-                                <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.specialAttack, pokemonTeam.spAtkIv, pokemonTeam.spAtkEv, false)}</span>
-                            </li>
-                            <li className="pokemon-stat">
-                                <span className="label-spdef">Sp. Def.</span>
-                                <span className="value-base">{pokemonTeam.pokemon.baseStats.specialDefense}</span>
-                                <span className="ev-value value-ev">{pokemonTeam.spDefEv}</span>
-                                <span className="iv-value value-iv">{pokemonTeam.spDefIv}</span>
-                                <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.specialDefense, pokemonTeam.spDefIv, pokemonTeam.spDefEv, false)}</span>
-                            </li>
-                            <li className="pokemon-stat">
-                                <span className="label-spd">Speed</span>
-                                <span className="value-base">{pokemonTeam.pokemon.baseStats.speed}</span>
-                                <span className="ev-value value-ev">{pokemonTeam.spdEv}</span>
-                                <span className="iv-value value-iv">{pokemonTeam.spdIv}</span>
-                                <span className="value-total">{calculateStat(pokemonTeam.pokemon.baseStats.speed, pokemonTeam.spdIv, pokemonTeam.spdEv, false)}</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <section className="type-display">
-                        <div>
-                            <h2 className="label-type">Type</h2>
-                            <div className="type-badge-container">
-                                {pokemonTypes.map((pokemonType) => (
-                                <span className="type-badge" data-type={pokemonType.type.name} key={pokemonType.id}>{pokemonType.type.name}</span>
-                                ))}
-                            </div>
-                        </div>
-                        <div>
-                            <h2 className="label-strong">Strong Against</h2>
-                            <div className="type-badge-container">
-                            {getStrongAgainstTypes().map((type) => (
-                                <span className="type-badge" data-type={type.name} key={type.id}>{type.name}</span>
-                            ))}
-                            </div>
-                        </div>
-                        <div>
-                            <h2 className="label-weak">Weak Against</h2>
-                            <div className="type-badge-container">
-                            {getWeakAgainstTypes().map((type) => (
-                                <span className="type-badge" data-type={type.name} key={type.id}>{type.name}</span>
-                            ))}
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            )}
             <div className="btn-container">
                 <button 
                     className="btn-go-back" 
