@@ -249,7 +249,7 @@ export const AddPokemon = ({ currentUser }) => {
                         <select onChange={(evt) => handleMoveSelect(evt, 0)}>
                             <option value="0">Select a Move</option>
                             {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                <option value={pokemonMove.move.id} key={`move1-${pokemonMove.id}`}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -258,7 +258,7 @@ export const AddPokemon = ({ currentUser }) => {
                         <select onChange={(evt) => handleMoveSelect(evt, 1)}>
                             <option value="0">Select a Move</option>
                             {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                <option value={pokemonMove.move.id} key={`move2-${pokemonMove.id}`}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -285,7 +285,7 @@ export const AddPokemon = ({ currentUser }) => {
                         <select onChange={(evt) => handleMoveSelect(evt, 2)}>
                             <option value="0">Select a Move</option>
                             {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                <option value={pokemonMove.move.id} key={`move3-${pokemonMove.id}`}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -294,7 +294,7 @@ export const AddPokemon = ({ currentUser }) => {
                         <select onChange={(evt) => handleMoveSelect(evt, 3)}>
                             <option value="0">Select a Move</option>
                             {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                <option value={pokemonMove.move.id} key={`move4-${pokemonMove.id}`}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>

@@ -52,22 +52,16 @@ export const EditTeam = () => {
         })
     }
 
-    const handleDeleteTeam = () => {
-        Promise.all(
-            pokemon.map((pokemonTeam, index) => {
-                return Promise.all(
-                    pokemonMoves[index].map(pokemonMove => 
-                        deletePokemonMove(pokemonMove.id)
-                    )
-                ).then(() => {
-                    return deletePokemonTeam(pokemonTeam)
-                })
-            })
-        ).then(() => {
-            return deleteTeam(team).then(() => {
-                navigate(`/myteams`)
-            })
-        })
+    const handleDeleteTeam = async () => {
+        for (const pokemonTeam of pokemon) {
+            const moves = await getPokemonMovesByPokemonTeamId(pokemonTeam.id)
+            for (const move of moves) {
+                await deletePokemonMove(move.id)
+            }
+            await deletePokemonTeam(pokemonTeam)
+        }
+        await deleteTeam(team)
+        navigate('/myteams')
     }
 
     const handleSubmit = (evt) => {

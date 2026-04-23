@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import { getPokemonByTeamId } from "../../services/teamServices"
 import { getPokemon } from "../../services/pokemonServices"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./Favorites.css"
 import { getFavoriteTeams } from "../../services/likesServices"
 import { getAllFormats } from "../../services/formatsServices"
 
 export const Favorites = ({ currentUser }) => {
+    const navigate = useNavigate()
+
     const [favoriteTeams, setFavoriteTeams] = useState([])
     const [allPokemon, setAllPokemon] = useState([])
     const [allFormats, setAllFormats] = useState([])
@@ -84,7 +86,11 @@ export const Favorites = ({ currentUser }) => {
                                     return team.formatId === selectedFormat.id
                                 })
                                 .map((team) => (
-                                    <Link key={team.id} to={`/viewteam/${team.id}`} className="team-card">
+                                    <div 
+                                        key={team.id} 
+                                        className="team-card"
+                                        onClick={() => navigate(`/viewteam/${team.id}`)}
+                                    >
                                         <div className="team-card-header">
                                             <h3>{team.name}</h3>
                                             <h4>
@@ -103,7 +109,7 @@ export const Favorites = ({ currentUser }) => {
                                             ))}
                                             <span className="team-likes">❤️{team.likes.length}</span>
                                         </div>
-                                    </Link>  
+                                    </div>  
                                 ))
                         )}
                     </section>

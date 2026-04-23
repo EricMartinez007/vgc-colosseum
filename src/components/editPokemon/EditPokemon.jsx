@@ -278,7 +278,7 @@ export const EditPokemon = () => {
                         <select value={selectedMove[0]} onChange={(evt) => handleMoveSelect(evt, 0)}>
                             <option value="0">Select a Move</option>
                             {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                <option value={pokemonMove.move.id} key={`move1-${pokemonMove.id}`}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -287,7 +287,7 @@ export const EditPokemon = () => {
                         <select value={selectedMove[1]} onChange={(evt) => handleMoveSelect(evt, 1)}>
                             <option value="0">Select a Move</option>
                             {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                <option value={pokemonMove.move.id} key={`move2-${pokemonMove.id}`}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -314,7 +314,7 @@ export const EditPokemon = () => {
                         <select value={selectedMove[2]} onChange={(evt) => handleMoveSelect(evt, 2)}>
                             <option value="0">Select a Move</option>
                             {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                <option value={pokemonMove.move.id} key={`move3-${pokemonMove.id}`}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
@@ -323,7 +323,7 @@ export const EditPokemon = () => {
                         <select value={selectedMove[3]} onChange={(evt) => handleMoveSelect(evt, 3)}>
                             <option value="0">Select a Move</option>
                             {pokemonLearnset.map((pokemonMove) => (
-                                <option value={pokemonMove.move.id} key={pokemonMove.id}>{pokemonMove.move.name}</option>
+                                <option value={pokemonMove.move.id} key={`move4-${pokemonMove.id}`}>{pokemonMove.move.name}</option>
                             ))}
                         </select>
                     </div>
