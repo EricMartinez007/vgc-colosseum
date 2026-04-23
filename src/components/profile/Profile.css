@@ -95,6 +95,16 @@
   margin: -2rem -2rem 2rem -2rem;
 }
 
+.profile-section {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(123, 47, 255, 0.3);
+}
+
+.profile-teams-preview {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(123, 47, 255, 0.3);
+}
+
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }

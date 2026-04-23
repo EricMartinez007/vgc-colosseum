@@ -108,6 +108,11 @@
     text-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
 }
 
+.form-edituser {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(123, 47, 255, 0.3);
+}
+
 @media (max-width: 768px) {
   .form-edituser {
     max-width: 100%;
