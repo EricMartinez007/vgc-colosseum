@@ -73,10 +73,45 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React 18, Vite, React Router v6
+- **Frontend:** React 19, Vite, React Router v7
 - **Backend:** JSON Server
 - **Styling:** CSS Variables with custom dark theme
 - **Fonts:** Bebas Neue, Rajdhani, Oxanium (Google Fonts)
+- **Testing:** Vitest, React Testing Library
+
+---
+
+## 🧪 Testing
+
+VGC Colosseum has a full unit test suite covering all core game logic and utility functions.
+
+```bash
+# Run all tests once
+npm run test:run
+
+# Run in watch mode (re-runs on save)
+npm test
+
+# Open the visual test dashboard
+npm run test:ui
+
+# Generate a coverage report
+npm run test:coverage
+```
+
+### Test Coverage — 152 tests across 7 files
+
+| File | Tests | What it covers |
+|------|-------|----------------|
+| `calculateStat.test.js` | 19 | HP vs non-HP formula, edge cases, DB benchmarks |
+| `calculateSpeed.test.js` | 20 | All 8 speed natures, EV/IV combos, speed tier ordering |
+| `teamGrade.test.js` | 18 | All 6 grade thresholds (S–F), coverage bonuses |
+| `parseShowdownString.test.js` | 28 | EV/IV parsing, name mapping, nature fallback, multi-mon |
+| `calculateDamage.test.js` | 34 | Type effectiveness, STAB, weather, terrain, items, crits |
+| `evCap.test.js` | 16 | 510 EV cap enforcement, IV bypass, edge spreads |
+| `teamFilters.test.js` | 17 | Pokémon filter, format filter, combined filters |
+
+All pure game logic is extracted into `src/utils/statUtils.js` and imported by components, ensuring a single source of truth across the entire app.
 
 ---
 
