@@ -3,16 +3,8 @@ import { getPokemonLearnsets } from "../../services/movesServices"
 import { getPokemon } from "../../services/pokemonServices"
 import { getAllTypes, getPokemonTypeByPokemonId, getTypeMatchups } from "../../services/typeServices"
 import "./DamageCalculator.css"
-import { calculateStat, getStageMultiplier } from "../../utils/statUtils"
+import { calculateStat, calculateDamage } from "../../utils/statUtils"
 
-const immunities = {
-    1: [14],   // Normal immune to Ghost
-    7: [14],   // Fighting immune to Ghost
-    9: [5],    // Ground immune to Electric
-    14: [1, 7], // Ghost immune to Normal/Fighting
-    17: [8],   // Steel immune to Poison
-    18: [15],  // Fairy immune to Dragon
-}
 
 export const DamageCalculator = () => {
     const [allPokemon, setAllPokemon] = useState([])
@@ -128,89 +120,23 @@ export const DamageCalculator = () => {
         })
     }
 
- 
-
-    // Needed MAJOR help with this function. Not afraid to admit it lol 
-    const calculateDamage = () => {
-        if (!selectedAttacker.id || !selectedDefender.id || !selectedMove.id) return null 
-
-        let multiplier = 1
-
-        // First we need to calculate type effectiveness multiplier
-        defenderTypes.forEach((defenderType) => {
-            const defTypeId = defenderType.typeId
-
-            if (immunities[defTypeId]?.includes(selectedMove.typeId)) {
-                multiplier *= 0
-                return
-            }
-
-            // Find the MOVE'S type matchup
-            const matchup = allTypeMatchups.find(matchups => matchups.typeId === selectedMove.typeId)
-
-            // Does the move's type hit the defender's type super effectively?
-            if (matchup?.strongAgainst.includes(defTypeId)) {
-                multiplier *= 2
-            // Does the defender's type resist the move's type?
-            } else if (matchup?.weakAgainst.includes(defTypeId)) {
-                multiplier *= 0.5
-            }
-        })
-
-        // Check for STAB, if the move's type matches any of the attacker's types, multiply damage by 1.5x
-        const hasStab = attackerTypes.some(attackerType => attackerType.typeId === selectedMove.typeId)
-        if (hasStab) multiplier *= 1.5
-
-        // Weather modifier
-        if (weather === "sun" && selectedMove.typeId === 2) multiplier *= 1.5      // Fire in sun
-        if (weather === "sun" && selectedMove.typeId === 3) multiplier *= 0.5      // Water in sun
-        if (weather === "rain" && selectedMove.typeId === 3) multiplier *= 1.5     // Water in rain
-        if (weather === "rain" && selectedMove.typeId === 2) multiplier *= 0.5     // Fire in rain
-
-        // Terrain modifier
-        if (terrain === "electric" && selectedMove.typeId === 5) multiplier *= 1.3
-        if (terrain === "grassy" && selectedMove.typeId === 4) multiplier *= 1.3
-        if (terrain === "psychic" && selectedMove.typeId === 11) multiplier *= 1.3
-        if (terrain === "misty" && selectedMove.typeId === 15) multiplier *= 0.5
-
-        // Item modifier
-        if (attackerItem === "lifeOrb") multiplier *= 1.3
-        if (attackerItem === "choiceBand" && selectedMove.category === "physical") multiplier *= 1.5
-        if (attackerItem === "choiceSpecs" && selectedMove.category === "special") multiplier *= 1.5
-
-        // Critical hit
-        if (isCritical) multiplier *= 1.5
-
-        // Now we determine the attack and defense stats based on move category (physical or special). If its physical use attack and defense stats, if its special then use special attack and special defense stats
-        const attackStat = selectedMove.category ===  "physical"
-            ? calculateStat(selectedAttacker.baseStats.attack, attackerSpread.atkIv, attackerSpread.atkEv, false)
-            : calculateStat(selectedAttacker.baseStats.specialAttack, attackerSpread.spAtkIv, attackerSpread.spAtkEv, false)
-
-        const defenseStat = selectedMove.category === "physical"
-            ? calculateStat(selectedDefender.baseStats.defense, defenderSpread.defIv, defenderSpread.defEv, false)
-            : calculateStat(selectedDefender.baseStats.specialDefense, defenderSpread.spDefIv, defenderSpread.spDefEv, false)
-
-        const defenderHp = calculateStat(selectedDefender.baseStats.hp, defenderSpread.hpIv, defenderSpread.hpEv, true)
-
-        const adjustedAttackStat = Math.floor(attackStat * getStageMultiplier(attackerStages))
-        const adjustedDefenseStat = Math.floor(defenseStat * getStageMultiplier(defenderStages))
-
-        // Base Damage formula 
-        const baseDamage = Math.floor(Math.floor(Math.floor(2 * 50 / 5 + 2) * selectedMove.power * adjustedAttackStat / adjustedDefenseStat) / 50 + 2)
-
-        // Apply rolls (0.85 to 1.0) and multiplier (moves can have between a high roll (100%) and low roll (85%) for damage)
-        const minDamage = Math.floor(Math.floor(baseDamage * 0.85) * multiplier)
-        const maxDamage = Math.floor(baseDamage * multiplier)
-
-        // Calculate the percentage of defender's HP will be lost. Divides damage by defender's total HP to show what percentage of their health is taken. "Does this OHKO?"
-        const minPercent = ((minDamage / defenderHp) * 100).toFixed(1)
-        const maxPercent = ((maxDamage / defenderHp) * 100).toFixed(1)
-
-        return { minDamage, maxDamage, minPercent, maxPercent, multiplier, defenderHp }
-    }
-
     const handleCalculateDamageResult = () => {
-        const result = calculateDamage()
+        const result = calculateDamage({
+            attacker: selectedAttacker,
+            defender: selectedDefender,
+            move: selectedMove,
+            attackerTypes,
+            defenderTypes,
+            typeMatchups: allTypeMatchups,
+            attackerSpread,
+            defenderSpread,
+            attackerStages,
+            defenderStages,
+            weather,
+            terrain,
+            attackerItem,
+            isCritical,
+        })
         setDamageResult(result)
     }
 

@@ -1,6 +1,5 @@
 // src/utils/statUtils.js
 // Pure functions extracted from DamageCalculator.jsx and SpeedTiers.jsx
-// Import these in your components instead of defining them inline.
  
 // ─── Nature modifiers ───────────────────────────────────────────────────────
 export const NATURE_SPEED_MODIFIERS = {
@@ -153,4 +152,104 @@ export const parseShowdownString = (showdownString) => {
             moves,
         }
     })
+}
+
+// ─── Immunities ──────────────────────────────────────────────────────────────
+export const IMMUNITIES = {
+    1:  [14],    // Normal immune to Ghost
+    7:  [14],    // Fighting immune to Ghost
+    9:  [5],     // Ground immune to Electric
+    14: [1, 7],  // Ghost immune to Normal/Fighting
+    17: [8],     // Steel immune to Poison
+    18: [15],    // Fairy immune to Dragon
+}
+
+// ─── Damage Calculation ──────────────────────────────────────────────────────
+export const calculateDamage = ({
+    attacker,
+    defender,
+    move,
+    attackerTypes,
+    defenderTypes,
+    typeMatchups,
+    attackerSpread,
+    defenderSpread,
+    attackerStages = 0,
+    defenderStages = 0,
+    weather = "none",
+    terrain = "none",
+    attackerItem = "none",
+    isCritical = false,
+}) => {
+    if (!attacker || !defender || !move) return null
+
+    let multiplier = 1
+
+    // Type effectiveness
+    defenderTypes.forEach((defenderType) => {
+        const defTypeId = defenderType.typeId
+
+        if (IMMUNITIES[defTypeId]?.includes(move.typeId)) {
+            multiplier *= 0
+            return
+        }
+
+        const matchup = typeMatchups.find(m => m.typeId === move.typeId)
+        if (matchup?.strongAgainst.includes(defTypeId)) {
+            multiplier *= 2
+        } else if (matchup?.weakAgainst.includes(defTypeId)) {
+            multiplier *= 0.5
+        }
+    })
+
+    // STAB
+    const hasStab = attackerTypes.some(t => t.typeId === move.typeId)
+    if (hasStab) multiplier *= 1.5
+
+    // Weather
+    if (weather === "sun"  && move.typeId === 2) multiplier *= 1.5
+    if (weather === "sun"  && move.typeId === 3) multiplier *= 0.5
+    if (weather === "rain" && move.typeId === 3) multiplier *= 1.5
+    if (weather === "rain" && move.typeId === 2) multiplier *= 0.5
+
+    // Terrain
+    if (terrain === "electric" && move.typeId === 5)  multiplier *= 1.3
+    if (terrain === "grassy"   && move.typeId === 4)  multiplier *= 1.3
+    if (terrain === "psychic"  && move.typeId === 11) multiplier *= 1.3
+    if (terrain === "misty"    && move.typeId === 15) multiplier *= 0.5
+
+    // Item
+    if (attackerItem === "lifeOrb")                                     multiplier *= 1.3
+    if (attackerItem === "choiceBand"  && move.category === "physical") multiplier *= 1.5
+    if (attackerItem === "choiceSpecs" && move.category === "special")  multiplier *= 1.5
+
+    // Crit
+    if (isCritical) multiplier *= 1.5
+
+    // Stats
+    const attackStat = move.category === "physical"
+        ? calculateStat(attacker.baseStats.attack,        attackerSpread.atkIv,   attackerSpread.atkEv,   false)
+        : calculateStat(attacker.baseStats.specialAttack, attackerSpread.spAtkIv, attackerSpread.spAtkEv, false)
+
+    const defenseStat = move.category === "physical"
+        ? calculateStat(defender.baseStats.defense,        defenderSpread.defIv,   defenderSpread.defEv,   false)
+        : calculateStat(defender.baseStats.specialDefense, defenderSpread.spDefIv, defenderSpread.spDefEv, false)
+
+    const defenderHp = calculateStat(defender.baseStats.hp, defenderSpread.hpIv, defenderSpread.hpEv, true)
+
+    const adjustedAttackStat  = Math.floor(attackStat  * getStageMultiplier(attackerStages))
+    const adjustedDefenseStat = Math.floor(defenseStat * getStageMultiplier(defenderStages))
+
+    // Base damage formula
+    const baseDamage = Math.floor(
+        Math.floor(Math.floor(2 * 50 / 5 + 2) * move.power * adjustedAttackStat / adjustedDefenseStat) / 50 + 2
+    )
+
+    const minDamage = Math.floor(Math.floor(baseDamage * 0.85) * multiplier)
+    const maxDamage = Math.floor(baseDamage * multiplier)
+
+    const minPercent = ((minDamage / defenderHp) * 100).toFixed(1)
+    const maxPercent = ((maxDamage / defenderHp) * 100).toFixed(1)
+
+    return { minDamage, maxDamage, minPercent, maxPercent, multiplier, defenderHp }
 }
