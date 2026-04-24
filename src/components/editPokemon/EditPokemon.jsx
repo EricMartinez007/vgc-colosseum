@@ -7,6 +7,7 @@ import { getAllNatures } from "../../services/naturesServices"
 import { getAllItems } from "../../services/itemsServices"
 import { createPokemonMove, deletePokemonMove, getPokemonLearnsets, getPokemonMovesByPokemonTeamId } from "../../services/movesServices"
 import { getAllTypes, getPokemonTypeByPokemonId, getTypeMatchups } from "../../services/typeServices"
+import { isEvChangeAllowed } from '../../utils/statUtils'
 
 
 export const EditPokemon = () => {
@@ -139,17 +140,25 @@ export const EditPokemon = () => {
         setSelectedMove(copy)
     }
 
+    // const handleStatChange = (field, value) => {
+    //     // adding cap to EVs. only run the cap check for the EV fields
+    //     if (field.includes("Ev")){
+    //         const currentTotal = pokemonTeam.hpEv + pokemonTeam.atkEv + pokemonTeam.defEv + pokemonTeam.spAtkEv + pokemonTeam.spDefEv + pokemonTeam.spdEv
+
+    //         //subtract the current total of the current stat before adding the new value so we don't double count it
+    //         const newTotal = currentTotal - pokemonTeam[field] + parseInt(value)
+
+    //         // if we hit a total of 510 in EV points don't update state
+    //         if (newTotal > 510) return
+    //     }
+    //     setPokemonTeam({
+    //         ...pokemonTeam,
+    //         [field]: parseInt(value)
+    //     })
+    // }
+
     const handleStatChange = (field, value) => {
-        // adding cap to EVs. only run the cap check for the EV fields
-        if (field.includes("Ev")){
-            const currentTotal = pokemonTeam.hpEv + pokemonTeam.atkEv + pokemonTeam.defEv + pokemonTeam.spAtkEv + pokemonTeam.spDefEv + pokemonTeam.spdEv
-
-            //subtract the current total of the current stat before adding the new value so we don't double count it
-            const newTotal = currentTotal - pokemonTeam[field] + parseInt(value)
-
-            // if we hit a total of 510 in EV points don't update state
-            if (newTotal > 510) return
-        }
+        if (!isEvChangeAllowed(pokemonTeam, field, value)) return
         setPokemonTeam({
             ...pokemonTeam,
             [field]: parseInt(value)

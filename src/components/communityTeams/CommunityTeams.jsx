@@ -4,6 +4,7 @@ import { getPokemon } from "../../services/pokemonServices"
 import { Link, useNavigate } from "react-router-dom"
 import "./CommunityTeams.css"
 import { getAllFormats } from "../../services/formatsServices"
+import { filterByPokemon, filterByFormat } from '../../utils/statUtils'
 
 export const CommunityTeams = ({ currentUser }) => {
     const navigate = useNavigate()
@@ -80,15 +81,7 @@ export const CommunityTeams = ({ currentUser }) => {
                                 {!allTeams.length ? (
                                     <p className="empty-msg">No teams created yet.</p>
                                 ) : (
-                                    allTeams
-                                        .filter(team => {
-                                            if (!selectedPokemon.id) return true
-                                            return team.pokemon.some(pokemonTeam => pokemonTeam.pokemonId === selectedPokemon.id)
-                                        })
-                                        .filter(team => {
-                                            if(!selectedFormat.id) return true
-                                            return team.formatId === selectedFormat.id
-                                        })
+                                    filterByFormat(filterByPokemon(allTeams, selectedPokemon.id), selectedFormat.id)
                                         .map((team) => (
                                             <div 
                                                 key={team.id} 
