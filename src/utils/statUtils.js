@@ -253,3 +253,29 @@ export const calculateDamage = ({
 
     return { minDamage, maxDamage, minPercent, maxPercent, multiplier, defenderHp }
 }
+
+// ─── EV Cap ──────────────────────────────────────────────────────────────────
+export const calculateNewEvTotal = (currentSpread, field, newValue) => {
+    const currentTotal = 
+        currentSpread.hpEv + currentSpread.atkEv + currentSpread.defEv +
+        currentSpread.spAtkEv + currentSpread.spDefEv + currentSpread.spdEv
+    return currentTotal - currentSpread[field] + parseInt(newValue)
+}
+
+export const isEvChangeAllowed = (currentSpread, field, newValue) => {
+    if (!field.includes("Ev")) return true
+    return calculateNewEvTotal(currentSpread, field, newValue) <= 510
+}
+
+// ─── Team Filters ────────────────────────────────────────────────────────────
+export const filterByPokemon = (teams, selectedPokemonId) => {
+    if (!selectedPokemonId) return teams
+    return teams.filter(team =>
+        team.pokemon.some(pokemonTeam => pokemonTeam.pokemonId === selectedPokemonId)
+    )
+}
+
+export const filterByFormat = (teams, selectedFormatId) => {
+    if (!selectedFormatId) return teams
+    return teams.filter(team => team.formatId === selectedFormatId)
+}
