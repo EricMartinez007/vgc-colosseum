@@ -4,17 +4,7 @@ import { getPokemonByTeamId, getTeamById } from "../../services/teamServices"
 import { getAllNatures } from "../../services/naturesServices"
 import "./SpeedTiers.css"
 import { getPokemon } from "../../services/pokemonServices"
-
-const natureSpeedModifier = {
-    "Timid": 1.1,
-    "Jolly": 1.1,
-    "Hasty": 1.1,
-    "Naive": 1.1,
-    "Brave": 0.9,
-    "Relaxed": 0.9,
-    "Quiet": 0.9,
-    "Sassy": 0.9
-}
+import { calculateSpeed } from '../../utils/statUtils'
 
 export const SpeedTiers = () => {
     const { teamId } = useParams()
@@ -40,17 +30,7 @@ export const SpeedTiers = () => {
         })
     }, [teamId])
 
-    const calculateSpeed = (pokemonTeam) => {
-        const baseSpeed = pokemonTeam.pokemon.baseStats.speed
-        const iv = pokemonTeam.spdIv
-        const ev = pokemonTeam.spdEv
-        const natureName = pokemonTeam.nature?.name
-        const natureModifier = natureSpeedModifier[natureName] || 1.0
 
-        return Math.floor(
-            Math.floor((2 * baseSpeed + iv + Math.floor(ev / 4)) * 50 / 100 + 5) * natureModifier
-        )
-    }
 
     const calculateBaseSpeed = (pokemon) => {
         const baseSpeed = pokemon.baseStats.speed
@@ -81,7 +61,12 @@ export const SpeedTiers = () => {
             id: pokemonTeam.id,
             name: pokemonTeam.pokemon.name,
             imageUrl: pokemonTeam.pokemon.imageUrl,
-            speed: calculateSpeed(pokemonTeam),
+            speed: calculateSpeed(
+                pokemonTeam.pokemon.baseStats.speed,
+                pokemonTeam.spdIv,
+                pokemonTeam.spdEv,
+                pokemonTeam.nature?.name
+            ),
             nature: pokemonTeam.nature?.name,
             isOnTeam: true
         }))

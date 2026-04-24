@@ -3,6 +3,7 @@ import { getPokemonLearnsets } from "../../services/movesServices"
 import { getPokemon } from "../../services/pokemonServices"
 import { getAllTypes, getPokemonTypeByPokemonId, getTypeMatchups } from "../../services/typeServices"
 import "./DamageCalculator.css"
+import { calculateStat, getStageMultiplier } from "../../utils/statUtils"
 
 const immunities = {
     1: [14],   // Normal immune to Ghost
@@ -127,25 +128,7 @@ export const DamageCalculator = () => {
         })
     }
 
-    const calculateStat = (base, iv, ev, isHp) => {
-        if (isHp) {
-            const totalHpStat = Math.floor(((2 * base + iv + Math.floor(ev/4)) * 50 / 100) + 50 + 10)
-            return totalHpStat
-        }
-        const totalStat = Math.floor(((2 * base + iv + Math.floor(ev/4)) * 50 / 100) + 5)
-        return totalStat
-    }
-
-    const getStageMultiplier = (stage) => {
-        let multiplier = 1
-        if (stage > 0) {
-            multiplier *= (2 + stage) / 2
-            return multiplier
-        } else {
-            multiplier *= 2 / (2 + Math.abs(stage))
-            return multiplier
-        }
-    }
+ 
 
     // Needed MAJOR help with this function. Not afraid to admit it lol 
     const calculateDamage = () => {

@@ -8,6 +8,7 @@ import { getPokemonAbilities } from "../../services/abilitiesServices"
 import { createPokemonMove, getPokemonLearnsets } from "../../services/movesServices"
 import { getAllNatures } from "../../services/naturesServices"
 import { getAllItems } from "../../services/itemsServices"
+import { parseShowdownString } from '../../utils/statUtils'
 
 export const NewTeam = ({ currentUser }) => {
     const navigate = useNavigate()
@@ -47,86 +48,7 @@ export const NewTeam = ({ currentUser }) => {
     }, [])
 
     // Needed help with this one, showdown import is tricky. We take a Showdown format string and split it into individual Pokemon blocks, extracting each component (name, item, ability, nature, EVs, IVs, and moves) and return an array of Pokemon objects with the parsed data. 
-    const parseShowdownString = (showdownString) => {
-        // Showdown's import was a little different so I needed to clean it up so it wouldn't crash 
-        const cleanedString = showdownString
-            .split("\n")
-            .map(line => line.trim())
-            .join("\n")
-        
-        // Showdown has different names for these pokemon so it will crash if it cant find the "correct" names in the database
-        const nameMap = {
-            "Urshifu": "Urshifu-Single",
-            "Calyrex-Ice Rider": "Calyrex-Ice",
-            "Calyrex-Shadow Rider": "Calyrex-Shadow",
-            "Zacian-Crowned Sword": "Zacian-Crowned",
-            "Zamazenta-Crowned Shield": "Zamazenta-Crowned",
-        }
-
-        // Showdown has an extra blank block that was causing a crash 
-        const blocks = cleanedString.split("\n\n").filter(block => block.trim() !== "")
-
-        return blocks.map(block => {
-            const lines = block.split("\n")
-            const [pokemonName, itemName] = lines[0].split("@")
-            const cleanPokemonName = nameMap[pokemonName.trim()] || pokemonName.trim()
-            const cleanItemName = itemName.trim()
-
-            let abilityName = ""
-            let natureName = ""
-            let moves = []
-            let evs = { hp: 0, atk: 0, def: 0, spAtk: 0, spDef: 0, spd: 0 }
-            let ivs = { hp: 31, atk: 31, def: 31, spAtk: 31, spDef: 31, spd: 31 }
-
-            // We are starting at index 1 since line 0 contains the Pokemon name and item which we already parsed above. Each remaining line is checked to extract ability, nature, EVs, IVs, and moves
-            lines.slice(1).forEach(line => {
-                if (line.startsWith("Ability:")) {
-                    abilityName = line.split(":")[1].trim()
-                }
-                if (line.startsWith("Nature:")) {
-                    natureName = line.split(":")[1].trim()
-                }
-                if (line.startsWith("EVs:")) {
-                    const evParts = line.split(":")[1].split("/")
-                    evParts.forEach(part => {
-                        const [amount, statName] = part.trim().split(" ")
-                        if (statName === "HP") evs.hp = parseInt(amount)
-                        if (statName === "Atk") evs.atk = parseInt(amount)
-                        if (statName === "Def") evs.def = parseInt(amount)
-                        if (statName === "SpA") evs.spAtk = parseInt(amount)
-                        if (statName === "SpD") evs.spDef = parseInt(amount)
-                        if (statName === "Spe") evs.spd = parseInt(amount)
-                    })
-                }
-                if (line.startsWith("IVs:")) {
-                    const ivParts = line.split(":")[1].split("/")
-                    ivParts.forEach(part => {
-                        const [amount, statName] = part.trim().split(" ")
-                        if (statName === "HP") ivs.hp = parseInt(amount)
-                        if (statName === "Atk") ivs.atk = parseInt(amount)
-                        if (statName === "Def") ivs.def = parseInt(amount)
-                        if (statName === "SpA") ivs.spAtk = parseInt(amount)
-                        if (statName === "SpD") ivs.spDef = parseInt(amount)
-                        if (statName === "Spe") ivs.spd = parseInt(amount)
-                    })
-                }
-                if (line.startsWith("-")) {
-                    moves.push(line.slice(2).trim())
-                }
-            })
-
-            // Sometimes Showdown's pokemon don't have a nature written so I added a safety to assign one if there is not one listed. Otherwise it would cause a crash
-            return {
-                pokemonName: cleanPokemonName,
-                itemName: cleanItemName,
-                abilityName,
-                natureName: natureName || "Hardy",
-                evs,
-                ivs,
-                moves
-            }
-        })
-    }
+    
 
     const updateNewTeam = (evt) => {
         const copy = { ...newTeam }

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { getPokemonByTeamId, getTeamById } from "../../services/teamServices"
 import { getAllTypes, getPokemonTypeByPokemonId, getTypeMatchups } from "../../services/typeServices"
 import "./TeamCoverage.css"
+import { teamGrade } from '../../utils/statUtils'
 
 export const TeamCoverage = () => {
     const { teamId } = useParams()
@@ -71,25 +72,7 @@ export const TeamCoverage = () => {
         return allTypes.filter(type => weaknessCount(type.id) >= 2)
     }
 
-    const teamGrade = () => {
-        const sharedWeaknesses = getSharedWeaknesses()
-        const criticalCount = sharedWeaknesses.filter(type => weaknessCount(type.id) >= 3).length
-        const warningCount = sharedWeaknesses.filter(type => weaknessCount(type.id) === 2).length
-        const coverageCount = allTypes.filter(type => teamHasCoverageAgainst(type.id)).length
-
-        // Start at 100, subtract for weaknesses, reward for coverage
-        let score = 100
-        score -= criticalCount * 12  // critical weaknesses hurt a lot
-        score -= warningCount * 4    // warnings hurt a little
-        score += coverageCount * 1   // bonus for each type covered
-
-        if (score >= 95) return "S"
-        if (score >= 75) return "A"
-        if (score >= 58) return "B"
-        if (score >= 40) return "C"
-        if (score >= 25) return "D"
-        return "F"
-    }
+    
 
     if (!team.id || !allTypes.length || !pokemonTypes.length) {
         return (
@@ -98,6 +81,8 @@ export const TeamCoverage = () => {
             </div>
         )
     }
+
+    const sharedWeaknesses = getSharedWeaknesses()
 
     return (
         <div className="page-container">
@@ -133,7 +118,11 @@ export const TeamCoverage = () => {
                 <section className="synergy-section">
                     <h2>Type Synergy Score</h2>
                     <div className="grade-display">
-                        <span className="grade-letter">{teamGrade()}</span>
+                        <span className="grade-letter">{teamGrade(
+                            sharedWeaknesses.filter(type => weaknessCount(type.id) >= 3).length,
+                            sharedWeaknesses.filter(type => weaknessCount(type.id) === 2).length,
+                            allTypes.filter(type => teamHasCoverageAgainst(type.id)).length
+                        )}</span>
                     </div>
                     <h3>Shared Weaknesses</h3>
                     <div className="shared-weaknesses-list">
