@@ -168,6 +168,7 @@ npm run dev
 ---
 
 ## 🔮 Future Features
+- Full Pokédex expansion — all Pokémon, moves, abilities, and items from the current VGC format
 - Move search and filtering by type and category
 - Team rating system
 - Empty state illustrations for My Teams, Community Teams, and Favorites
