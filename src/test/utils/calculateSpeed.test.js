@@ -12,7 +12,7 @@ import { calculateSpeed } from '../../utils/statUtils'
  
 describe('calculateSpeed()', () => {
  
-    // ── Neutral natures ─────────────────────────────────────────────────────────
+    // Neutral natures 
     describe('neutral nature (1.0 modifier)', () => {
         it('calculates Miraidon speed with neutral nature, 0 EV', () => {
             // floor((270 + 31 + 0) * 0.5) + 5 = 155, * 1.0 = 155
@@ -43,7 +43,7 @@ describe('calculateSpeed()', () => {
         })
     })
  
-    // ── +Speed natures (+10%) ───────────────────────────────────────────────────
+    // Positive Speed natures (+10%) 
     describe('+Speed natures (Timid, Jolly, Hasty, Naive — 1.1x)', () => {
         it('Timid boosts speed by 1.1x — Miraidon 0 EV', () => {
             // base = 155, floor(155 * 1.1) = floor(170.5) = 170
@@ -74,7 +74,7 @@ describe('calculateSpeed()', () => {
         })
     })
  
-    // ── -Speed natures (-10%) ───────────────────────────────────────────────────
+    // Negative Speed natures (-10%)
     describe('-Speed natures (Brave, Relaxed, Quiet, Sassy — 0.9x)', () => {
         it('Brave reduces speed by 0.9x — Miraidon 0 EV', () => {
             // base = 155, floor(155 * 0.9) = floor(139.5) = 139
@@ -100,7 +100,7 @@ describe('calculateSpeed()', () => {
         })
     })
  
-    // ── EV/IV combinations ──────────────────────────────────────────────────────
+    // EV/IV combinations 
     describe('EV/IV combinations', () => {
         it('4 EV gives +1 speed over 0 EV with same IV', () => {
             const with4ev = calculateSpeed(100, 31, 4, "Hardy")
@@ -127,7 +127,7 @@ describe('calculateSpeed()', () => {
         })
     })
  
-    // ── Speed tier relationships ────────────────────────────────────────────────
+    // Speed tier relationships 
     describe('speed tier ordering', () => {
         it('Jolly Garchomp (252 EV) outspeeds Timid Urshifu (0 EV)', () => {
             const garchomp = calculateSpeed(102, 31, 252, "Jolly")   // 169

@@ -61,7 +61,7 @@ ${FLUTTER_MANE_BLOCK}`
  
 describe('parseShowdownString()', () => {
  
-    // ── Basic parsing ───────────────────────────────────────────────────────────
+    // Basic parsing 
     describe('basic parsing', () => {
         it('returns an array with one entry for a single Pokémon block', () => {
             const result = parseShowdownString(INCINEROAR_BLOCK)
@@ -95,7 +95,7 @@ describe('parseShowdownString()', () => {
         })
     })
  
-    // ── EV parsing ──────────────────────────────────────────────────────────────
+    // EV parsing 
     describe('EV parsing', () => {
         it('parses HP EVs correctly', () => {
             const [mon] = parseShowdownString(INCINEROAR_BLOCK)
@@ -131,7 +131,7 @@ describe('parseShowdownString()', () => {
         })
     })
  
-    // ── IV parsing ──────────────────────────────────────────────────────────────
+    // IV parsing 
     describe('IV parsing', () => {
         it('defaults all IVs to 31 when no IVs line is present', () => {
             const [mon] = parseShowdownString(INCINEROAR_BLOCK)
@@ -158,7 +158,7 @@ describe('parseShowdownString()', () => {
         })
     })
  
-    // ── Name mapping ─────────────────────────────────────────────────────────────
+    // Name mapping 
     describe('Showdown → DB name mapping', () => {
         it('maps "Urshifu" → "Urshifu-Single"', () => {
             const [mon] = parseShowdownString(URSHIFU_SHOWDOWN_NAME)
@@ -176,7 +176,7 @@ describe('parseShowdownString()', () => {
         })
     })
  
-    // ── Missing nature fallback ─────────────────────────────────────────────────
+    // Missing nature fallback 
     describe('missing nature fallback', () => {
         it('defaults to "Hardy" when Nature line is absent', () => {
             const [mon] = parseShowdownString(NO_NATURE_BLOCK)
@@ -190,7 +190,7 @@ describe('parseShowdownString()', () => {
         })
     })
  
-    // ── Multi-Pokémon paste ─────────────────────────────────────────────────────
+    // Multi-Pokémon paste 
     describe('multi-Pokémon paste', () => {
         it('returns the correct number of Pokémon entries', () => {
             const result = parseShowdownString(TWO_MON_PASTE)
@@ -218,7 +218,7 @@ describe('parseShowdownString()', () => {
         })
     })
  
-    // ── Return shape ────────────────────────────────────────────────────────────
+    // Return shape 
     describe('return shape', () => {
         it('each entry has all required keys', () => {
             const [mon] = parseShowdownString(INCINEROAR_BLOCK)

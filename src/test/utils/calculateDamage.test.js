@@ -2,7 +2,7 @@
 import { describe, it, expect } from 'vitest'
 import { calculateDamage } from '../../utils/statUtils'
 
-// ─── Shared test fixtures from db.json ───────────────────────────────────────
+// test objects from db.json 
 
 const INCINEROAR = {
     baseStats: { hp: 95, attack: 115, defense: 90, specialAttack: 80, specialDefense: 90, speed: 60 }
@@ -63,11 +63,10 @@ const baseDamageCall = (overrides = {}) => ({
     ...overrides
 })
 
-// ─────────────────────────────────────────────────────────────────────────────
 
 describe('calculateDamage()', () => {
 
-    // ── Return shape ────────────────────────────────────────────────────────────
+    // Return shape 
     describe('return shape', () => {
         it('returns an object with the correct keys', () => {
             const result = calculateDamage(baseDamageCall())
@@ -103,7 +102,7 @@ describe('calculateDamage()', () => {
         })
     })
 
-    // ── Type effectiveness ──────────────────────────────────────────────────────
+    // Type effectiveness 
     describe('type effectiveness', () => {
         it('neutral — multiplier is 1 for no type interaction', () => {
             // Thunderbolt (Electric) vs Incineroar (Fire/Dark) — neutral
@@ -172,7 +171,7 @@ describe('calculateDamage()', () => {
         })
     })
 
-    // ── STAB ────────────────────────────────────────────────────────────────────
+    // STAB 
     describe('STAB (Same Type Attack Bonus)', () => {
         it('applies 1.5x when move type matches attacker type', () => {
             // Garchomp (Ground/Dragon) using Earthquake (Ground) = STAB
@@ -194,7 +193,7 @@ describe('calculateDamage()', () => {
         })
     })
 
-    // ── Weather ─────────────────────────────────────────────────────────────────
+    // Weather 
     describe('weather modifiers', () => {
         it('sun boosts Fire moves by 1.5x', () => {
             const withSun    = calculateDamage(baseDamageCall({ move: HEAT_WAVE, attackerTypes: [{ typeId: 2 }], defenderTypes: [{ typeId: 1 }], weather: "sun" }))
@@ -230,7 +229,7 @@ describe('calculateDamage()', () => {
         })
     })
 
-    // ── Terrain ─────────────────────────────────────────────────────────────────
+    // Terrain
     describe('terrain modifiers', () => {
         it('electric terrain boosts Electric moves by 1.3x', () => {
             const withTerrain    = calculateDamage(baseDamageCall({ move: THUNDERBOLT, attackerTypes: [{ typeId: 5 }], defenderTypes: [{ typeId: 1 }], terrain: "electric" }))
@@ -253,7 +252,7 @@ describe('calculateDamage()', () => {
         })
     })
 
-    // ── Items ───────────────────────────────────────────────────────────────────
+    // Items 
     describe('item modifiers', () => {
         it('Life Orb boosts damage by 1.3x', () => {
             const withItem    = calculateDamage(baseDamageCall({ attackerItem: "lifeOrb" }))
@@ -286,7 +285,7 @@ describe('calculateDamage()', () => {
         })
     })
 
-    // ── Critical hits ───────────────────────────────────────────────────────────
+    // Critical hits 
     describe('critical hits', () => {
         it('critical hit boosts damage by 1.5x', () => {
             const withCrit    = calculateDamage(baseDamageCall({ isCritical: true }))
@@ -304,7 +303,7 @@ describe('calculateDamage()', () => {
         })
     })
 
-    // ── Stat stages ─────────────────────────────────────────────────────────────
+    // Stat stages 
     describe('stat stages', () => {
         it('+1 attack stage increases damage', () => {
             const withBoost    = calculateDamage(baseDamageCall({ attackerStages: 1 }))
@@ -325,7 +324,7 @@ describe('calculateDamage()', () => {
         })
     })
 
-    // ── HP percentage ───────────────────────────────────────────────────────────
+    // HP percentage 
     describe('HP percentage output', () => {
         it('minPercent and maxPercent are string representations of numbers', () => {
             const result = calculateDamage(baseDamageCall())

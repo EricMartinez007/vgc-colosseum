@@ -2,7 +2,7 @@
 import { describe, it, expect } from 'vitest'
 import { isEvChangeAllowed, calculateNewEvTotal } from '../../utils/statUtils'
 
-// ─── EV Cap Rules ─────────────────────────────────────────────────────────────
+// EV Cap Rules 
 // Total EVs across all 6 stats cannot exceed 510
 // Each individual stat can have at most 252 EVs
 // IVs are never capped — only EV fields trigger the check
@@ -45,7 +45,7 @@ describe('calculateNewEvTotal()', () => {
 
 describe('isEvChangeAllowed()', () => {
 
-    // ── Allowed changes ─────────────────────────────────────────────────────────
+    // Allowed changes 
     describe('allowed changes', () => {
         it('allows EV change when total stays under 510', () => {
             expect(isEvChangeAllowed(EMPTY_SPREAD, 'hpEv', 252)).toBe(true)
@@ -72,7 +72,7 @@ describe('isEvChangeAllowed()', () => {
         })
     })
 
-    // ── Blocked changes ─────────────────────────────────────────────────────────
+    // Blocked changes 
     describe('blocked changes', () => {
         it('blocks EV change when total would exceed 510', () => {
             // PARTIAL_SPREAD has 504, trying to add 252 to defEv = 756
@@ -96,7 +96,7 @@ describe('isEvChangeAllowed()', () => {
         })
     })
 
-    // ── Edge cases ──────────────────────────────────────────────────────────────
+    // Edge cases 
     describe('edge cases', () => {
         it('allows all changes on a completely empty spread', () => {
             expect(isEvChangeAllowed(EMPTY_SPREAD, 'hpEv', 0)).toBe(true)

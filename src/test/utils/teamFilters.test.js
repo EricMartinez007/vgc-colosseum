@@ -2,7 +2,7 @@
 import { describe, it, expect } from 'vitest'
 import { filterByPokemon, filterByFormat } from '../../utils/statUtils'
 
-// ─── Fixtures based on db.json ────────────────────────────────────────────────
+// Objects based on db.json 
 const TEAMS = [
     {
         id: 1,
@@ -47,7 +47,7 @@ const TEAMS = [
 
 describe('filterByPokemon()', () => {
 
-    // ── No filter ───────────────────────────────────────────────────────────────
+    // No filter 
     describe('no filter selected', () => {
         it('returns all teams when selectedPokemonId is null', () => {
             expect(filterByPokemon(TEAMS, null)).toHaveLength(3)
@@ -62,7 +62,7 @@ describe('filterByPokemon()', () => {
         })
     })
 
-    // ── Active filter ───────────────────────────────────────────────────────────
+    // Active filter 
     describe('active filter', () => {
         it('returns only teams containing the selected Pokémon', () => {
             // Incineroar (id 1) is on teams 1 and 2
@@ -100,7 +100,7 @@ describe('filterByPokemon()', () => {
 
 describe('filterByFormat()', () => {
 
-    // ── No filter ───────────────────────────────────────────────────────────────
+    // No filter 
     describe('no filter selected', () => {
         it('returns all teams when selectedFormatId is null', () => {
             expect(filterByFormat(TEAMS, null)).toHaveLength(3)
@@ -115,7 +115,7 @@ describe('filterByFormat()', () => {
         })
     })
 
-    // ── Active filter ───────────────────────────────────────────────────────────
+    // Active filter 
     describe('active filter', () => {
         it('returns only Doubles teams (formatId 2)', () => {
             const result = filterByFormat(TEAMS, 2)
@@ -135,7 +135,7 @@ describe('filterByFormat()', () => {
         })
     })
 
-    // ── Combined filters ────────────────────────────────────────────────────────
+    // Combined filters 
     describe('combining both filters', () => {
         it('filters by Pokémon then format correctly', () => {
             // Incineroar (1) is on teams 1 and 2, both Doubles (formatId 2)

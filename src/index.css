@@ -47,7 +47,6 @@ button {
   letter-spacing: 0.1em;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
-  text-shadow: 0 0 30px rgba(123, 47, 255, 0.6);
 }
 
 .page-subtitle {
@@ -216,18 +215,6 @@ button {
 
 .favorites-subtitle {
     color: #e63946;
-}
-
-.community-title {
-    text-shadow: 0 0 30px rgba(255, 107, 0, 0.6);
-}
-
-.myteams-title {
-    text-shadow: 0 0 30px rgba(123, 47, 255, 0.6);
-}
-
-.favorites-title {
-    text-shadow: 0 0 30px rgba(230, 57, 70, 0.6);
 }
 
 @media (max-width: 768px) {

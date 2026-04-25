@@ -2,18 +2,17 @@
 import { describe, it, expect } from 'vitest'
 import { calculateStat } from '../../utils/statUtils'
  
-// ─── Pokémon Gen 8/9 stat formulas (level 50) ────────────────────────────────
+// Pokémon Gen 8/9 stat formulas (level 50) 
 //
 //  HP  = floor((2 * base + iv + floor(ev / 4)) * 50 / 100) + 50 + 10
 //  Atk = floor((2 * base + iv + floor(ev / 4)) * 50 / 100) + 5
 //  (same for Def, SpA, SpD, Spe — nature applied on top in calculateSpeed)
 //
 // All expected values verified against Showdown's damage calculator.
-// ─────────────────────────────────────────────────────────────────────────────
  
 describe('calculateStat()', () => {
  
-    // ── HP formula ─────────────────────────────────────────────────────────────
+    // HP formula 
     describe('HP formula (isHp = true)', () => {
         it('calculates standard HP correctly — Garchomp benchmark', () => {
             // floor((216 + 31 + 63) * 0.5) + 60 = floor(155) + 60 = 215
@@ -43,7 +42,7 @@ describe('calculateStat()', () => {
         })
     })
  
-    // ── Non-HP formula ─────────────────────────────────────────────────────────
+    // Non-HP formula 
     describe('non-HP formula (isHp = false)', () => {
         it('calculates Attack stat with full investment — Garchomp', () => {
             // floor((260 + 31 + 63) * 0.5) + 5 = floor(177) + 5 = 182
@@ -77,7 +76,7 @@ describe('calculateStat()', () => {
         })
     })
  
-    // ── HP vs non-HP formula difference ────────────────────────────────────────
+    // HP vs non-HP formula difference 
     describe('HP vs non-HP formula distinction', () => {
         it('HP formula always returns a higher value than non-HP for same inputs', () => {
             const hpResult    = calculateStat(100, 31, 252, true)
@@ -93,7 +92,7 @@ describe('calculateStat()', () => {
         })
     })
  
-    // ── Edge cases ─────────────────────────────────────────────────────────────
+    // Edge cases 
     describe('edge cases', () => {
         it('always returns an integer (never a decimal)', () => {
             const result = calculateStat(97, 31, 100, false) // Urshifu speed, odd EV

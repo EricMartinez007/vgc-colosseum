@@ -8,7 +8,7 @@ import { teamGrade } from '../../utils/statUtils'
  
 describe('teamGrade()', () => {
  
-    // ── S tier ─────────────────────────────────────────────────────────────────
+    // S tier 
     describe('S grade (score ≥ 95)', () => {
         it('returns S for a perfect team (no weaknesses, full coverage)', () => {
             // score = 100 - 0 - 0 + 18 = 118 → S
@@ -30,7 +30,7 @@ describe('teamGrade()', () => {
         })
     })
  
-    // ── A tier ─────────────────────────────────────────────────────────────────
+    // A tier 
     describe('A grade (75 ≤ score < 95)', () => {
         it('returns A with a few shared weaknesses', () => {
             // 0 crits, 5 warnings = 100 - 20 = 80 → A
@@ -51,7 +51,7 @@ describe('teamGrade()', () => {
         })
     })
  
-    // ── B tier ─────────────────────────────────────────────────────────────────
+    // B tier 
     describe('B grade (58 ≤ score < 75)', () => {
         it('returns B with 2 critical weaknesses', () => {
             // 100 - 24 - 0 = 76... that's A. Try 3 crits:
@@ -71,7 +71,7 @@ describe('teamGrade()', () => {
         })
     })
  
-    // ── C tier ─────────────────────────────────────────────────────────────────
+    // C tier 
     describe('C grade (40 ≤ score < 58)', () => {
         it('returns C with many shared weaknesses', () => {
             // 100 - 48 - 0 = 52 → C (4 crits)
@@ -84,7 +84,7 @@ describe('teamGrade()', () => {
         })
     })
  
-    // ── D tier ─────────────────────────────────────────────────────────────────
+    // D tier 
     describe('D grade (25 ≤ score < 40)', () => {
         it('returns D for a very weak team', () => {
             // 100 - 60 - 16 = 24? → F. Try 5 crits, 2 warnings:
@@ -98,7 +98,7 @@ describe('teamGrade()', () => {
         })
     })
  
-    // ── F tier ─────────────────────────────────────────────────────────────────
+    // F tier 
     describe('F grade (score < 25)', () => {
         it('returns F for a terrible team', () => {
             // 100 - 84 - 16 = 0 → F (7 crits, 4 warnings)
@@ -117,7 +117,7 @@ describe('teamGrade()', () => {
         })
     })
  
-    // ── Grade ordering ──────────────────────────────────────────────────────────
+    // Grade ordering 
     describe('grade ordering — more weaknesses = lower grade', () => {
         it('adding a critical weakness never improves or keeps the same grade', () => {
             const grades = ['S', 'A', 'B', 'C', 'D', 'F']
