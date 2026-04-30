@@ -1,4 +1,3 @@
-// src/test/utils/calculateSpeed.test.js
 import { describe, it, expect } from 'vitest'
 import { calculateSpeed } from '../../utils/statUtils'
  

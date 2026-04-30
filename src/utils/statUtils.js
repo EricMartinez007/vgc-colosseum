@@ -1,4 +1,3 @@
-// src/utils/statUtils.js
 // Pure functions extracted from DamageCalculator.jsx and SpeedTiers.jsx
  
 // Nature modifiers 

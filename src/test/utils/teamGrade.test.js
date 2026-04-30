@@ -1,4 +1,3 @@
-// src/test/utils/teamGrade.test.js
 import { describe, it, expect } from 'vitest'
 import { teamGrade } from '../../utils/statUtils'
  

@@ -1,4 +1,3 @@
-// src/test/utils/teamFilters.test.js
 import { describe, it, expect } from 'vitest'
 import { filterByPokemon, filterByFormat } from '../../utils/statUtils'
 

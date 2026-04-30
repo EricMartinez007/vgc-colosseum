@@ -1,4 +1,3 @@
-// src/test/utils/evCap.test.js
 import { describe, it, expect } from 'vitest'
 import { isEvChangeAllowed, calculateNewEvTotal } from '../../utils/statUtils'
 
