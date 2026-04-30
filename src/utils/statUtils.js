@@ -1,7 +1,7 @@
 // src/utils/statUtils.js
 // Pure functions extracted from DamageCalculator.jsx and SpeedTiers.jsx
  
-// ─── Nature modifiers ───────────────────────────────────────────────────────
+// Nature modifiers 
 export const NATURE_SPEED_MODIFIERS = {
     "Timid":   1.1,
     "Jolly":   1.1,
@@ -13,7 +13,7 @@ export const NATURE_SPEED_MODIFIERS = {
     "Sassy":   0.9,
 }
  
-// ─── Stat Calculation ────────────────────────────────────────────────────────
+// Stat Calculation
 /**
  * Calculates a single Pokémon stat at level 50.
  * @param {number} base - Base stat value
@@ -29,7 +29,7 @@ export const calculateStat = (base, iv, ev, isHp) => {
     return Math.floor(((2 * base + iv + Math.floor(ev / 4)) * 50 / 100) + 5)
 }
  
-// ─── Speed Calculation ───────────────────────────────────────────────────────
+// Speed Calculation 
 /**
  * Calculates a Pokémon's final Speed stat at level 50, including nature modifier.
  * @param {number} baseSpeed  - Base Speed stat
@@ -45,7 +45,7 @@ export const calculateSpeed = (baseSpeed, iv, ev, natureName) => {
     )
 }
  
-// ─── Stage Multiplier ────────────────────────────────────────────────────────
+// Stage Multiplier 
 /**
  * Returns the stat stage multiplier for a given stage (-6 to +6).
  * @param {number} stage - Stat stage
@@ -56,7 +56,7 @@ export const getStageMultiplier = (stage) => {
     return 2 / (2 + Math.abs(stage))
 }
  
-// ─── Team Grade ──────────────────────────────────────────────────────────────
+// Team Grade 
 /**
  * Grades a team's type coverage from S to F.
  * @param {number} criticalCount - Types where 3+ Pokémon are weak
@@ -78,7 +78,7 @@ export const teamGrade = (criticalCount, warningCount, coverageCount) => {
     return "F"
 }
  
-// ─── Showdown Parser ─────────────────────────────────────────────────────────
+// Showdown Parser 
 const NAME_MAP = {
     "Urshifu":               "Urshifu-Single",
     "Calyrex-Ice Rider":     "Calyrex-Ice",
@@ -154,7 +154,7 @@ export const parseShowdownString = (showdownString) => {
     })
 }
 
-// ─── Immunities ──────────────────────────────────────────────────────────────
+// Immunities 
 export const IMMUNITIES = {
     1:  [14],    // Normal immune to Ghost
     7:  [14],    // Fighting immune to Ghost
@@ -164,7 +164,7 @@ export const IMMUNITIES = {
     18: [15],    // Fairy immune to Dragon
 }
 
-// ─── Damage Calculation ──────────────────────────────────────────────────────
+// Damage Calculation 
 export const calculateDamage = ({
     attacker,
     defender,
@@ -254,7 +254,7 @@ export const calculateDamage = ({
     return { minDamage, maxDamage, minPercent, maxPercent, multiplier, defenderHp }
 }
 
-// ─── EV Cap ──────────────────────────────────────────────────────────────────
+// EV Cap 
 export const calculateNewEvTotal = (currentSpread, field, newValue) => {
     const currentTotal = 
         currentSpread.hpEv + currentSpread.atkEv + currentSpread.defEv +
@@ -267,7 +267,7 @@ export const isEvChangeAllowed = (currentSpread, field, newValue) => {
     return calculateNewEvTotal(currentSpread, field, newValue) <= 510
 }
 
-// ─── Team Filters ────────────────────────────────────────────────────────────
+// Team Filters 
 export const filterByPokemon = (teams, selectedPokemonId) => {
     if (!selectedPokemonId) return teams
     return teams.filter(team =>
