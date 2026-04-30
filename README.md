@@ -4,7 +4,7 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 
 ---
 
-## 🎮 Features
+##  Features
 
 ### Team Management
 - Create, edit, and delete competitive teams
@@ -71,7 +71,7 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Frontend:** React 19, Vite, React Router v7
 - **Backend:** JSON Server
@@ -81,7 +81,7 @@ A full-stack competitive Pokémon team builder designed for VGC (Video Game Cham
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 VGC Colosseum has a full unit test suite covering all core game logic and utility functions.
 
@@ -161,13 +161,13 @@ npm run dev
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 *Coming soon*
 
 ---
 
-## 🔮 Future Features
+##  Future Features
 - Full Pokédex expansion — all Pokémon, moves, abilities, and items from the current VGC format
 - Move search and filtering by type and category
 - Team rating system
@@ -175,7 +175,7 @@ npm run dev
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 Built by Eric Martinez as a capstone project at Nashville Software School.
 
