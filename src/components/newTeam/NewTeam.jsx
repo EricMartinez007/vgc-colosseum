@@ -137,7 +137,7 @@ export const NewTeam = ({ currentUser }) => {
     
     return (
         <main className="page-container">
-            <h1 className="page-title">✨ Create a New Team</h1>
+            <h1 className="page-title"> Create a New Team</h1>
             <span className="page-subtitle">Build a new competitive team!</span>
             <div className="newteam-layout">
                 
@@ -156,7 +156,7 @@ export const NewTeam = ({ currentUser }) => {
 
                 <form className="form-newteam" onSubmit={handleSubmit}>
                     <div className="newteam-banner">
-                        <h2 className="newteam-banner-title">⚔️ New Team</h2>
+                        <h2 className="newteam-banner-title"> New Team</h2>
                     </div>
                     <fieldset>
                         <h2 className="new-form-title">Team Name</h2>
@@ -189,7 +189,7 @@ export const NewTeam = ({ currentUser }) => {
 
                 <form className="form-showdown-import" onSubmit={handleShowdownSubmit}>
                     <div className="import-banner">
-                        <h2 className="import-banner-title">⚔️ Import Showdown Team!</h2>
+                        <h2 className="import-banner-title"> Import Showdown Team!</h2>
                     </div>
                     <fieldset>
                         <h2 className="new-form-title">Team Name</h2>

@@ -55,11 +55,11 @@ export const MyTeams = ({ currentUser }) => {
     return (
         <main className="page-container">
             <section>
-                <h1 className="page-title myteams-title">⚔️ My Teams</h1>
+                <h1 className="page-title myteams-title"> My Teams</h1>
                 <span className="page-subtitle myteams-subtitle">View your competitive teams!</span>
                 <div className="myteams-container">
                 <div className="myteams-banner">
-                    <h2 className="myteams-banner-title">🛡️ Your Arsenal</h2>
+                    <h2 className="myteams-banner-title"> Your Arsenal</h2>
                 </div>
                     <div className="myteams-banner-filters">
                         <select className="filter-bar" onChange={handlePokemonSelect}>

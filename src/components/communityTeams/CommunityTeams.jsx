@@ -57,11 +57,11 @@ export const CommunityTeams = ({ currentUser }) => {
     return (
         <main className="page-container">
             <section>
-                <h1 className="page-title community-title">🏆 Community Teams</h1>
+                <h1 className="page-title community-title"> Community Teams</h1>
                 <span className="page-subtitle community-subtitle">Browse and view teams created by community members!</span>
                 <div className="community-container">
                     <div className="community-banner">
-                        <h2 className="community-banner-title">🏟️ The Arena Awaits</h2>
+                        <h2 className="community-banner-title"> The Arena Awaits</h2>
                     </div>
                         <div className="community-banner-filters">
                             <select className="filter-bar" onChange={handlePokemonSelect}>

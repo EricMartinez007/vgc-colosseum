@@ -142,7 +142,7 @@ export const DamageCalculator = () => {
 
     return (
         <div className="page-container">
-            <h1 className="page-title damage-calc-title">💥 Damage Calculator</h1>
+            <h1 className="page-title damage-calc-title"> Damage Calculator</h1>
             <span className="page-subtitle damage-calc-subtitle">Calculate damage between any two Pokémon!</span>
             <div className="calc-layout">
     

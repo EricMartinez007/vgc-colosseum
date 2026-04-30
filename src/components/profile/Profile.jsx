@@ -85,7 +85,7 @@ export const Profile = ({ currentUser }) => {
                                 alt={getMostUsedPokemon().name}
                             />
                         )}
-                        <h2 className="profile-name">⚔️ {user.name}</h2>
+                        <h2 className="profile-name"> {user.name}</h2>
                     </div>
                     <div className="profile-stats">
                         <div className="profile-stat-card">

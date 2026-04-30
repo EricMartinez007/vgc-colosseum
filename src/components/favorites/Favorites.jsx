@@ -58,11 +58,11 @@ export const Favorites = ({ currentUser }) => {
     return (
         <main className="page-container">
             <section>
-                <h1 className="page-title favorites-title">❤️ Favorites</h1>
+                <h1 className="page-title favorites-title"> Favorites</h1>
                 <span className="page-subtitle favorites-subtitle">Browse and view your favorite teams!</span>
                 <div className="favorites-container">
                 <div className="favorites-banner">
-                    <h2 className="favorites-banner-title">👑 Your Honored Teams</h2>
+                    <h2 className="favorites-banner-title"> Your Honored Teams</h2>
                 </div>
                     <div className="favorites-banner-filters">
                         <select className="filter-bar" onChange={handlePokemonSelect}>
